@@ -2,7 +2,7 @@
 
 ## Course Description
 
-The Udacity course "SQL for Data Analysis[https://learn.udacity.com/courses/ud198]" is a comprehensive learning resource designed to equip learners with the fundamental skills required to use SQL (Structured Query Language) for data analysis. The course covers various SQL concepts, techniques, and best practices to effectively query and analyze data from relational databases.
+The Udacity course "[SQL for Data Analysis](https://learn.udacity.com/courses/ud198)" is a comprehensive learning resource designed to equip learners with the fundamental skills required to use SQL (Structured Query Language) for data analysis. The course covers various SQL concepts, techniques, and best practices to effectively query and analyze data from relational databases.
 
 Throughout the course, participants will gain hands-on experience working with real-world datasets and learn how to apply SQL queries to solve practical data analysis problems. The course content is structured in a logical and progressive manner, starting with the basics and gradually advancing to more complex SQL operations and functions.
 
