@@ -1,4 +1,4 @@
-# Udacity Course: SQL for Data Analysis [https://learn.udacity.com/courses/ud198] 
+# Udacity Course: SQL for Data Analysis[https://learn.udacity.com/courses/ud198] 
 
 ## Course Description
 
