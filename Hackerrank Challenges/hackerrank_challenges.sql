@@ -214,3 +214,195 @@ Your result cannot contain duplicates.
 SELECT DISTINCT CITY
 FROM STATION
 WHERE CITY REGEXP '^[aeiou].*[aeiou]$'
+
+
+## 14. Weather Observation Station 9
+
+/*
+https://www.hackerrank.com/challenges/weather-observation-station-9/problem
+
+Query the list of CITY names from STATION that 
+do not start with vowels. Your result cannot 
+contain duplicates.
+*/
+
+
+SELECT DISTINCT CITY
+FROM STATION
+WHERE LEFT(CITY, 1) NOT LIKE ('a','e','i','o','u')
+
+
+## 15. Weather Observation Station 10
+
+/*
+https://www.hackerrank.com/challenges/weather-observation-station-10/problem
+
+Query the list of CITY names from STATION that 
+do not end with vowels. Your result cannot 
+contain duplicates.
+*/
+
+
+SELECT DISTINCT CITY
+FROM STATION
+WHERE RIGHT(CITY, 1) NOT IN ('a','e','i','o','u')
+
+
+## 16. Weather Observation Station 11
+
+/*
+https://www.hackerrank.com/challenges/weather-observation-station-11/problem
+
+Query the list of CITY names from STATION that 
+do not end with vowels or do not start with 
+vowels. Your result cannot contain duplicates.
+*/
+
+
+SELECT DISTINCT CITY
+FROM STATION
+WHERE RIGHT(CITY, 1) NOT IN ('a','e','i','o','u') OR
+        LEFT(CITY, 1) NOT IN ('a','e','i','o','u')
+
+
+
+## 17. Weather Observation Station 12
+
+/*
+https://www.hackerrank.com/challenges/weather-observation-station-11/problem
+
+Query the list of CITY names from STATION that 
+do not end with vowels and do not start with 
+vowels. Your result cannot contain duplicates.
+*/
+
+
+SELECT DISTINCT CITY
+FROM STATION
+WHERE RIGHT(CITY, 1) NOT IN ('a','e','i','o','u') AND
+        LEFT(CITY, 1) NOT IN ('a','e','i','o','u')
+
+
+
+## 18. Higher Than 75 Marks
+
+/*
+https://www.hackerrank.com/challenges/more-than-75-marks/problem
+
+Query the Name of any student in STUDENTS who 
+scored higher than  Marks. Order your output by 
+the last three characters of each name. If two or 
+more students both have names ending in the same 
+last three characters (i.e.: Bobby, Robby, etc.), 
+secondary sort them by ascending ID.
+*/
+
+
+SELECT Name
+FROM STUDENTS
+WHERE Marks > 75
+ORDER BY RIGHT(Name, 3), ID
+
+
+## 19. Employee Names
+
+/*
+https://www.hackerrank.com/challenges/name-of-employees/problem
+
+Write a query that prints a list of employee 
+names (i.e.: the name attribute) from the 
+Employee table in alphabetical order.
+*/
+
+
+SELECT name
+FROM Employee
+ORDER BY name
+
+
+## 20. Employee Salaries
+
+/*
+https://www.hackerrank.com/challenges/salary-of-employees/problem
+
+Write a query that prints a list of employee 
+names (i.e.: the name attribute) for employees in 
+Employee having a salary greater than  per month 
+who have been employees for less than  months. 
+Sort your result by ascending employee_id.
+*/
+
+
+SELECT name
+FROM Employee
+WHERE salary > 2000 AND 
+        months < 10
+
+
+## 21. Average Population
+
+/*
+https://www.hackerrank.com/challenges/average-population/problem
+
+Query the average population for all cities in 
+CITY, rounded down to the nearest integer.
+*/
+
+
+SELECT ROUND(AVG(POPULATION)) AS avg_pop
+FROM CITY
+
+
+## 22. Japan Population
+
+/*
+https://www.hackerrank.com/challenges/japan-population/problem
+
+Query the sum of the populations for all Japanese 
+cities in CITY. The COUNTRYCODE for Japan is JPN.
+*/
+
+
+SELECT SUM(POPULATION) AS japan_pop
+FROM CITY
+WHERE COUNTRYCODE = 'JPN'
+
+
+## 23. Population Density Difference
+
+/*
+https://www.hackerrank.com/challenges/population-density-difference/problem
+
+Query the difference between the maximum and 
+minimum populations in CITY.
+*/
+
+
+SELECT MAX(POPULATION) - MIN(POPULATION) AS difference
+FROM CITY
+
+
+## 24. The Blunder
+
+/*
+https://www.hackerrank.com/challenges/the-blunder/problem
+
+Samantha was tasked with calculating the average 
+monthly salaries for all employees in the 
+EMPLOYEES table, but did not realize her 
+keyboard's  key was broken until after completing 
+the calculation. She wants your help finding the 
+difference between her miscalculation (using 
+salaries with any zeros removed), and the actual 
+average salary.
+
+Write a query calculating the amount of error 
+(i.e.:  average monthly salaries), and round it 
+up to the next integer.
+*/
+
+
+SELECT CEIL(AVG(SALARY) - AVG(CAST(REPLACE(CAST(SALARY AS CHAR), '0','') AS SIGNED))) AS diff_avg_salary
+FROM EMPLOYEES
+
+
