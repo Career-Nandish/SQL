@@ -515,13 +515,28 @@ GROUP BY c.founder, c.company_code
 ORDER BY c.company_code
 
 
-/*OR*/
-
 ## 29.
 
 /*
+https://www.hackerrank.com/challenges/weather-observation-station-20/problem
 
+A median is defined as a number separating the higher half of a data 
+set from the lower half. Query the median of the Northern Latitudes 
+(LAT_N) from STATION and round your answer to  decimal places.
 */
+
+
+SELECT ROUND(AVG(LAT_N), 4) AS median_lat_n 
+FROM (
+        SELECT LAT_N,
+               ROW_NUMBER() OVER (ORDER BY LAT_N) AS row_n,
+               COUNT(*) OVER () AS tot
+        FROM STATION
+) AS subq
+WHERE subq.row_n IN (
+                        FLOOR((subq.tot + 1)/2),
+                        FLOOR((subq.tot + 2)/2)
+                )
 
 
 ## 30.
