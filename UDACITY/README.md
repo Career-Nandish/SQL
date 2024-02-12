@@ -46,6 +46,7 @@ Throughout the course, participants will gain hands-on experience working with r
 * Handling missing data and NULL values
 * Performing data transformations and data cleansing operations
 * Applying data validation and integrity checks using constraints
+* Find content [here](5%20Data%20Cleaning/udacity_data_cleaning.sql) 
 
 ### 6. Putting It All Together: SQL for Data Analysis Projects
 
