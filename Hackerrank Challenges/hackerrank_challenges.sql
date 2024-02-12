@@ -539,8 +539,29 @@ WHERE subq.row_n IN (
                 )
 
 
-## 30.
+## 30. Occupations
 
 /*
+https://www.hackerrank.com/challenges/occupations/problem
 
+Pivot the Occupation column in OCCUPATIONS so that each Name is sorted 
+alphabetically and displayed underneath its corresponding Occupation. 
+The output column headers should be Doctor, Professor, Singer, and 
+Actor, respectively.
+
+Note: Print NULL when there are no more names corresponding to an 
+occupation.
 */
+
+
+SELECT MIN(CASE WHEN Occupation = 'Doctor' THEN Name END) AS Doctor,
+       MIN(CASE WHEN Occupation = 'Professor' THEN Name END) AS Professor,
+       MIN(CASE WHEN Occupation = 'Singer' THEN Name END) AS Singer,
+       MIN(CASE WHEN Occupation = 'Actor' THEN Name END) AS Actor
+FROM (
+        SELECT Name, 
+               Occupation,
+               ROW_NUMBER() OVER(PARTITION BY Occupation ORDER BY Name) AS n_row
+        FROM OCCUPATIONS
+) AS subq
+GROUP BY subq.n_row
