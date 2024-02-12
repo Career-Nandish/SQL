@@ -15,7 +15,7 @@ Throughout the course, participants will gain hands-on experience working with r
 * Overview of SQL and its importance in data analysis
 * Introduction to relational databases and database management systems
 * Writing basic SQL queries to retrieve and filter data
-* Find content [here](1BasicSQL/udacity_basic.sql) 
+* Find content [here](./1BasicSQL/udacity_basic.sql) 
 
 ### 2. SQL Joins and Table Relationships
 
