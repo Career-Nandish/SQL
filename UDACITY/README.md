@@ -15,14 +15,14 @@ Throughout the course, participants will gain hands-on experience working with r
 * Overview of SQL and its importance in data analysis
 * Introduction to relational databases and database management systems
 * Writing basic SQL queries to retrieve and filter data
-* Find content [here](https://github.com/Career-Nandish/SQL/blob/main/UDACITY/udacity_basic.sql) 
+* Find content [here]('1BasicSQL/udacity_basic.sql') 
 
 ### 2. SQL Joins and Table Relationships
 
 * Understanding table relationships: one-to-one, one-to-many, and many-to-many
 * Performing inner joins, left joins, right joins, and full joins
 * Using subqueries and derived tables to combine data from multiple tables
-* Find content [here](https://github.com/Career-Nandish/SQL/blob/main/UDACITY/udacity_joins.sql) 
+* Find content [here](2SQLjoins/udacity_joins.sql) 
 
 
 ### 3. Aggregating Data with SQL
@@ -30,7 +30,7 @@ Throughout the course, participants will gain hands-on experience working with r
 * Grouping data using GROUP BY and HAVING clauses
 * Applying aggregate functions like SUM, AVG, COUNT, MIN, and MAX
 * Using the ORDER BY clause to sort query results
-* Find content [here](https://github.com/Career-Nandish/SQL/blob/main/UDACITY/udacity_aggregation.sql) 
+* Find content [here](3SQLAggregation/udacity_aggregation.sql) 
 
 
 ### 4. Advanced SQL Concepts
@@ -38,7 +38,7 @@ Throughout the course, participants will gain hands-on experience working with r
 * Working with complex queries using multiple joins and subqueries
 * Utilizing SQL functions for string manipulation, date/time operations, and mathematical calculations
 * Understanding window functions for advanced data analysis
-* Find content [here](https://github.com/Career-Nandish/SQL/blob/main/UDACITY/udacity_subquery_temp_table.sql) 
+* Find content [here](4SQLSubqueryandTemporaryTables/udacity_subquery_temp_table.sql) 
 
 
 ### 5. Data Cleaning and Preparation with SQL
