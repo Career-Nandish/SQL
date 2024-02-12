@@ -22,18 +22,24 @@ Throughout the course, participants will gain hands-on experience working with r
 * Understanding table relationships: one-to-one, one-to-many, and many-to-many
 * Performing inner joins, left joins, right joins, and full joins
 * Using subqueries and derived tables to combine data from multiple tables
+* Find content [here](https://github.com/Career-Nandish/SQL/blob/main/UDACITY/udacity_joins.sql) 
+
 
 ### 3. Aggregating Data with SQL
 
 * Grouping data using GROUP BY and HAVING clauses
 * Applying aggregate functions like SUM, AVG, COUNT, MIN, and MAX
 * Using the ORDER BY clause to sort query results
+* Find content [here](https://github.com/Career-Nandish/SQL/blob/main/UDACITY/udacity_aggregation.sql) 
+
 
 ### 4. Advanced SQL Concepts
 
 * Working with complex queries using multiple joins and subqueries
 * Utilizing SQL functions for string manipulation, date/time operations, and mathematical calculations
 * Understanding window functions for advanced data analysis
+* Find content [here](https://github.com/Career-Nandish/SQL/blob/main/UDACITY/udacity_subquery_temp_table.sql) 
+
 
 ### 5. Data Cleaning and Preparation with SQL
 
