@@ -592,3 +592,36 @@ FROM (
 ) AS subq
 
 
+## 32. The report
+
+/*
+https://www.hackerrank.com/challenges/the-report/problem
+
+You are given two tables: Students and Grades. Students contains 
+three columns ID, Name and Marks. Grades has grade, min_marks, and
+max_marks.
+
+Ketty gives Eve a task to generate a report containing three 
+columns: Name, Grade and Mark. Ketty doesn't want the NAMES of 
+those students who received a grade lower than 8. The report must 
+be in descending order by grade -- i.e. higher grades are entered 
+first. If there is more than one student with the same grade 
+(8-10) assigned to them, order those particular students by their 
+name alphabetically. Finally, if the grade is lower than 8, use 
+"NULL" as their name and list them by their grades in descending 
+order. If there is more than one student with the same grade (1-7) 
+assigned to them, order those particular students by their marks 
+in ascending order.
+
+Write a query to help Eve.
+*/
+
+
+SELECT CASE
+            WHEN grade > 7 THEN s.Name
+            ELSE 'NULL'
+       END AS Name, g.Grade, s.Marks 
+FROM Students s
+LEFT JOIN Grades g
+    ON s.Marks >= g.Min_Mark AND s.Marks <= g.Max_Mark
+ORDER BY g.Grade DESC, s.Name ASC, s.Marks ASC
