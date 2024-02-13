@@ -565,3 +565,30 @@ FROM (
         FROM OCCUPATIONS
 ) AS subq
 GROUP BY subq.n_row
+
+
+## 31. Weather Station 19
+
+/*
+https://www.hackerrank.com/challenges/weather-observation-station-19/problem
+
+Consider  and  to be two points on a 2D plane where  are the 
+respective minimum and maximum values of Northern Latitude (LAT_N) and  
+are the respective minimum and maximum values of Western Longitude 
+(LONG_W) in STATION.
+
+Query the Euclidean Distance between points  and  and format your 
+answer to display  decimal digits.
+*/
+
+
+SELECT ROUND(POWER(POWER(a - b, 2) + POWER(c - d, 2), 0.5), 4)
+FROM (
+        SELECT MIN(LAT_N) AS a,
+               MAX(LAT_N) AS b,
+               MIN(LONG_W) AS c,
+               MAX(LONG_W) AS d
+        FROM STATION
+) AS subq
+
+
