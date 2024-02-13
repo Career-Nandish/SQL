@@ -48,7 +48,15 @@ Throughout the course, participants will gain hands-on experience working with r
 * Applying data validation and integrity checks using constraints
 * Find content [here](5%20Data%20Cleaning/udacity_data_cleaning.sql) 
 
-### 6. Putting It All Together: SQL for Data Analysis Projects
+
+### 6. Window Functions with SQL
+
+* performing calculations across a specific range of rows in the result set.
+*  PARTITION BY clause to divide result sets into partitions, allowing for separate calculations within each partition and sort the result sets.
+* Amalgamation of Aggregate and Window functions and analytical functions like ROW_NUMBER(), RANK(), and DENSE_RANK()
+* Find content [here](6%20Window%20Functions/udacity_window_fun.sql)
+
+### 7. Putting It All Together: SQL for Data Analysis Projects
 
 * Applying SQL skills to real-world data analysis projects
 * Analyzing complex datasets and deriving insights using SQL queries
