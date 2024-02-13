@@ -29,7 +29,7 @@ Dive into the challenges, explore the solutions, and join me on this learning jo
 
 Jump to directory [here](UDACITY/)
 
-### * Purpose:
+* ### Purpose:
 Welcome to my Udacity SQL Course repository! This readme provides insights into why I've embarked on this Udacity course and what you can expect from this collection.
 
 ### * Learning Objectives:
