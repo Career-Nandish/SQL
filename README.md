@@ -4,6 +4,8 @@ This repo contains various sources I have used to introduce myself to the world 
 
 ## 1. [HackerRank SQL Challenges](https://www.hackerrank.com/profile/career_nandish)
 
+Jump to directory [here](Hackerrank%20Challenges/)
+
 ### Purpose:
 Welcome to my HackerRank SQL Challenges repository! Here's why I'm engaging in these challenges and what you can expect from this collection:
 
@@ -24,6 +26,8 @@ Dive into the challenges, explore the solutions, and join me on this learning jo
 
 
 ## 2. [Udacity SQL Course](https://learn.udacity.com/courses/ud198)
+
+Jump to directory [here](UDACITY/)
 
 ### Purpose:
 Welcome to my Udacity SQL Course repository! This readme provides insights into why I've embarked on this Udacity course and what you can expect from this collection.
