@@ -2,7 +2,7 @@
 
 This repo contains various sources I have used to introduce myself to the world of SQL. Please feel free to have a read.
 
-## 1. HackerRank SQL Challenges
+## 1. [HackerRank SQL Challenges](https://www.hackerrank.com/profile/career_nandish)
 
 ### Purpose:
 Welcome to my HackerRank SQL Challenges repository! Here's why I'm engaging in these challenges and what you can expect from this collection:
@@ -23,7 +23,7 @@ I encourage fellow SQL enthusiasts, learners, and developers to explore, learn, 
 Dive into the challenges, explore the solutions, and join me on this learning journey. Whether you're a seasoned SQL developer or just starting, let's connect, learn, and elevate our SQL skills together.
 
 
-## 2. [Udacity SQL Course](UDACITY/)
+## 2. [Udacity SQL Course](https://learn.udacity.com/courses/ud198)
 
 ### Purpose:
 Welcome to my Udacity SQL Course repository! This readme provides insights into why I've embarked on this Udacity course and what you can expect from this collection.
