@@ -5,7 +5,7 @@
 ## This chapter covers following problems:
 
 ### &#9679; [Retrieve everything from a table](basic.sql)
-### &#9679; Retrieve specific columns from a table](basic.sql)
+### &#9679; [Retrieve specific columns from a table](basic.sql)
 ### &#9679; [Control which rows are retrieved](basic.sql)
 ### &#9679; [Control which rows are retrieved - part 2](basic.sql)
 ### &#9679; [Basic string searches](basic.sql)
