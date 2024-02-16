@@ -56,10 +56,15 @@ Throughout the course, participants will gain hands-on experience working with r
 * Amalgamation of Aggregate and Window functions and analytical functions like ROW_NUMBER(), RANK(), and DENSE_RANK()
 * Find content [here](6%20Window%20Functions/udacity_window_fun.sql)
 
-### 7. Putting It All Together: SQL for Data Analysis Projects
+### 7. Advance JOINs & Performance Tuning
 
-* Applying SQL skills to real-world data analysis projects
-* Analyzing complex datasets and deriving insights using SQL queries
-* Presenting and visualizing data analysis results
+* Understanding Completeness: Explored FULL OUTER JOIN to retrieve unmatched rows from both tables, ensuring data inclusivity.
+* Mastered self join to connect rows within the same table, useful for handling hierarchical data structures.
+* Flexible Join Conditions: Explored join operations using comparison operators (e.g., greater than, less than), enhancing data retrieval precision.
+* interpreting and optimizing query execution plans, identifying and resolving bottlenecks for improved performance.
 
 ## Course Completion
+
+I acquired foundational and advanced SQL skills, mastering Joins, Aggregations, and Window Functions. The course covered data cleaning, preparation, and advanced concepts like FULL OUTER JOIN and self join. I honed precise data retrieval with comparison operators and delved into performance optimization, interpreting query execution plans for improved efficiency. This comprehensive Udacity SQL course empowered me with a robust toolkit for proficient data analysis and database management.
+
+![Course Completion](./images/Course_completion.png)
