@@ -655,3 +655,33 @@ JOIN difficulty d
 GROUP BY h.hacker_id, h.name
 HAVING COUNT(s.challenge_id) > 1
 ORDER BY COUNT(s.challenge_id) DESC, h.hacker_id
+
+
+## 34. Olivander's Inventory
+
+/*
+URL - https://www.hackerrank.com/challenges/harry-potter-and-wands/problem
+
+Harry Potter and his friends are at Ollivander's with Ron, finally 
+replacing Charlie's old broken wand.
+
+Hermione decides the best way to choose is by determining the minimum 
+number of gold galleons needed to buy each non-evil wand of high power 
+and age. Write a query to print the id, age, coins_needed, and power 
+of the wands that Ron's interested in, sorted in order of descending 
+power. If more than one wand has same power, sort the result in order 
+of descending age.
+*/
+
+
+SELECT w1.id, subq.age, subq.min_coins, w1.power
+FROM wands w1
+JOIN (
+    SELECT w.code, wp.age, MIN(coins_needed) AS min_coins
+    FROM wands AS w
+    JOIN wands_property AS wp
+        ON w.code  = wp.code AND wp.is_evil = 0
+    GROUP BY w.code, wp.age, w.power
+) AS subq
+    ON w1.code = subq.code AND w1.coins_needed = subq.min_coins
+ORDER BY w1.power DESC, subq.age DESC
