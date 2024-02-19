@@ -685,3 +685,38 @@ JOIN (
 ) AS subq
     ON w1.code = subq.code AND w1.coins_needed = subq.min_coins
 ORDER BY w1.power DESC, subq.age DESC
+
+
+## 34. Challenges
+
+/*
+URL - https://www.hackerrank.com/challenges/challenges/problem
+
+Julia asked her students to create some coding challenges. Write a query 
+to print the hacker_id, name, and the total number of challenges created 
+by each student. Sort your results by the total number of challenges in 
+descending order. If more than one student created the same number of 
+challenges, then sort the result by hacker_id. If more than one student 
+created the same number of challenges and the count is less than the 
+maximum number of challenges created, then exclude those students from 
+the result.
+*/
+
+
+WITH count_challenges AS (
+    SELECT h.hacker_id, h.name, COUNT(*) AS cnt
+    FROM hackers h
+    JOIN challenges c
+        ON h.hacker_id = c.hacker_id
+    GROUP BY h.hacker_id, h.name
+)
+
+SELECT cc.hacker_id, cc.name, cc.cnt 
+FROM count_challenges AS cc
+WHERE cc.cnt IN (
+    SELECT cnt
+    FROM count_challenges
+    GROUP BY cnt
+    HAVING COUNT(*) = 1 OR MAX(cnt) = (SELECT MAX(cnt) FROM count_challenges)
+)
+ORDER BY cc.cnt DESC, cc.hacker_id
