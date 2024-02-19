@@ -515,7 +515,7 @@ GROUP BY c.founder, c.company_code
 ORDER BY c.company_code
 
 
-## 29.
+## 29. Weather Observation Station 20
 
 /*
 https://www.hackerrank.com/challenges/weather-observation-station-20/problem
@@ -687,7 +687,7 @@ JOIN (
 ORDER BY w1.power DESC, subq.age DESC
 
 
-## 34. Challenges
+## 35. Challenges
 
 /*
 URL - https://www.hackerrank.com/challenges/challenges/problem
@@ -710,7 +710,7 @@ WITH count_challenges AS (
         ON h.hacker_id = c.hacker_id
     GROUP BY h.hacker_id, h.name
 )
-
+        
 SELECT cc.hacker_id, cc.name, cc.cnt 
 FROM count_challenges AS cc
 WHERE cc.cnt IN (
@@ -720,3 +720,35 @@ WHERE cc.cnt IN (
     HAVING COUNT(*) = 1 OR MAX(cnt) = (SELECT MAX(cnt) FROM count_challenges)
 )
 ORDER BY cc.cnt DESC, cc.hacker_id
+
+
+## 36. Contest Leaderboard
+
+/*
+URL - https://www.hackerrank.com/challenges/contest-leaderboard/problem
+
+You did such a great job helping Julia with her last coding contest 
+challenge that she wants you to work on this one, too!
+
+The total score of a hacker is the sum of their maximum scores for all 
+of the challenges. Write a query to print the hacker_id, name, and total 
+score of the hackers ordered by the descending score. If more than one 
+hacker achieved the same total score, then sort the result by ascending 
+hacker_id. Exclude all hackers with a total score of  from your result.
+*/
+
+
+SELECT h.hacker_id, h.name, SUBQ2.tot_max_score
+FROM HACKERS h
+JOIN (
+    SELECT SUBQ1.hacker_id, SUM(SUBQ1.max_score) as tot_max_score 
+    FROM (
+        SELECT hacker_id, challenge_id, MAX(score) AS max_score
+        FROM SUBMISSIONS
+        GROUP BY hacker_id, challenge_id
+        HAVING MAX(score) > 0
+    ) AS SUBQ1
+    GROUP BY SUBQ1.hacker_id
+) AS SUBQ2
+    ON h.hacker_id = SUBQ2.hacker_id
+ORDER BY SUBQ2.tot_max_score DESC, h.hacker_id
