@@ -781,3 +781,30 @@ JOIN packages fp
     ON fp.id = f.friend_id
 WHERE p.salary < fp.salary
 ORDER BY fp.salary
+
+
+## 38. Symmetric Pairs
+
+/*
+URL - https://www.hackerrank.com/challenges/symmetric-pairs/problem
+
+You are given a table, Functions, containing two columns: X and Y.
+
+Two pairs (X1, Y1) and (X2, Y2) are said to be symmetric pairs if X1 = Y2 
+and X2 = Y1.
+
+Write a query to output all such symmetric pairs in ascending order by 
+the value of X. List the rows such that X1 ≤ Y1.
+*/
+
+
+WITH cte AS (
+    SELECT x, y, ROW_NUMBER() OVER() r_num FROM functions
+)
+
+SELECT DISTINCT c1.X, c1.Y 
+FROM cte c1
+JOIN cte c2 
+    ON c1.X = c2.Y AND c2.X = c1.Y AND c1.r_num != c2.r_num 
+WHERE c1.x <= c1.Y 
+ORDER BY c1.x;
