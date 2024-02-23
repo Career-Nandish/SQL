@@ -3,7 +3,6 @@
 ## This category covers various date/time functions and how to use them diversely.
 
 
-### &#9679; [Count the number of facilities](Dates.sql)
 ### &#9679; [Produce a timestamp for 1 a.m. on the 31st of August 2012](Dates.sql)
 ### &#9679; [Subtract timestamps from each other](Dates.sql)
 ### &#9679; [Generate a list of all the dates in October 2012](Dates.sql)
