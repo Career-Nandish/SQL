@@ -859,3 +859,31 @@ GROUP BY cts.contest_id, cts.hacker_id, cts.name
 HAVING SUM(ss.tot_subs) + SUM(ss.tot_acc_subs) + 
                               SUM(vs.tot_vws) + SUM(vs.tot_unq_vws) != 0
 ORDER BY cts.contest_id
+
+
+## 40. Draw a triangle 1
+
+/*
+URL - https://www.hackerrank.com/challenges/draw-the-triangle-1
+
+P(R) represents a pattern drawn by Julia in R rows. The following 
+pattern represents P(5):
+
+* * * * * 
+* * * * 
+* * * 
+* * 
+*
+
+Write a query to print the pattern P(20).
+*/
+
+
+WITH RECURSIVE pattern AS (
+    SELECT 20 AS n
+    UNION ALL
+    SELECT n - 1 FROM pattern
+    where n >= 1 
+)
+
+SELECT REPEAT('* ', n) FROM pattern;
