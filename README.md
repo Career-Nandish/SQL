@@ -26,7 +26,7 @@ Dive into the challenges, explore the solutions, and join me on this learning jo
 
 ### &#9679; Completition Certificates
 
-#### &#9679; Basic
+#### &nbsp;&nbsp;&nbsp;&nbsp; &#9679; Basic
 ![Course Completion](/Hackerrank%20Challenges/Certificates/sql_basic%20certificate.png)
 
 
