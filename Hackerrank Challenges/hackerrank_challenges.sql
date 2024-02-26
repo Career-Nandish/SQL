@@ -915,3 +915,34 @@ WITH RECURSIVE pattern AS (
 )
 
 SELECT REPEAT('* ', n) FROM pattern
+
+
+## 42. Prime numbers
+
+/*
+URL - https://www.hackerrank.com/challenges/print-prime-numbers
+
+Write a query to print all prime numbers less than or equal to . Print 
+your result on a single line, and use the ampersand () character as your 
+separator (instead of a space).
+
+For example, the output for all prime numbers  would be:
+        
+        2&3&5&7
+*/
+
+
+WITH RECURSIVE num AS (
+  SELECT 2 AS n
+  UNION ALL
+  SELECT n + 1
+  FROM num
+  WHERE n < 1000
+)
+
+SELECT GROUP_CONCAT(n SEPARATOR '&')
+FROM num 
+WHERE n NOT IN (SELECT n2.n
+FROM num n1
+JOIN num n2
+  ON n1.n < n2.n AND n2.n % n1.n = 0)
