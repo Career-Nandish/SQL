@@ -27,7 +27,7 @@ Dive into the challenges, explore the solutions, and join me on this learning jo
 ### &#9679; Completition Certificates
 
 #### &nbsp;&nbsp;&nbsp;&nbsp; &#9679; Basic
-![Course Completion](/Hackerrank%20Challenges/Certificates/sql_basic%20certificate.png)
+&nbsp;&nbsp;&nbsp;&nbsp;![Course Completion](/Hackerrank%20Challenges/Certificates/sql_basic%20certificate.png =200x200)
 
 
 ## 2. [Udacity SQL Course](https://learn.udacity.com/courses/ud198)
