@@ -808,3 +808,54 @@ JOIN cte c2
     ON c1.X = c2.Y AND c2.X = c1.Y AND c1.r_num != c2.r_num 
 WHERE c1.x <= c1.Y 
 ORDER BY c1.x;
+
+
+## 39. Interviews
+
+/*
+URL - https://www.hackerrank.com/challenges/interviews/problem
+
+Samantha interviews many candidates from different colleges using coding 
+challenges and contests. Write a query to print the contest_id, 
+hacker_id, name, and the sums of total_submissions, 
+total_accepted_submissions, total_views, and total_unique_views for each 
+contest sorted by contest_id. Exclude the contest from the result if all 
+four sums are .
+
+Note: A specific contest can be used to screen candidates at more than 
+one college, but each college only holds  screening contest.
+*/
+
+
+SELECT cts.contest_id, 
+       cts.hacker_id,
+       cts.name, 
+       SUM(ss.tot_subs),
+       SUM(ss.tot_acc_subs),
+       SUM(vs.tot_vws),
+       SUM(vs.tot_unq_vws)
+FROM contests cts
+JOIN colleges clg
+    ON cts.contest_id = clg.contest_id
+JOIN challenges chlg
+    ON clg.college_id = chlg.college_id
+LEFT JOIN (
+    SELECT challenge_id, 
+           SUM(total_views) as tot_vws, 
+           SUM(total_unique_views) AS tot_unq_vws
+    FROM view_stats
+    GROUP BY challenge_id
+) AS vs
+    ON chlg.challenge_id = vs.challenge_id
+LEFT JOIN (
+    SELECT challenge_id, 
+           SUM(total_submissions) as tot_subs, 
+           SUM(total_accepted_submissions) AS tot_acc_subs
+    FROM submission_stats
+    GROUP BY challenge_id
+) AS ss
+    ON chlg.challenge_id = ss.challenge_id
+GROUP BY cts.contest_id, cts.hacker_id, cts.name
+HAVING SUM(ss.tot_subs) + SUM(ss.tot_acc_subs) + 
+                              SUM(vs.tot_vws) + SUM(vs.tot_unq_vws) != 0
+ORDER BY cts.contest_id
