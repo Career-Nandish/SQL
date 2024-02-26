@@ -887,3 +887,31 @@ WITH RECURSIVE pattern AS (
 )
 
 SELECT REPEAT('* ', n) FROM pattern;
+
+
+## 41. Draw a triangle 2
+
+/*
+URL - https://www.hackerrank.com/challenges/draw-the-triangle-2
+
+P(R) represents a pattern drawn by Julia in R rows. The following 
+pattern represents P(5):
+
+* 
+* * 
+* * * 
+* * * * 
+* * * * *
+
+Write a query to print the pattern P(20).
+*/
+
+
+WITH RECURSIVE pattern AS (
+    SELECT 1 AS n
+    UNION ALL
+    SELECT n + 1 FROM pattern
+    WHERE n <= 19
+)
+
+SELECT REPEAT('* ', n) FROM pattern
