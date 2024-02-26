@@ -24,6 +24,11 @@ I encourage fellow SQL enthusiasts, learners, and developers to explore, learn, 
 ### &#9679; Explore the Challenges:
 Dive into the challenges, explore the solutions, and join me on this learning journey. Whether you're a seasoned SQL developer or just starting, let's connect, learn, and elevate our SQL skills together.
 
+### &#9679; Completition Certificates
+
+#### &#9679; Basic
+![Course Completion](/Hackerrank%20Challenges/Certificates/sql_basic%20certificate.png)
+
 
 ## 2. [Udacity SQL Course](https://learn.udacity.com/courses/ud198)
 
