@@ -30,6 +30,10 @@ Dive into the challenges, explore the solutions, and join me on this learning jo
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="/Hackerrank%20Challenges/Certificates/sql_basic%20certificate.png" width="600" height = "400">
 
 
+#### &nbsp;&nbsp;&nbsp;&nbsp; &#9679; [Intermediate](/Hackerrank%20Challenges/Certificates/sql_intermediate%20certificate.pdf)
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Hackerrank%20Challenges/Certificates/sql_intermediate%20certificate.png" width="600" height = "400">
+
+
 ## 2. [Udacity SQL Course](https://learn.udacity.com/courses/ud198)
 
 Jump to directory [here](UDACITY/)
