@@ -1002,3 +1002,65 @@ SELECT N,
        END AS s
 FROM BST
 ORDER BY N
+
+
+## 45. 15 Days Of Learning SQL
+
+/*
+URL - https://www.hackerrank.com/challenges/15-days-of-learning-sql/problem
+
+Julia conducted a  days of learning SQL contest. The start date of the 
+contest was March 01, 2016 and the end date was March 15, 2016.
+
+Write a query to print total number of unique hackers who made at least 
+submission each day (starting on the first day of the contest), and 
+find the hacker_id and name of the hacker who made maximum number of 
+submissions each day. If more than one such hacker has a maximum number 
+of submissions, print the lowest hacker_id. The query should print this 
+information for each day of the contest, sorted by the date.
+*/
+
+
+WITH unique_hackers AS (
+    SELECT DISTINCT submission_date, 
+           hacker_id
+    FROM submissions
+    WHERE submission_date = (SELECT MIN(submission_date) FROM submissions)
+    
+    UNION ALL
+    
+    SELECT s.submission_date, 
+           s.hacker_id
+    FROM submissions s
+    JOIN unique_hackers uha
+        ON s.hacker_id = uha.hacker_id AND 
+            s.submission_date = DATEADD(day, 1, uha.submission_date)
+),
+unique_hackers_everyday AS (
+    SELECT submission_date, 
+           COUNT(DISTINCT hacker_id) AS cnt_unq_hacker
+    FROM unique_hackers
+    GROUP BY submission_date
+),
+total_sub_hackers AS (
+    SELECT submission_date, 
+           hacker_id, 
+           COUNT(submission_id) AS cnt_subs, 
+           ROW_NUMBER() OVER (PARTITION BY submission_date ORDER BY COUNT(DISTINCT submission_id) DESC, hacker_id) AS rnk
+    FROM submissions
+    GROUP BY submission_date, hacker_id
+),
+unique_hackers_join_total_subs AS (
+    SELECT uha.submission_date, 
+           uha.cnt_unq_hacker, 
+           tsh.hacker_id
+    FROM unique_hackers_everyday uha
+    JOIN total_sub_hackers tsh
+        ON uha.submission_date = tsh.submission_date AND tsh.rnk = 1
+)
+
+SELECT u.submission_date, u.cnt_unq_hacker, u.hacker_id, h.name 
+FROM hackers h
+JOIN unique_hackers_join_total_subs u
+    ON h.hacker_id = u.hacker_id
+ORDER BY u.submission_date
