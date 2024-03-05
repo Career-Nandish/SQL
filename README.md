@@ -64,3 +64,8 @@ I encourage collaboration and discussion. If you're also enrolled in the Udacity
 
 ### &#9679; Explore the Courseware:
 Dive into the course materials, explore my solutions, and follow along with my learning journey. Whether you're a fellow learner or an experienced SQL professional, let's engage in meaningful discussions and elevate our SQL skills together.
+
+## 3. [PGEXERCISE.COM](https://pgexercise.com)
+
+
+## 4. [LeetCode Challenges](https://leetcode.com/studyplan/top-sql-50/)
