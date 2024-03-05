@@ -1,6 +1,6 @@
 ## [1757. Recyclable and Low Fat Products](https://leetcode.com/problems/recyclable-and-low-fat-products)
 
-<p style="color: green;">Easy</p>
+$${\color{green}Easy}$$
 
 Table: Products
 
