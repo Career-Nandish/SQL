@@ -218,3 +218,51 @@ FROM sales s
 JOIN product p
     ON s.product_id = p.product_id
 ```
+
+## [1581. [Easy]Customer Who Visited but Did Not Make Any Transactions](https://leetcode.com/problems/customer-who-visited-but-did-not-make-any-transactions)
+
+Table: Visits
+<pre>
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| visit_id    | int     |
+| customer_id | int     |
++-------------+---------+
+</pre>
+* visit_id is the column with unique values for this table.
+* This table contains information about the customers who visited the mall.
+ 
+
+Table: Transactions
+<pre>
++----------------+---------+
+| Column Name    | Type    |
++----------------+---------+
+| transaction_id | int     |
+| visit_id       | int     |
+| amount         | int     |
++----------------+---------+
+</pre>
+* transaction_id is column with unique values for this table.
+* This table contains information about the transactions made during the visit_id.
+ 
+
+### Write a solution to find the IDs of the users who visited without making any transactions and the number of times they made these types of visits.
+
+```SQL
+SELECT v.customer_id, COUNT(*) AS count_no_trans
+FROM visits v
+LEFT JOIN transactions t
+    ON v.visit_id = t.visit_id
+WHERE t.visit_id IS NULL
+GROUP BY v.customer_id
+
+-- OR
+
+SELECT v.customer_id, COUNT(*) AS count_no_trans
+FROM visits v
+WHERE v.visit_id NOT IN (SELECT DISTINCT visit_id FROM transactions)
+GROUP BY v.customer_id
+
+```
