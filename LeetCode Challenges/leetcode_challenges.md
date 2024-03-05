@@ -27,7 +27,7 @@ WHERE low_fats = 'Y' AND
 ```
 
 
-## [584. [EASY]Find Customer Referee](https://leetcode.com/problems/find-customer-referee)
+## [584. [Easy]Find Customer Referee](https://leetcode.com/problems/find-customer-referee)
 
 Table: Customer
 
@@ -86,4 +86,35 @@ SELECT name,
 FROM world
 WHERE area >= 3000000 OR
           population >= 25000000
+```
+
+
+[1148. [Easy]Article Views I](https://leetcode.com/problems/article-views-i)
+
+Table: Views
+<pre>
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| article_id    | int     |
+| author_id     | int     |
+| viewer_id     | int     |
+| view_date     | date    |
++---------------+---------+
+</pre>
+
+There is no primary key (column with unique values) for this table, the table may have duplicate rows.
+
+Each row of this table indicates that some viewer viewed an article (written by some author) on some date. 
+
+Note that equal author_id and viewer_id indicate the same person.
+ 
+
+### Write a solution to find all the authors that viewed at least one of their own articles. Return the result table sorted by id in ascending order.
+
+```SQL
+SELECT DISTINCT author_id AS id
+FROM views
+WHERE author_id = viewer_id
+ORDER BY id ASC
 ```
