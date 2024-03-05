@@ -1,1 +1,40 @@
-## In [hackerrank_challenges.sql](hackerrank_challenges.sql), You can find all the challenges I have solved on [Hackerrank](https://www.hackerrank.com/). The file contains most of the challenges I have attempted(in order) with their description and the link to the problem itself for ease of use. Some of the easy challenges might not be here since they didn't make the difficulty level I was hoping for. You can still find them on my [HackerRank Profile](https://www.hackerrank.com/profile/career_nandish). If you have any suggestions, please feel free to reach out to me. Thanks and Happy Coding!!! 
+# HackerRank SQL Challenges Repository 📊💻
+
+Welcome to my HackerRank SQL Challenges Repository! This repository serves as a log of my SQL journey on HackerRank, where I navigate through various challenges to enhance my SQL skills and tackle real-world database problems.
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Challenges](#challenges)
+- [Structure](#structure)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Connect with Me](#connect-with-me)
+
+## Introduction
+This repository documents my exploration of SQL challenges on HackerRank. Each challenge provides a unique opportunity to delve into different aspects of SQL, from basic queries to complex database design.
+
+## Challenges
+Explore the challenges I've encountered and solved in this repository.
+
+## Structure
+The repository follows a structured format for easy navigation:
+- **`hackerrank_challenges.sql`**: SQL script containing problem statement, link to the problem itself on hackerrank, problem description and the solution to the problem as well.
+- **`Certificates`**: This folder contains the certification I have achieved on HackerRank.
+
+## Usage
+Feel free to explore and use these solutions for reference as you tackle HackerRank SQL challenges. If you have alternative solutions, optimizations, or insights, your contributions are greatly encouraged!
+
+## Contributing
+Contributions are highly appreciated! If you have a new solution, an optimization, or additional insights, follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature: `git checkout -b feature/new-solution`.
+3. Commit your changes: `git commit -m 'Added a new solution for ChallengeName'`.
+4. Push to the branch: `git push origin feature/new-solution`.
+5. Open a pull request.
+
+## Connect with Me
+Let's connect and discuss SQL challenges, coding strategies, or anything related to databases and programming! Feel free to reach out:
+- LinkedIn: [Nandish P](https://www.linkedin.com/in/nandish-p-32531b2b3)
+- HackerRank : [career_nandish](https://www.hackerrank.com/profile/career_nandish)
+
+Happy coding! 🚀

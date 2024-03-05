@@ -6,23 +6,7 @@ This repo contains various sources I have used to introduce myself to the world 
 
 Jump to directory [here](Hackerrank%20Challenges/)
 
-### &#9679; Purpose:
-Welcome to my HackerRank SQL Challenges repository! Here's why I'm engaging in these challenges and what you can expect from this collection:
-
-### &#9679; Learning Journey:
 This repository captures my journey in mastering SQL through HackerRank challenges. By tackling a diverse range of problems, I aim to strengthen my SQL skills and deepen my understanding of database querying.
-
-### &#9679; Skill Enhancement:
-HackerRank offers a platform to hone specific aspects of SQL, from basic queries to complex database manipulations. Each challenge provides an opportunity to enhance my problem-solving skills in the context of real-world scenarios.
-
-### &#9679; Documentation of Progress:
-This repository serves as a documentation of my progress and growth as a SQL enthusiast. You'll find solutions, explanations, and reflections on each challenge, showcasing how I approach and solve SQL problems over time.
-
-### &#9679; Community Engagement:
-I encourage fellow SQL enthusiasts, learners, and developers to explore, learn, and share insights. Feel free to provide feedback, suggest improvements, or collaborate on alternative solutions. Let's foster a community of continuous learning.
-
-### &#9679; Explore the Challenges:
-Dive into the challenges, explore the solutions, and join me on this learning journey. Whether you're a seasoned SQL developer or just starting, let's connect, learn, and elevate our SQL skills together.
 
 ### &#9679; Completition Certificates
 
@@ -67,8 +51,10 @@ Dive into the course materials, explore my solutions, and follow along with my l
 
 ## 3. [PGEXERCISE.COM](https://pgexercise.com)
 
+Jump to directory [here](PGEXERCISE.COM/)
+
 ### &#9679; Purpose:
-Welcome to my PostgreSQL Exercise Journey on pgexercise.com – a platform that has become my go-to resource for mastering PostgreSQL, thanks to the brilliant exercises crafted by [Alisdair Owens](https://alisdairowens.net/). 🚀✨ This section provides insight into why I embarked on this adventure and what you can anticipate from my experiences.
+Welcome to my PostgreSQL Exercise Journey on [pgexercise.com](https://pgexercise.com) – a platform that has become my go-to resource for mastering PostgreSQL, thanks to the brilliant exercises crafted by [Alisdair Owens](https://alisdairowens.net/). 🚀✨ This section provides insight into why I embarked on this adventure and what you can anticipate from my experiences.
 
 ### &#9679; Learning Objectives:
 This repository showcases my journey involves delving into the comprehensive exercises at pgexercise.com, led by [Alisdair Owens](https://alisdairowens.net/).
@@ -93,3 +79,7 @@ Dive into sections covering basic SQL, joins, subqueries, modifying data, aggreg
 
 
 ## 4. [LeetCode Challenges](https://leetcode.com/studyplan/top-sql-50/)
+
+Jump to directory [here](LeetCode%20Challenges/)
+
+In this repository, you'll find a collection of SQL solutions to LeetCode challenges. Each challenge presents a unique problem, testing my understanding of SQL concepts, optimization techniques, and problem-solving skills.
