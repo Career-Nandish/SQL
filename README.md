@@ -67,5 +67,29 @@ Dive into the course materials, explore my solutions, and follow along with my l
 
 ## 3. [PGEXERCISE.COM](https://pgexercise.com)
 
+### &#9679; Purpose:
+Welcome to my PostgreSQL Exercise Journey on pgexercise.com – a platform that has become my go-to resource for mastering PostgreSQL, thanks to the brilliant exercises crafted by [Alisdair Owens](https://alisdairowens.net/). 🚀✨ This section provides insight into why I embarked on this adventure and what you can anticipate from my experiences.
+
+### &#9679; Learning Objectives:
+This repository showcases my journey involves delving into the comprehensive exercises at pgexercise.com, led by [Alisdair Owens](https://alisdairowens.net/).
+
+### &#9679; Mastery of SQL Fundamentals:
+Exploring the intricacies of PostgreSQL through sections covering fundamental SQL, joins, subqueries, data modification, aggregation, working with dates and timestamps, and the captivating realm of recursive queries. 📊💡 The goal is to master essential PostgreSQL concepts and operations.
+
+### &#9679; Real-world Application:
+These exercises go beyond theoretical understanding, emphasizing real-world applications of PostgreSQL. As I progress through each section, I'm actively applying my knowledge to hands-on challenges, ensuring a seamless transition from theory to practical implementation.
+
+### &#9679; Skill Enhancement and Specialization:
+Focusing on specialized exercises and targeted learning paths, my aim is to refine my PostgreSQL skills. The objective is to confidently handle complex database tasks and become proficient in both fundamental and advanced PostgreSQL operations.
+
+### &#9679; Portfolio Development:
+This platform serves as a portfolio, showcasing my progress, solutions, and proficiency in PostgreSQL exercises curated by Alisdair Owens. I'm excited to share insights and contribute to the broader community of PostgreSQL enthusiasts and learners.
+
+### &#9679; Collaborative Learning:
+Encouraging collaboration and discussion within the pgexercise.com community. If you're also exploring PostgreSQL exercises or have insights to share, let's connect! Your feedback, suggestions, and collaborative efforts are vital for the growth and improvement of my SQL skills.
+
+### &#9679; Explore the Courseware:
+Dive into sections covering basic SQL, joins, subqueries, modifying data, aggregation, working with dates and timestamps, strings in SQL, and the fascinating realm of recursive queries. The exercises not only present challenges but also include brief explanations about the covered concepts.
+
 
 ## 4. [LeetCode Challenges](https://leetcode.com/studyplan/top-sql-50/)
