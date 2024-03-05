@@ -139,7 +139,7 @@ FROM tweets
 WHERE LENGTH(content) > 15
 ```
 
-## [1378. [Easy]Replace Employee ID With The Unique Identifier]()
+## [1378. [Easy]Replace Employee ID With The Unique Identifier](https://leetcode.com/problems/replace-employee-id-with-the-unique-identifier)
 
 Table: Employees
 <pre>
@@ -175,4 +175,46 @@ SELECT eu.unique_id, e.name
 FROM employees e
 LEFT JOIN employeeuni eu
     ON e.id = eu.id
+```
+
+## [1068. [Easy]Product Sales Analysis I](https://leetcode.com/problems/product-sales-analysis-i)
+
+Table: Sales
+<pre>
++-------------+-------+
+| Column Name | Type  |
++-------------+-------+
+| sale_id     | int   |
+| product_id  | int   |
+| year        | int   |
+| quantity    | int   |
+| price       | int   |
++-------------+-------+
+</pre>
+* (sale_id, year) is the primary key (combination of columns with unique values) of this table.
+* product_id is a foreign key (reference column) to Product table.
+* Each row of this table shows a sale on the product product_id in a certain year.
+* Note that the price is per unit.
+ 
+
+Table: Product
+<pre>
++--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| product_id   | int     |
+| product_name | varchar |
++--------------+---------+
+</pre>
+* product_id is the primary key (column with unique values) of this table.
+* Each row of this table indicates the product name of each product.
+ 
+
+### Write a solution to report the product_name, year, and price for each sale_id in the Sales table
+
+```SQL
+SELECT p.product_name, s.year, s.price
+FROM sales s
+JOIN product p
+    ON s.product_id = p.product_id
 ```
