@@ -89,7 +89,7 @@ WHERE area >= 3000000 OR
 ```
 
 
-# [1148. [Easy]Article Views I](https://leetcode.com/problems/article-views-i)
+## [1148. [Easy]Article Views I](https://leetcode.com/problems/article-views-i)
 
 Table: Views
 <pre>
@@ -117,4 +117,67 @@ SELECT DISTINCT author_id AS id
 FROM views
 WHERE author_id = viewer_id
 ORDER BY id ASC
+```
+
+## [1683. [Easy]Invalid Tweets]()
+
+Table: Tweets
+
+<pre>
++----------------+---------+
+| Column Name    | Type    |
++----------------+---------+
+| tweet_id       | int     |
+| content        | varchar |
++----------------+---------+
+</pre>
+
+tweet_id is the primary key (column with unique values) for this table.
+This table contains all the tweets in a social media app.
+ 
+
+### Write a solution to find the IDs of the invalid tweets. The tweet is invalid if the number of characters used in the content of the tweet is strictly greater than 15.
+
+```SQL
+SELECT tweet_id
+FROM tweets
+WHERE LENGTH(content) > 15
+```
+
+## [1378. [Easy]Replace Employee ID With The Unique Identifier]()
+
+Table: Employees
+<pre>
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| id            | int     |
+| name          | varchar |
++---------------+---------+
+</pre>
+id is the primary key (column with unique values) for this table.
+Each row of this table contains the id and the name of an employee in a company.
+ 
+
+Table: EmployeeUNI
+<pre>
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| id            | int     |
+| unique_id     | int     |
++---------------+---------+
+</pre>
+(id, unique_id) is the primary key (combination of columns with unique values) for this table.
+Each row of this table contains the id and the corresponding unique id of an employee in the company.
+ 
+
+### Write a solution to show the unique ID of each user, If a user does not have a unique ID replace just show null.
+
+
+```SQL
+SELECT eu.unique_id, e.name
+FROM employees e
+LEFT JOIN employeeuni eu
+    ON e.id = eu.id
 ```
