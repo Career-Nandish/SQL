@@ -1026,9 +1026,7 @@ WITH unique_hackers AS (
            hacker_id
     FROM submissions
     WHERE submission_date = (SELECT MIN(submission_date) FROM submissions)
-    
     UNION ALL
-    
     SELECT s.submission_date, 
            s.hacker_id
     FROM submissions s
@@ -1046,7 +1044,7 @@ total_sub_hackers AS (
     SELECT submission_date, 
            hacker_id, 
            COUNT(submission_id) AS cnt_subs, 
-           ROW_NUMBER() OVER (PARTITION BY submission_date ORDER BY COUNT(DISTINCT submission_id) DESC, hacker_id) AS rnk
+           ROW_NUMBER() OVER (PARTITION BY submission_date ORDER BY COUNT(submission_id) DESC, hacker_id) AS rnk
     FROM submissions
     GROUP BY submission_date, hacker_id
 ),
