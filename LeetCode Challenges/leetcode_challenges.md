@@ -1,5 +1,7 @@
 ## [1757. Recyclable and Low Fat Products](https://leetcode.com/problems/recyclable-and-low-fat-products)
 
+<p class="text-[14px] text-lc-green-60 dark:text-dark-lc-green-60">Easy</p>
+
 Table: Products
 
 <pre>
