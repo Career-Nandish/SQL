@@ -264,5 +264,32 @@ SELECT v.customer_id, COUNT(*) AS count_no_trans
 FROM visits v
 WHERE v.visit_id NOT IN (SELECT DISTINCT visit_id FROM transactions)
 GROUP BY v.customer_id
+```
 
+## [197. [Easy]Rising Temperature](https://leetcode.com/problems/rising-temperature)
+
+Table: Weather
+<pre>
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| id            | int     |
+| recordDate    | date    |
+| temperature   | int     |
++---------------+---------+
+</pre>
+* id is the column with unique values for this table.
+* There are no different rows with the same recordDate.
+* This table contains information about the temperature on a certain day.
+ 
+
+### Write a solution to find all dates' Id with higher temperatures compared to its previous dates (yesterday)
+
+
+```SQL
+SELECT w2.id
+FROM weather w1
+JOIN weather w2
+ON w1.recordDate + INTERVAL '1 day' = w2.recordDate AND
+       w2.temperature > w1.temperature
 ```
