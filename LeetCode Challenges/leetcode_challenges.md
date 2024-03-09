@@ -597,3 +597,45 @@ LEFT JOIN unitssold u
             u.purchase_date BETWEEN p.start_date AND p.end_date
 GROUP BY p.product_id
 ```
+
+
+## [1075. [Easy]Project Employees I](https://leetcode.com/problems/project-employees-i)
+
+Table: Project
+<pre>
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| project_id  | int     |
+| employee_id | int     |
++-------------+---------+
+</pre>
+* (project_id, employee_id) is the primary key of this table.
+employee_id is a foreign key to Employee table.
+* Each row of this table indicates that the employee with employee_id is working on the project with project_id.
+ 
+
+Table: Employee
+<pre>
++------------------+---------+
+| Column Name      | Type    |
++------------------+---------+
+| employee_id      | int     |
+| name             | varchar |
+| experience_years | int     |
++------------------+---------+
+</pre>
+* employee_id is the primary key of this table. It's guaranteed that experience_years is not NULL.
+* Each row of this table contains information about one employee.
+ 
+
+### Write an SQL query that reports the average experience years of all the employees for each project, rounded to 2 digits.
+
+
+```SQL
+SELECT p.project_id, ROUND(AVG(e.experience_years), 2) AS average_years
+FROM project p
+JOIN employee e
+    ON p.employee_id = e.employee_id
+GROUP BY p.project_id
+```
