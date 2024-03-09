@@ -683,3 +683,53 @@ FROM register
 GROUP BY contest_id
 ORDER BY percentage DESC, contest_id
 ```
+
+
+## [1211. [Easy]Queries Quality and Percentage](https://leetcode.com/problems/queries-quality-and-percentage)
+
+Table: Queries
+<pre>
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| query_name  | varchar |
+| result      | varchar |
+| position    | int     |
+| rating      | int     |
++-------------+---------+
+</pre>
+* This table may have duplicate rows.
+* This table contains information collected from some queries on a database.
+* The position column has a value from 1 to 500.
+* The rating column has a value from 1 to 5. Query with rating less than 3 is a poor query.
+ 
+
+* We define query quality as:
+
+	* The average of the ratio between query rating and its position.
+
+* We also define poor query percentage as:
+
+	* The percentage of all queries with rating less than 3.
+
+
+### Write a solution to find each query_name, the quality and poor_query_percentage. Both quality and poor_query_percentage should be rounded to 2 decimal places.
+
+
+```SQL
+-- Write your PostgreSQL query statement below
+SELECT subq.query_name,
+       ROUND(AVG(ratio), 2) AS quality,
+       ROUND(AVG(rating_lt_3) * 100, 2) AS poor_query_percentage
+FROM (
+    SELECT query_name, 
+        rating::DECIMAL/position AS ratio,
+        CASE
+            WHEN rating < 3 THEN 1
+            ELSE 0
+        END AS rating_lt_3
+    FROM queries
+    WHERE query_name IS NOT NULL
+) AS subq
+GROUP BY subq.query_name
+```
