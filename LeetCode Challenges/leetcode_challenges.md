@@ -818,3 +818,40 @@ FROM (
 ) AS subq
 WHERE rnk = 1
 ```
+
+
+## [550. [Medium]Game Play Analysis IV](https://leetcode.com/problems/game-play-analysis-iv)
+
+Table: Activity
+<pre>
++--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| player_id    | int     |
+| device_id    | int     |
+| event_date   | date    |
+| games_played | int     |
++--------------+---------+
+</pre>
+* (player_id, event_date) is the primary key (combination of columns with unique values) of this table.
+* This table shows the activity of players of some games.
+* Each row is a record of a player who logged in and played a number of games (possibly 0) before logging out on someday using some device.
+ 
+### Write a solution to report the fraction of players that logged in again on the day after the day they first logged in, rounded to 2 decimal places. In other words, you need to count the number of players that logged in for at least two consecutive days starting from their first login date, then divide that number by the total number of players.
+
+```SQL
+WITH players_first_login AS (
+    SELECT player_id, MIN(event_date) AS login_date
+    FROM activity
+    GROUP BY player_id
+)
+, players_count AS (
+    SELECT COUNT(*) AS goal_count
+    FROM players_first_login as pfl
+    JOIN activity a
+        ON a.player_id = pfl.player_id AND 
+               pfl.login_date + INTERVAL '1 day' = a.event_date
+)
+
+SELECT ROUND((SELECT goal_count FROM players_count)::DECIMAL/COUNT(player_id), 2) AS fraction FROM players_first_login
+```
