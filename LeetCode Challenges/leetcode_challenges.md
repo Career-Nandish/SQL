@@ -911,3 +911,49 @@ WHERE AGE('2019-07-27', activity_date) < '30 days' AND
           activity_date <= '2019-07-27'
 GROUP BY activity_date
 ```
+
+## [1070. [Medium]Product Sales Analysis III](https://leetcode.com/problems/product-sales-analysis-iii)
+
+Table: Sales
+<pre>
++-------------+-------+
+| Column Name | Type  |
++-------------+-------+
+| sale_id     | int   |
+| product_id  | int   |
+| year        | int   |
+| quantity    | int   |
+| price       | int   |
++-------------+-------+
+</pre>
+* (sale_id, year) is the primary key (combination of columns with unique values) of this table.
+* product_id is a foreign key (reference column) to Product table.
+* Each row of this table shows a sale on the product product_id in a certain year.
+* Note that the price is per unit.
+
+Table: Product
+<pre>
++--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| product_id   | int     |
+| product_name | varchar |
++--------------+---------+
+</pre>
+* product_id is the primary key (column with unique values) of this table.
+* Each row of this table indicates the product name of each product.
+ 
+### Write a solution to select the product id, year, quantity, and price for the first year of every product sold.
+
+```SQL
+SELECT product_id, year AS first_year, quantity, price
+FROM (
+    SELECT product_id,
+           year,
+           quantity,
+           price,
+           RANK() OVER (PARTITION BY product_id ORDER BY year) AS rnk
+    FROM sales
+) AS subq
+WHERE rnk = 1
+```
