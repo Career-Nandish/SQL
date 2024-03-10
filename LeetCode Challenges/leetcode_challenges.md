@@ -855,3 +855,29 @@ WITH players_first_login AS (
 
 SELECT ROUND((SELECT goal_count FROM players_count)::DECIMAL/COUNT(player_id), 2) AS fraction FROM players_first_login
 ```
+
+
+## [2356. [Easy]Number of Unique Subjects Taught by Each Teacher](https://leetcode.com/problems/number-of-unique-subjects-taught-by-each-teacher)
+
+Table: Teacher
+<pre>
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| teacher_id  | int  |
+| subject_id  | int  |
+| dept_id     | int  |
++-------------+------+
+</pre>
+* (subject_id, dept_id) is the primary key (combinations of columns with unique values) of this table.
+* Each row in this table indicates that the teacher with teacher_id teaches the subject subject_id in the department dept_id.
+ 
+
+### Write a solution to calculate the number of unique subjects each teacher teaches in the university.
+
+```SQL
+SELECT teacher_id,
+       COUNT(DISTINCT subject_id) AS cnt
+FROM teacher
+GROUP BY teacher_id
+```
