@@ -1173,3 +1173,31 @@ SELECT x, y, z,
        END AS triangle
 FROM triangle
 ```
+
+
+## [180. [Medium]Consecutive Numbers](https://leetcode.com/problems/consecutive-numbers)
+
+Table: Logs
+<pre>
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| num         | varchar |
++-------------+---------+
+</pre>
+* In SQL, id is the primary key for this table.
+* id is an autoincrement column.
+ 
+### Find all numbers that appear at least three times consecutively.
+
+```SQL
+SELECT DISTINCT num AS ConsecutiveNums
+FROM (
+    SELECT num,
+           LEAD(num, 1) OVER () AS lead1,
+           LEAD(num, 2) OVER () AS lead2
+    FROM logs
+) AS subq
+WHERE num = lead1 AND num = lead2
+```
