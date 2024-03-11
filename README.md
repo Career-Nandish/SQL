@@ -18,6 +18,9 @@ This repository captures my journey in mastering SQL through HackerRank challeng
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="/Hackerrank%20Challenges/Certificates/sql_intermediate%20certificate.png" width="600" height = "400">
 
 
+#### &nbsp;&nbsp;&nbsp;&nbsp; &#9679; [Advanced](/Hackerrank%20Challenges/Certificates/sql_advanced%20certificate.pdf)
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Hackerrank%20Challenges/Certificates/sql_advanced%20certificate.png" width="600" height = "400">
+
 ## 2. [Udacity SQL Course](https://learn.udacity.com/courses/ud198)
 
 Jump to directory [here](UDACITY/)
