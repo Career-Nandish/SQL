@@ -1005,3 +1005,31 @@ FROM followers
 GROUP BY user_id
 ORDER BY user_id
 ```
+
+
+## [619. [Easy]Biggest Single Number](https://leetcode.com/problems/biggest-single-number)
+
+Table: MyNumbers
+<pre>
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| num         | int  |
++-------------+------+
+</pre>
+* This table may contain duplicates (In other words, there is no primary key for this table in SQL).
+* Each row of this table contains an integer.
+ 
+
+### A single number is a number that appeared only once in the MyNumbers table. Find the largest single number. If there is no single number, report null.
+
+
+```SQL
+SELECT MAX(num) AS num
+FROM (
+    SELECT num
+    FROM mynumbers
+    GROUP BY num
+    HAVING COUNT(num) = 1
+) AS subq
+```
