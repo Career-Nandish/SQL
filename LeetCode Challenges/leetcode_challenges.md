@@ -1144,3 +1144,32 @@ WHERE primary_flag = 'Y' OR
                 HAVING COUNT(department_id) = 1
               )
 ```
+
+
+## [610. [Easy]Triangle Judgement](https://leetcode.com/problems/triangle-judgement)
+
+Table: Triangle
+<pre>
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| x           | int  |
+| y           | int  |
+| z           | int  |
++-------------+------+
+</pre>
+* In SQL, (x, y, z) is the primary key column for this table.
+* Each row of this table contains the lengths of three line segments.
+ 
+
+### Report for every three line segments whether they can form a triangle.
+
+
+```SQL
+SELECT x, y, z,
+       CASE
+           WHEN (x + y > z) AND (x + z > y) AND (y + z > x) THEN 'Yes'
+           ELSE 'No'
+       END AS triangle
+FROM triangle
+```
