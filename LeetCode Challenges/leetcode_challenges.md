@@ -1278,3 +1278,50 @@ WHERE cum_weight <= 1000
 ORDER BY cum_weight DESC
 LIMIT 1
 ```
+
+
+## [1907. [Medium]Count Salary Categories](https://leetcode.com/problems/count-salary-categories)
+
+Table: Accounts
+<pre>
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| account_id  | int  |
+| income      | int  |
++-------------+------+
+</pre>
+* account_id is the primary key (column with unique values) for this table.
+* Each row contains information about the monthly income for one bank account.
+ 
+### Write a solution to calculate the number of bank accounts for each salary category. The salary categories are: 
+### * "Low Salary": All the salaries strictly less than $20000.
+### * "Average Salary": All the salaries in the inclusive range [$20000, $50000].
+### * "High Salary": All the salaries strictly greater than $50000. 
+### The result table must contain all three categories. If there are no accounts in a category, return 0.
+
+```SQL
+WITH build_cat AS (
+    SELECT CASE
+               WHEN income < 20000 THEN 'Low Salary'
+               WHEN income > 50000 THEN 'High Salary'
+               ELSE 'Average Salary'
+           END AS category,
+           COUNT(1) AS accounts_count
+    FROM accounts
+    GROUP BY category
+), 
+all_cat AS (
+    SELECT 'Low Salary' AS category
+    UNION ALL
+    SELECT 'Average Salary'
+    UNION ALL
+    SELECT 'High Salary'
+)
+
+SELECT a.category,
+       COALESCE(b.accounts_count, 0) AS accounts_count
+FROM all_cat a 
+LEFT JOIN build_cat b
+    ON a.category = b.category
+```
