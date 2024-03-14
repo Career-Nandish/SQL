@@ -1354,3 +1354,47 @@ WHERE salary < 30000 AND
       manager_id NOT IN (SELECT employee_id FROM employees)
 ORDER BY employee_id
 ```
+
+
+## [626. [Medium]Exchange Seats](https://leetcode.com/problems/exchange-seats)
+
+Table: Seat
+<pre>
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| student     | varchar |
++-------------+---------+
+</pre>
+* id is the primary key (unique value) column for this table.
+* Each row of this table indicates the name and the ID of a student.
+* id is a continuous increment.
+ 
+
+### Write a solution to swap the seat id of every two consecutive students. If the number of students is odd, the id of the last student is not swapped. Return the result table ordered by id in ascending order.
+
+
+```SQL
+SELECT CASE
+           WHEN MOD(id, 2) != 0 AND id != (SELECT COUNT(*) FROM seat) THEN id + 1
+           WHEN MOD(id, 2) = 0 THEN id - 1
+           ELSE id
+       END AS id,
+       student
+FROM seat
+ORDER BY id
+
+-- OR -- 
+
+SELECT COALESCE(new_id, id) AS id, student
+FROM (
+    SELECT id, student,
+        CASE
+            WHEN MOD(id, 2) = 0 THEN LAG(id) OVER (ORDER BY id)
+            ELSE LEAD(id) OVER (ORDER BY id)
+        END AS new_id
+    FROM seat
+) AS subq
+ORDER BY id
+```
