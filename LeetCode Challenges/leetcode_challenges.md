@@ -1554,3 +1554,42 @@ WHERE c2.visited_on >= (SELECT MIN(visited_on) + INTERVAL '6 days' FROM cust)
 GROUP BY c2.visited_on
 ORDER BY c2.visited_on
 ```
+
+## [602. [Medium]Friend Requests II: Who Has the Most Friends](https://leetcode.com/problems/friend-requests-ii-who-has-the-most-friends)
+
+Table: RequestAccepted
+<pre>
++----------------+---------+
+| Column Name    | Type    |
++----------------+---------+
+| requester_id   | int     |
+| accepter_id    | int     |
+| accept_date    | date    |
++----------------+---------+
+</pre>
+* (requester_id, accepter_id) is the primary key (combination of columns with unique values) for this table.
+* This table contains the ID of the user who sent the request, the ID of the user who received the request, and the date when the request was accepted.
+ 
+
+### Write a solution to find the people who have the most friends and the most friends number. The test cases are generated so that only one person has the most friends.
+
+### Follow up - In the real world, multiple people could have the same most number of friends. Could you find all these people in this case?
+
+
+```SQL
+SELECT id, num
+FROM (
+    SELECT id,
+        COUNT(*) AS num, 
+        RANK() OVER (ORDER BY COUNT(*) DESC) AS rnk
+    FROM (
+        SELECT requester_id AS id
+        FROM RequestAccepted
+        UNION ALL
+        SELECT accepter_id AS id
+        FROM RequestAccepted
+    ) AS unions
+    GROUP BY id
+) AS subq
+WHERE rnk = 1
+```
