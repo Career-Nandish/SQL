@@ -1398,3 +1398,85 @@ FROM (
 ) AS subq
 ORDER BY id
 ```
+
+
+## [1341. [Medium]Movie Rating](https://leetcode.com/problems/movie-rating)
+
+Table: Movies
+<pre>
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| movie_id      | int     |
+| title         | varchar |
++---------------+---------+
+</pre>
+* movie_id is the primary key (column with unique values) for this table.
+* title is the name of the movie.
+
+Table: Users
+<pre>
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| user_id       | int     |
+| name          | varchar |
++---------------+---------+
+</pre>
+* user_id is the primary key (column with unique values) for this table.
+ 
+Table: MovieRating
+<pre>
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| movie_id      | int     |
+| user_id       | int     |
+| rating        | int     |
+| created_at    | date    |
++---------------+---------+
+</pre>
+* (movie_id, user_id) is the primary key (column with unique values) for this table.
+* This table contains the rating of a movie by a user in their review.
+created_at is the user's review date. 
+ 
+### Write a solution to:
+### * Find the name of the user who has rated the greatest number of movies. In case of a tie, return the lexicographically smaller user name.
+### * Find the movie name with the highest average rating in February 2020. In case of a tie, return the lexicographically smaller movie name.
+
+
+```SQL
+WITH num_ratings_users AS (
+    SELECT user_id,
+        COUNT(movie_id) AS num_ratings
+    FROM movierating
+    GROUP BY user_id
+),
+user_most_ratings AS (
+    SELECT u.name
+    FROM users u
+    JOIN num_ratings_users n
+        ON u.user_id = n.user_id
+    ORDER BY n.num_ratings DESC, u.name
+    LIMIT 1    
+),
+movie_rating_avg_feb2020 AS (
+    SELECT movie_id,
+           AVG(rating) AS avg_rating
+    FROM movierating
+    WHERE DATE_TRUNC('month', created_at) = '2020-02-01'
+    GROUP BY movie_id
+),
+highest_avg_rating_feb2020 AS (
+    SELECT m.title
+    FROM movies m
+    JOIN movie_rating_avg_feb2020 mf
+        ON m.movie_id = mf.movie_id
+    ORDER BY mf.avg_rating DESC, m.title
+    LIMIT 1
+)
+
+SELECT name AS results FROM user_most_ratings
+UNION ALL
+SELECT title FROM highest_avg_rating_feb2020
+```
