@@ -1480,3 +1480,57 @@ SELECT name AS results FROM user_most_ratings
 UNION ALL
 SELECT title FROM highest_avg_rating_feb2020
 ```
+
+
+## [1321. [Medium]Restaurant Growth](https://leetcode.com/problems/restaurant-growth)
+
+Table: Customer
+<pre>
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| customer_id   | int     |
+| name          | varchar |
+| visited_on    | date    |
+| amount        | int     |
++---------------+---------+
+</pre>
+* In SQL,(customer_id, visited_on) is the primary key for this table.
+* This table contains data about customer transactions in a restaurant.
+* visited_on is the date on which the customer with ID (customer_id) has visited the restaurant.
+* amount is the total paid by a customer.
+ 
+
+### You are the restaurant owner and you want to analyze a possible expansion (there will be at least one customer every day). Compute the moving average of how much the customer paid in a seven days window (i.e., current day + 6 days before). average_amount should be rounded to two decimal places. Return the result table ordered by visited_on in ascending order.
+
+```SQL
+WITH dates AS (
+    SELECT GENERATE_SERIES(MIN(visited_on) + INTERVAL '6 days', MAX(visited_on), INTERVAL '1 day') AS dt
+    FROM customer
+)
+
+SELECT d.dt::DATE AS visited_on, SUM(c.amount) AS amount, ROUND(SUM(c.amount)::DECIMAL/7, 2) AS average_amount
+FROM dates d
+JOIN customer c
+    ON c.visited_on <= d.dt AND c.visited_on >= d.dt - INTERVAL '6 days'
+GROUP BY d.dt
+ORDER BY d.dt
+
+-- OR Better way -- 
+
+SELECT *
+FROM (
+    SELECT visited_on,
+           SUM(SUM(amount)) OVER (
+               ORDER BY visited_on 
+               ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+            ) AS amount,
+            ROUND(AVG(SUM(amount)) OVER (
+               ORDER BY visited_on 
+               ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+            ), 2) AS average_amount
+    FROM customer
+    GROUP BY visited_on
+) AS subq
+WHERE subq.visited_on >= (SELECT MIN(visited_on) FROM customer) + INTERVAL '6 days'
+```
