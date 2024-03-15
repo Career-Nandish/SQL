@@ -1533,4 +1533,24 @@ FROM (
     GROUP BY visited_on
 ) AS subq
 WHERE subq.visited_on >= (SELECT MIN(visited_on) FROM customer) + INTERVAL '6 days'
+
+
+-- OR --
+
+WITH cust AS (
+    SELECT visited_on,
+           SUM(amount) AS amount
+    FROM customer
+    GROUP BY visited_on
+)
+
+SELECT c2.visited_on,
+       SUM(c1.amount) AS amount,
+       ROUND(AVG(c1.amount), 2) AS average_amount
+FROM cust c1
+JOIN cust c2
+    ON c2.visited_on BETWEEN c1.visited_on AND c1.visited_on + INTERVAL '6 days'
+WHERE c2.visited_on >= (SELECT MIN(visited_on) + INTERVAL '6 days' FROM cust)
+GROUP BY c2.visited_on
+ORDER BY c2.visited_on
 ```
