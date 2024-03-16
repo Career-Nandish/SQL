@@ -38,6 +38,6 @@ Let's connect and discuss SQL challenges, coding strategies, or anything related
 
 ## LeetCode Badge
 
-![SQL badge](/images/Top_SQL_50.gif)
+![SQL badge](images/Top_SQL_50.gif)
 
 Happy coding! 🚀
