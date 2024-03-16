@@ -36,4 +36,8 @@ Let's connect and discuss SQL challenges, coding strategies, or anything related
 - LinkedIn: [Nandish P](https://www.linkedin.com/in/nandish-p-32531b2b3)
 - LeetCode: [Career_Nandish](https://leetcode.com/Career_Nandish/)
 
+## LeetCode Badge
+
+![SQL badge](/images/Top_SQL_50.gif)
+
 Happy coding! 🚀
