@@ -1682,3 +1682,31 @@ JOIN (
 ) AS subq
     ON d.id = subq.departmentid AND subq.drnk <= 3
 ```
+
+
+## [1667. [Easy]Fix Names in a Table](https://leetcode.com/problems/fix-names-in-a-table)
+
+Table: Users
+<pre>
++----------------+---------+
+| Column Name    | Type    |
++----------------+---------+
+| user_id        | int     |
+| name           | varchar |
++----------------+---------+
+</pre>
+* user_id is the primary key (column with unique values) for this table.
+* This table contains the ID and the name of the user. The name consists of only lowercase and uppercase characters.
+ 
+### Write a solution to fix the names so that only the first character is uppercase and the rest are lowercase. Return the result table ordered by user_id.
+
+
+```SQL
+SELECT user_id, 
+       CONCAT(
+           UPPER(LEFT(name, 1)), 
+           LOWER(SUBSTRING(name, 2))
+       ) AS name
+FROM users
+ORDER BY user_id
+```
