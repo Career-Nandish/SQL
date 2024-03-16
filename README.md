@@ -89,4 +89,4 @@ In this repository, you'll find a collection of SQL solutions to LeetCode challe
 
 Here's my SQL badge from Leetcode
 
-![SQL badge](/SQL/LeetCode%20Challenges/images/Top_SQL_50.gif)
+![SQL badge](LeetCode%20Challenges/images/Top_SQL_50.gif)
