@@ -86,3 +86,7 @@ Dive into sections covering basic SQL, joins, subqueries, modifying data, aggreg
 Jump to directory [here](LeetCode%20Challenges/)
 
 In this repository, you'll find a collection of SQL solutions to LeetCode challenges. Each challenge presents a unique problem, testing my understanding of SQL concepts, optimization techniques, and problem-solving skills.
+
+Here's my SQL badge from Leetcode
+
+![SQL badge](/SQL/LeetCode%20Challenges/images/Top_SQL_50.gif)
