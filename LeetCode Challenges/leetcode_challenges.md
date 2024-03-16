@@ -1874,3 +1874,32 @@ JOIN (
 GROUP BY p.product_name
 HAVING SUM(subq.unit) >= 100
 ```
+
+
+## [1517. [Easy]Find Users With Valid E-Mails](https://leetcode.com/problems/find-users-with-valid-e-mails/)
+
+Table: Users
+<pre>
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| user_id       | int     |
+| name          | varchar |
+| mail          | varchar |
++---------------+---------+
+</pre>
+* user_id is the primary key (column with unique values) for this table.
+* This table contains information of the users signed up in a website. Some e-mails are invalid.
+ 
+
+### Write a solution to find the users who have valid emails. A valid e-mail has a prefix name and a domain where:
+
+* ### The prefix name is a string that may contain letters (upper or lower case), digits, underscore '\_', period '.', and/or dash '-'. The prefix name must start with a letter.
+* ### The domain is '@leetcode.com'.
+
+
+```SQL
+SELECT *
+FROM users
+WHERE mail ~* '^[a-z][a-z0-9_.-]*@leetcode[.]com$'
+```
