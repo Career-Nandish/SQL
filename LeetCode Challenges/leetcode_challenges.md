@@ -1797,3 +1797,31 @@ SELECT MAX(salary) AS secondHighestSalary
 FROM employee
 WHERE salary != (SELECT MAX(SALARY) FROM employee)
 ```
+
+
+## [1484. [Easy]Group Sold Products By The Date](https://leetcode.com/problems/group-sold-products-by-the-date)
+
+Table Activities:
+<pre>
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| sell_date   | date    |
+| product     | varchar |
++-------------+---------+
+</pre>
+* There is no primary key (column with unique values) for this table. It may contain duplicates.
+* Each row of this table contains the product name and the date it was sold in a market.
+ 
+
+### Write a solution to find for each date the number of different products sold and their names. The sold products names for each date should be sorted lexicographically. Return the result table ordered by sell_date.
+
+
+```SQL
+SELECT sell_date,
+       COUNT(DISTINCT product) AS num_sold,
+       STRING_AGG(DISTINCT product, ',' ORDER BY product) AS products
+FROM activities
+GROUP BY sell_date
+ORDER BY sell_date
+```
