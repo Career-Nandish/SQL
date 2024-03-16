@@ -1772,3 +1772,28 @@ USING person p2
 WHERE p1.email = p2.email AND
            p1.id > p2.id
 ```
+
+
+## [176. [Easy]Second Highest Salary](https://leetcode.com/problems/second-highest-salary)
+
+Table: Employee
+<pre>
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| salary      | int  |
++-------------+------+
+</pre>
+* id is the primary key (column with unique values) for this table.
+* Each row of this table contains information about the salary of an employee.
+ 
+
+### Write a solution to find the second highest salary from the Employee table. If there is no second highest salary, return null.
+
+
+```SQL
+SELECT MAX(salary) AS secondHighestSalary
+FROM employee
+WHERE salary != (SELECT MAX(SALARY) FROM employee)
+```
