@@ -1710,3 +1710,30 @@ SELECT user_id,
 FROM users
 ORDER BY user_id
 ```
+
+## [1527. [Easy]Patients With a Condition](https://leetcode.com/problems/patients-with-a-condition)
+
+Table: Patients
+<pre>
++--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| patient_id   | int     |
+| patient_name | varchar |
+| conditions   | varchar |
++--------------+---------+
+</pre>
+* patient_id is the primary key (column with unique values) for this table.
+* 'conditions' contains 0 or more code separated by spaces. 
+* This table contains information of the patients in the hospital.
+ 
+
+### Write a solution to find the patient_id, patient_name, and conditions of the patients who have Type I Diabetes. Type I Diabetes always starts with DIAB1 prefix.
+
+```SQL
+SELECT *
+FROM patients
+WHERE conditions ~ '^DIAB1|\sDIAB1'
+
+-- conditions LIKE 'DIAB1%' OR conditions LIKE '% DIAB1%'
+```
