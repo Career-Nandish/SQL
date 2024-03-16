@@ -1737,3 +1737,38 @@ WHERE conditions ~ '^DIAB1|\sDIAB1'
 
 -- conditions LIKE 'DIAB1%' OR conditions LIKE '% DIAB1%'
 ```
+
+
+## [196. [Easy]Delete Duplicate Emails](https://leetcode.com/problems/delete-duplicate-emails)
+
+Table: Person
+<pre>
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| email       | varchar |
++-------------+---------+
+</pre>
+* id is the primary key (column with unique values) for this table.
+* Each row of this table contains an email. The emails will not contain uppercase letters.
+ 
+
+### Write a solution to delete all duplicate emails, keeping only one unique email with the smallest id.
+
+
+```SQL
+DELETE FROM person
+WHERE id NOT IN (
+    SELECT MIN(id) as id
+    FROM person
+    GROUP BY email
+)
+
+-- OR --
+
+DELETE FROM person p1
+USING person p2
+WHERE p1.email = p2.email AND
+           p1.id > p2.id
+```
