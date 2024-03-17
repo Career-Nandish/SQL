@@ -40,7 +40,7 @@ Danny has shared with you 3 key datasets for this case study:
 
 ## Entity Relationship Diagram
 
-![Course Completion](images/ERD.png)
+![Course Completion](./images/ERD.jpg)
 
 
 ## Data
