@@ -73,6 +73,29 @@ Result:
 ## 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
 
 
+```SQL
+WITH most_ordered_prod AS (
+  SELECT product_id, COUNT(*) AS num_ordered
+  FROM sales
+  GROUP BY product_id
+  ORDER BY COUNT(*) DESC
+  LIMIT 1
+)
+
+SELECT m.product_id, mn.product_name, m.num_ordered
+FROM most_ordered_prod m
+JOIN menu mn
+  ON m.product_id = mn.product_id
+```
+
+Result:
+
+<pre>
+ product_id | product_name | num_ordered 
+------------+--------------+-------------
+          3 | ramen        |           8
+</pre>
+
 ## 5. Which item was the most popular for each customer?
 
 
