@@ -1,7 +1,7 @@
 # :ramen: :curry: :sushi: [Case Study #1 - Danny's Diner](https://8weeksqlchallenge.com/case-study-1/) :ramen: :curry: :sushi:
 
 <p align = "center">
-	<img src="/images/diner.png" alt="Image" width="450" height="450">
+	<img src="./images/diner.png" alt="Image" width="450" height="450">
 </p>
 
 
@@ -40,7 +40,7 @@ Danny has shared with you 3 key datasets for this case study:
 
 ## Entity Relationship Diagram
 
-![Course Completion](/images/ERD.png)
+![Course Completion](./images/ERD.png)
 
 
 ## Data
