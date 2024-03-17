@@ -2,18 +2,19 @@
 
 ```SQL
 SELECT s.customer_id AS customer, 
-       SUM(m.price) AS total_spend
-FROM dannys_diner.sales s
-JOIN dannys_diner.menu m
+       CONCAT('$',SUM(m.price)) AS total_spend
+FROM sales s
+JOIN menu m
 	ON s.product_id = m.product_id
- GROUP BY s.customer_id
+GROUP BY s.customer_id
+ORDER BY total_spend DESC
 ```
 <pre>
  customer | total_spend 
 ----------+-------------
- B        |          74
- C        |          36
- A        |          76
+ A        | $76
+ B        | $74
+ C        | $36
 </pre>
 
 
