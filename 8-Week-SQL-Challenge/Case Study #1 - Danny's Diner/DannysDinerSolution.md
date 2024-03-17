@@ -9,6 +9,9 @@ JOIN menu m
 GROUP BY s.customer_id
 ORDER BY total_spend DESC
 ```
+
+Result:
+
 <pre>
  customer | total_spend 
 ----------+-------------
@@ -20,6 +23,22 @@ ORDER BY total_spend DESC
 
 ## 2. How many days has each customer visited the restaurant?
 
+```SQL
+SELECT customer_id AS customer,
+       COUNT(DISTINCT order_date) AS num_days
+FROM sales
+GROUP BY customer_id
+ORDER BY num_days DESC
+```
+Result:
+
+<pre>
+ customer | num_days 
+----------+----------
+ B        |        6
+ A        |        4
+ C        |        2
+</pre>
 
 ## 3. What was the first item from the menu purchased by each customer?
 
