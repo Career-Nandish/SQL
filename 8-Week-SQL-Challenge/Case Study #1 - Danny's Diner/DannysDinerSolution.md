@@ -42,6 +42,33 @@ Result:
 
 ## 3. What was the first item from the menu purchased by each customer?
 
+```SQL
+WITH cust_orders AS (
+  SELECT customer_id, 
+         product_id,
+         RANK() OVER (PARTITION BY customer_id ORDER BY order_date ASC) AS rnk
+  FROM sales
+)
+
+SELECT c.customer_id, 
+       STRING_AGG(DISTINCT m.product_name, ', ' ORDER BY m.product_name) AS items
+FROM cust_orders c 
+JOIN menu m 
+    ON c.product_id = m.product_id
+WHERE c.rnk = 1
+GROUP BY c.customer_id
+```
+
+Result:
+
+<pre>
+ customer_id |    items     
+-------------+--------------
+ A           | curry, sushi
+ B           | curry
+ C           | ramen
+</pre>
+
 
 ## 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
 
