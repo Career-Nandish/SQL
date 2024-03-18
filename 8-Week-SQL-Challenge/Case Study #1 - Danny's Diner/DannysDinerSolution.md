@@ -98,6 +98,33 @@ Result:
 
 ## 5. Which item was the most popular for each customer?
 
+```SQL
+WITH most_pop_items AS (
+  SELECT customer_id,
+         product_id,
+         RANK() OVER (PARTITION BY customer_id ORDER BY COUNT(*) DESC) AS rnk
+  FROM sales
+  GROUP BY customer_id, product_id
+)
+
+SELECT mp.customer_id AS customer,
+       STRING_AGG(m.product_name, ', ' ORDER BY m.product_name) AS most_pop_item
+FROM menu m
+JOIN most_pop_items mp
+  ON m.product_id = mp.product_id
+WHERE mp.rnk = 1
+GROUP BY mp.customer_id
+```
+
+Result:
+
+<pre>
+ customer |    most_pop_item    
+----------+---------------------
+ A        | ramen
+ B        | curry, ramen, sushi
+ C        | ramen
+</pre>
 
 ## 6. Which item was purchased first by the customer after they became a member?
 
