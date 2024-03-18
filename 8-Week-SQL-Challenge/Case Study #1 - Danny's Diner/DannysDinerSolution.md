@@ -163,6 +163,38 @@ Result:
 ## 7. Which item was purchased just before the customer became a member?
 
 
+```SQL
+WITH cust_sales AS (
+    SELECT s.customer_id,
+           s.product_id,
+           s.order_date,
+           m.join_date,
+           RANK() OVER (PARTITION BY s.customer_id ORDER BY s.order_date DESC) AS rnk
+    FROM sales s
+    JOIN members m
+        ON s.customer_id = m.customer_id AND s.order_date < m.join_date
+)
+
+SELECT cs.customer_id,
+       MIN(cs.order_date) AS order_date,
+       STRING_AGG(m.product_name, ', ' ORDER BY m.product_name) AS product_name,
+       MIN(cs.join_date) AS join_date
+FROM menu m
+JOIN cust_sales cs
+  ON m.product_id = cs.product_id
+WHERE cs.rnk = 1
+GROUP BY cs.customer_id
+```
+
+Result:
+
+<pre>
+ customer_id | order_date | product_name | join_date  
+-------------+------------+--------------+------------
+ A           | 2021-01-01 | curry, sushi | 2021-01-07
+ B           | 2021-01-04 | sushi        | 2021-01-09
+</pre>
+
 ## 8. What is the total items and amount spent for each member before they became a member?
 
 
