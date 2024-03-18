@@ -133,6 +133,7 @@ WITH member_sales AS (
     SELECT s.customer_id,
            s.product_id,
            s.order_date,
+           m.join_date,
            RANK() OVER (PARTITION BY s.customer_id ORDER BY s.order_date) AS rnk
     FROM sales s
     JOIN members m
@@ -141,7 +142,8 @@ WITH member_sales AS (
 
 SELECT ms.customer_id AS customer,
        ms.order_date,
-       m.product_name
+       m.product_name,
+       ms.join_date
 FROM menu m
 JOIN member_sales ms
   ON m.product_id = ms.product_id
@@ -152,10 +154,10 @@ ORDER BY ms.customer_id
 Result:
 
 <pre>
- customer | order_date | product_name 
-----------+------------+--------------
- A        | 2021-01-07 | curry
- B        | 2021-01-11 | sushi
+ customer | order_date | product_name | join_date  
+----------+------------+--------------+------------
+ A        | 2021-01-07 | curry        | 2021-01-07
+ B        | 2021-01-11 | sushi        | 2021-01-09
 </pre>
 
 ## 7. Which item was purchased just before the customer became a member?
