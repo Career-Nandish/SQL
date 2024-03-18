@@ -128,6 +128,35 @@ Result:
 
 ## 6. Which item was purchased first by the customer after they became a member?
 
+```SQL
+WITH member_sales AS (
+    SELECT s.customer_id,
+           s.product_id,
+           s.order_date,
+           RANK() OVER (PARTITION BY s.customer_id ORDER BY s.order_date) AS rnk
+    FROM sales s
+    JOIN members m
+        ON s.customer_id = m.customer_id AND s.order_date >= m.join_date
+)
+
+SELECT ms.customer_id AS customer,
+       ms.order_date,
+       m.product_name
+FROM menu m
+JOIN member_sales ms
+  ON m.product_id = ms.product_id
+WHERE ms.rnk = 1
+ORDER BY ms.customer_id
+```
+
+Result:
+
+<pre>
+ customer | order_date | product_name 
+----------+------------+--------------
+ A        | 2021-01-07 | curry
+ B        | 2021-01-11 | sushi
+</pre>
 
 ## 7. Which item was purchased just before the customer became a member?
 
