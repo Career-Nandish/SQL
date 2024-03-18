@@ -256,3 +256,40 @@ Result:
 </pre>
 
 ## 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+
+
+```SQL
+WITH cust_sales AS (
+    SELECT s.customer_id,
+           s.product_id,
+           s.order_date,
+           m.join_date,
+           s.order_date - m.join_date AS diff
+    FROM sales s
+    JOIN members m
+        ON s.customer_id = m.customer_id AND s.order_date >= m.join_date
+    WHERE s.order_date < '2021-02-01'
+    
+)
+
+SELECT cs.customer_id,
+       SUM(CASE
+           WHEN cs.diff <= 6 THEN m.price * 20
+           WHEN cs.diff > 6 AND m.product_name = 'sushi' THEN m.price * 20
+           ELSE m.price * 10
+       END) AS points
+FROM menu m
+JOIN cust_sales cs
+  ON m.product_id = cs.product_id
+GROUP BY cs.customer_id
+ORDER BY cs.customer_id
+```
+
+Result:
+
+<pre>
+ customer_id | points 
+-------------+--------
+ A           |   1020
+ B           |    320
+</pre>
