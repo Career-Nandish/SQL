@@ -78,7 +78,7 @@ WITH most_ordered_prod AS (
   SELECT product_id, COUNT(*) AS num_ordered
   FROM sales
   GROUP BY product_id
-  ORDER BY COUNT(*) DESC
+  ORDER BY num_ordered DESC
   LIMIT 1
 )
 
