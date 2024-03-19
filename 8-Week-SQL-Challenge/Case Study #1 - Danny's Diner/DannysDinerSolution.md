@@ -293,3 +293,213 @@ Result:
  A           |   1020
  B           |    320
 </pre>
+
+
+
+## Bonus Questions
+
+### Join All The Things
+
+Create basic data tables that Danny and his team can use to quickly derive insights without needing to join the underlying tables using SQL. Fill Member column as 'N' if the purchase was made before becoming a member and 'Y' if the after is amde after joining the membership. Danny is trying to come up with following results:
+
+
+<div class="responsive-table"><table><thead>
+      <tr>
+        <th>customer_id</th>
+        <th>order_date</th>
+        <th>product_name</th>
+        <th>price</th>
+        <th>member</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>A</td>
+        <td>2021-01-01</td>
+        <td>curry</td>
+        <td>15</td>
+        <td>N</td>
+      </tr>
+      <tr>
+        <td>A</td>
+        <td>2021-01-01</td>
+        <td>sushi</td>
+        <td>10</td>
+        <td>N</td>
+      </tr>
+      <tr>
+        <td>A</td>
+        <td>2021-01-07</td>
+        <td>curry</td>
+        <td>15</td>
+        <td>Y</td>
+      </tr>
+      <tr>
+        <td>A</td>
+        <td>2021-01-10</td>
+        <td>ramen</td>
+        <td>12</td>
+        <td>Y</td>
+      </tr>
+      <tr>
+        <td>A</td>
+        <td>2021-01-11</td>
+        <td>ramen</td>
+        <td>12</td>
+        <td>Y</td>
+      </tr>
+      <tr>
+        <td>A</td>
+        <td>2021-01-11</td>
+        <td>ramen</td>
+        <td>12</td>
+        <td>Y</td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td>2021-01-01</td>
+        <td>curry</td>
+        <td>15</td>
+        <td>N</td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td>2021-01-02</td>
+        <td>curry</td>
+        <td>15</td>
+        <td>N</td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td>2021-01-04</td>
+        <td>sushi</td>
+        <td>10</td>
+        <td>N</td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td>2021-01-11</td>
+        <td>sushi</td>
+        <td>10</td>
+        <td>Y</td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td>2021-01-16</td>
+        <td>ramen</td>
+        <td>12</td>
+        <td>Y</td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td>2021-02-01</td>
+        <td>ramen</td>
+        <td>12</td>
+        <td>Y</td>
+      </tr>
+      <tr>
+        <td>C</td>
+        <td>2021-01-01</td>
+        <td>ramen</td>
+        <td>12</td>
+        <td>N</td>
+      </tr>
+      <tr>
+        <td>C</td>
+        <td>2021-01-01</td>
+        <td>ramen</td>
+        <td>12</td>
+        <td>N</td>
+      </tr>
+      <tr>
+        <td>C</td>
+        <td>2021-01-07</td>
+        <td>ramen</td>
+        <td>12</td>
+        <td>N</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+```SQL
+WITH cte_members AS (
+	SELECT s.customer_id,
+	       s.order_date,
+	       m.product_name,
+	       m.price, 
+	       CASE
+	           WHEN s.order_date >= mb.join_date THEN 'Y'
+	           ELSE 'N'
+	       END AS member
+	FROM sales s
+	JOIN menu m
+	    ON s.product_id = m.product_id
+	LEFT JOIN members mb
+	    ON s.customer_id = mb.customer_id
+	ORDER BY s.customer_id, s.order_date, m.product_name
+)
+
+SELECT * FROM cte_members
+``` 
+	
+Result:
+
+<pre>
+ customer_id | order_date | product_name | price | member 
+-------------+------------+--------------+-------+--------
+ A           | 2021-01-01 | curry        |    15 | N
+ A           | 2021-01-01 | sushi        |    10 | N
+ A           | 2021-01-07 | curry        |    15 | Y
+ A           | 2021-01-10 | ramen        |    12 | Y
+ A           | 2021-01-11 | ramen        |    12 | Y
+ A           | 2021-01-11 | ramen        |    12 | Y
+ B           | 2021-01-01 | curry        |    15 | N
+ B           | 2021-01-02 | curry        |    15 | N
+ B           | 2021-01-04 | sushi        |    10 | N
+ B           | 2021-01-11 | sushi        |    10 | Y
+ B           | 2021-01-16 | ramen        |    12 | Y
+ B           | 2021-02-01 | ramen        |    12 | Y
+ C           | 2021-01-01 | ramen        |    12 | N
+ C           | 2021-01-01 | ramen        |    12 | N
+ C           | 2021-01-07 | ramen        |    12 | N
+</pre>
+
+
+
+#### Rank All The Things
+Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
+
+```sql
+SELECT customer_id,
+       order_date,
+       product_name,
+       price,
+       IF(order_date >= join_date, 'Y', 'N') AS member
+FROM members
+RIGHT JOIN sales USING (customer_id)
+INNER JOIN menu USING (product_id)
+ORDER BY customer_id,
+         order_date;
+``` 
+```sql
+WITH data_table AS
+  (SELECT customer_id,
+          order_date,
+          product_name,
+          price,
+          IF(order_date >= join_date, 'Y', 'N') AS member
+   FROM members
+   RIGHT JOIN sales USING (customer_id)
+   INNER JOIN menu USING (product_id)
+   ORDER BY customer_id,
+            order_date)
+SELECT *,
+       IF(member='N', NULL, DENSE_RANK() OVER (PARTITION BY customer_id, member
+                                               ORDER BY order_date)) AS ranking
+FROM data_table;
+```
+
+#### Result set:
+![image](https://user-images.githubusercontent.com/77529445/167407504-41d02dd0-0bd1-4a3c-8f41-00ae07daefad.png)
