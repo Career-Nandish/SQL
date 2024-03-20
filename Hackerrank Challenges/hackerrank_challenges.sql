@@ -618,13 +618,13 @@ Write a query to help Eve.
 
 
 SELECT CASE
-            WHEN grade > 7 THEN s.Name
-            ELSE 'NULL'
-       END AS Name, g.Grade, s.Marks 
-FROM Students s
-LEFT JOIN Grades g
-    ON s.Marks >= g.Min_Mark AND s.Marks <= g.Max_Mark
-ORDER BY g.Grade DESC, s.Name ASC, s.Marks ASC
+           WHEN g.grade < 8 THEN NULL
+           ELSE s.name
+       END AS name, g.grade, s.marks
+FROM students s
+JOIN grades g
+    ON s.marks BETWEEN g.min_mark AND g.max_mark
+ORDER BY g.grade DESC, s.name
 
 
 ## 33. Top Competitors
