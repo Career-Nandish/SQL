@@ -12,7 +12,10 @@ In each case-study folder, you'll find the following files:
 
 
 ## Challenge case studies
-* 🍜[Case Study #1 - Danny's Diner](./Case%20Study%20%231%20-%20Danny's%20Diner/DannysDinerSolution.md)
+
+1. 🍜[Case Study #1 - Danny's Diner](./Case%20Study%20%231%20-%20Danny's%20Diner/DannysDinerSolution.md)
+2. 🍜[Case Study #2 - Pizza Runner](./Case%20Study%20%231%20-%20Pizza%20Runner/PizzaRunner.md)
+
 
 
 ## Support
