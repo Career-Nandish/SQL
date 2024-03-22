@@ -1,6 +1,6 @@
 # :pizza: :pizza: :pizza: [Case Study #2 - Pizza Runner](https://8weeksqlchallenge.com/case-study-2/) :pizza: :pizza: :pizza:
 
-<p align = "center">
+<p>
 	<img src="./images/title.png" alt="Image" width="450" height="450">
 </p>
 
