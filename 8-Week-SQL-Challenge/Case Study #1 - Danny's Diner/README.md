@@ -1,6 +1,6 @@
 # :ramen: :curry: :sushi: [Case Study #1 - Danny's Diner](https://8weeksqlchallenge.com/case-study-1/) :ramen: :curry: :sushi:
 
-<p align = "center">
+<p>
 	<img src="./images/diner.png" alt="Image" width="450" height="450">
 </p>
 
