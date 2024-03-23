@@ -92,7 +92,7 @@ SELECT order_id, customer_id, pizza_id, exclusions, extras, order_time, new_exc,
             CASE WHEN array_length(STRING_TO_ARRAY(extras, ', '), 1) >= 1
                  THEN STRING_TO_ARRAY(extras, ', ')
                  ELSE '{null}'::text[] END
-         ) AS new_ext
+         )::INT AS new_ext
 
 FROM (
   SELECT order_id, customer_id, pizza_id, exclusions, extras, order_time,
@@ -100,7 +100,7 @@ FROM (
             CASE WHEN array_length(STRING_TO_ARRAY(exclusions, ', '), 1) >= 1
                  THEN STRING_TO_ARRAY(exclusions, ', ')
                  ELSE '{null}'::text[] END
-         ) AS new_exc
+         )::INT AS new_exc
   FROM (
     SELECT order_id,
            customer_id,
