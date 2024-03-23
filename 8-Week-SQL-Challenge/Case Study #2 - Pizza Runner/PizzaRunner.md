@@ -82,3 +82,40 @@ Result:
 </pre>
 
 Now let's handle issue no 2. I have tried to tackle this issue using two different ways. 
+
+1. At first, I had a simple but lengthy way to achieve the unnesting the comma-separated values. By using Subquery and unnesting *extras* and *exclusions* one at a time.
+
+```SQL
+-- Handling Data Issue No 2, Part I
+SELECT order_id, customer_id, pizza_id, exclusions, extras, order_time, new_exc,
+       unnest (
+            CASE WHEN array_length(STRING_TO_ARRAY(extras, ', '), 1) >= 1
+                 THEN STRING_TO_ARRAY(extras, ', ')
+                 ELSE '{null}'::text[] END
+         ) AS new_ext
+
+FROM (
+  SELECT order_id, customer_id, pizza_id, exclusions, extras, order_time,
+         unnest (
+            CASE WHEN array_length(STRING_TO_ARRAY(exclusions, ', '), 1) >= 1
+                 THEN STRING_TO_ARRAY(exclusions, ', ')
+                 ELSE '{null}'::text[] END
+         ) AS new_exc
+  FROM (
+    SELECT order_id,
+           customer_id,
+           pizza_id,
+           CASE
+               WHEN exclusions IS NULL OR exclusions = '' OR exclusions = 'null' THEN NULL
+               ELSE exclusions
+           END AS exclusions,
+           CASE
+               WHEN extras IS NULL OR extras = '' OR extras = 'null' THEN NULL
+               ELSE extras
+           END AS extras,
+           order_time
+    FROM customer_orders
+  ) AS subq1
+) AS subq2
+```
+
