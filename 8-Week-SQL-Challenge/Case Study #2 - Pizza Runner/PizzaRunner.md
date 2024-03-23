@@ -124,17 +124,22 @@ FROM (
 ```SQL
 -- Handling Data Issue No 2, Part II
    --  Note: temp_cust_orders is a CTE from Part 1 above.
-SELECT order_id, customer_id, pizza_id, order_time, u1.extras::INT, u2.exclusions::INT
-FROM temp_cust_orders, unnest (
-            CASE WHEN array_length(STRING_TO_ARRAY(extras, ', '), 1) >= 1
-                 THEN STRING_TO_ARRAY(extras, ', ')
-                 ELSE '{null}'::text[] END
-         ) AS u1 (extras),
+WITH clean_cust_orders AS (
+    SELECT order_id, customer_id, pizza_id, order_time, u1.extras::INT, u2.exclusions::INT
+    FROM temp_cust_orders, 
          unnest (
-            CASE WHEN array_length(STRING_TO_ARRAY(exclusions, ', '), 1) >= 1
-                 THEN STRING_TO_ARRAY(exclusions, ', ')
-                 ELSE '{null}'::text[] END
-         ) AS u2 (exclusions)
+                CASE WHEN array_length(STRING_TO_ARRAY(extras, ', '), 1) >= 1
+                     THEN STRING_TO_ARRAY(extras, ', ')
+                     ELSE '{null}'::text[] 
+                END) AS u1 (extras),
+         unnest (
+                CASE WHEN array_length(STRING_TO_ARRAY(exclusions, ', '), 1) >= 1
+                     THEN STRING_TO_ARRAY(exclusions, ', ')
+                     ELSE '{null}'::text[]
+                END) AS u2 (exclusions)
+)
+
+SELECT * FROM clean_cust_orders
 ```
 
 Result:
@@ -161,3 +166,36 @@ Result:
        10 |         104 |        1 | 2020-01-11 18:34:49 |      4 |          2
        10 |         104 |        1 | 2020-01-11 18:34:49 |      4 |          6
 </pre>
+
+### *runner_orders*
+
+Let's first observe the data.
+
+```SQL
+SELECT * FROM runner_orders
+```
+
+Result:
+
+<pre>
+ order_id | runner_id |     pickup_time     | distance |  duration  |      cancellation       
+----------+-----------+---------------------+----------+------------+-------------------------
+        1 |         1 | 2020-01-01 18:15:34 | 20km     | 32 minutes | 
+        2 |         1 | 2020-01-01 19:10:54 | 20km     | 27 minutes | 
+        3 |         1 | 2020-01-03 00:12:37 | 13.4km   | 20 mins    | 
+        4 |         2 | 2020-01-04 13:53:03 | 23.4     | 40         | 
+        5 |         3 | 2020-01-08 21:10:57 | 10       | 15         | 
+        6 |         3 | null                | null     | null       | Restaurant Cancellation
+        7 |         2 | 2020-01-08 21:30:45 | 25km     | 25mins     | null
+        8 |         2 | 2020-01-10 00:15:02 | 23.4 km  | 15 minute  | null
+        9 |         2 | null                | null     | null       | Customer Cancellation
+       10 |         1 | 2020-01-11 18:50:20 | 10km     | 10minutes  | null
+</pre>
+
+
+The above data has following data cleaning issues:
+
+  1. *pickup_time* -  'null' values.
+  2. *distance* - 'null' values and values have unit of kilometer 'km' attached.
+  3. *duration* - 'null' values and values have unit of time 'minutes', 'mins' 'minute' attached.
+  4. *cancellation* - ' ' and 'null' values.
