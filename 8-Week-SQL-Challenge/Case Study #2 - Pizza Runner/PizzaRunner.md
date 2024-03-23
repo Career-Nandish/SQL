@@ -119,3 +119,45 @@ FROM (
 ) AS subq2
 ```
 
+2. Then, I realised there must be a better(better as in more clean and concise) way to do it. I was going through a lot of web resources and I have seen a lot of ways to achieve it using procedural language and using JSON arrays. After a lot of searching, I have realised that I could use *CROSS JOIN* and already implemented function *UNNEST()*. By using them both together, a simple *CROSS JOIN* would turn into *LATERAL JOIN*. 
+
+```SQL
+-- Handling Data Issue No 2, Part II
+   --  Note: temp_cust_orders is a CTE from Part 1 above.
+SELECT order_id, customer_id, pizza_id, order_time, u1.extras::INT, u2.exclusions::INT
+FROM temp_cust_orders, unnest (
+            CASE WHEN array_length(STRING_TO_ARRAY(extras, ', '), 1) >= 1
+                 THEN STRING_TO_ARRAY(extras, ', ')
+                 ELSE '{null}'::text[] END
+         ) AS u1 (extras),
+         unnest (
+            CASE WHEN array_length(STRING_TO_ARRAY(exclusions, ', '), 1) >= 1
+                 THEN STRING_TO_ARRAY(exclusions, ', ')
+                 ELSE '{null}'::text[] END
+         ) AS u2 (exclusions)
+```
+
+Result:
+
+<pre>
+ order_id | customer_id | pizza_id |     order_time      | extras | exclusions 
+----------+-------------+----------+---------------------+--------+------------
+        1 |         101 |        1 | 2020-01-01 18:05:02 |        |           
+        2 |         101 |        1 | 2020-01-01 19:00:52 |        |           
+        3 |         102 |        1 | 2020-01-02 23:51:23 |        |           
+        3 |         102 |        2 | 2020-01-02 23:51:23 |        |           
+        4 |         103 |        1 | 2020-01-04 13:23:46 |        |          4
+        4 |         103 |        1 | 2020-01-04 13:23:46 |        |          4
+        4 |         103 |        2 | 2020-01-04 13:23:46 |        |          4
+        5 |         104 |        1 | 2020-01-08 21:00:29 |      1 |           
+        6 |         101 |        2 | 2020-01-08 21:03:13 |        |           
+        7 |         105 |        2 | 2020-01-08 21:20:29 |      1 |           
+        8 |         102 |        1 | 2020-01-09 23:54:33 |        |           
+        9 |         103 |        1 | 2020-01-10 11:22:59 |      1 |          4
+        9 |         103 |        1 | 2020-01-10 11:22:59 |      5 |          4
+       10 |         104 |        1 | 2020-01-11 18:34:49 |        |           
+       10 |         104 |        1 | 2020-01-11 18:34:49 |      1 |          2
+       10 |         104 |        1 | 2020-01-11 18:34:49 |      1 |          6
+       10 |         104 |        1 | 2020-01-11 18:34:49 |      4 |          2
+       10 |         104 |        1 | 2020-01-11 18:34:49 |      4 |          6
+</pre>
