@@ -3,9 +3,9 @@ Before we move onto solving the case study questions, we must clean the data pro
 
 ## 1. Data Cleaning
 
-### *customer_order*
+### `customer_order`
 
-Let's observe the data first, since *customer_order* has a few rows we can explore the data by simply selecting the entire table. 
+Let's observe the data first, since `customer_order` has a few rows we can explore the data by simply selecting the entire table. 
 
 ```SQL
 SELECT *
@@ -36,8 +36,8 @@ Result :
 
 We can see that there are two major issue with the data
 
-1. There are some missing values and some incorrect values(*NULL* is represented by *'null'*)
-2. The columns *exclusions* and *extras* has values separated by commas, which are valid values but it might be difficult to deal with them later using SQL, so we will create new rows for them.
+1. There are some missing values and some incorrect values(`NULL` is represented by `'null'`)
+2. The columns `exclusions` and `extras` has values separated by commas, which are valid values but it might be difficult to deal with them later using SQL, so we will create new rows for them.
 
 ```SQL
 -- Handling data Issue no 1
@@ -83,7 +83,7 @@ Result:
 
 Now let's handle issue no 2. I have tried to tackle this issue using two different ways. 
 
-1. At first, I had a simple but lengthy way to achieve the unnesting the comma-separated values. By using Subquery and unnesting *extras* and *exclusions* one at a time.
+1. At first, I had a simple but lengthy way to achieve the unnesting the comma-separated values. By using Subquery and unnesting `extras` and `exclusions` one at a time.
 
 ```SQL
 -- Handling Data Issue No 2, Part I
@@ -119,7 +119,7 @@ FROM (
 ) AS subq2
 ```
 
-2. Then, I realised there must be a better(better as in more clean and concise) way to do it. I was going through a lot of web resources and I have seen a lot of ways to achieve it using procedural language and using JSON arrays. After a lot of searching, I have realised that I could use *CROSS JOIN* and already implemented function *UNNEST()*. By using them both together, a simple *CROSS JOIN* would turn into *LATERAL JOIN*. 
+2. Then, I realised there must be a better(better as in more clean and concise) way to do it. I was going through a lot of web resources and I have seen a lot of ways to achieve it using procedural language and using JSON arrays. After a lot of searching, I have realised that I could use `CROSS JOIN` and already implemented function `UNNEST()`. By using them both together, a simple `CROSS JOIN` would turn into `LATERAL JOIN`. 
 
 ```SQL
 -- Handling Data Issue No 2, Part II
@@ -167,7 +167,7 @@ Result:
        10 |         104 |        1 | 2020-01-11 18:34:49 |      4 |          6
 </pre>
 
-### *runner_orders*
+### `runner_orders`
 
 Let's first observe the data.
 
@@ -195,10 +195,10 @@ Result:
 
 The above data has following data cleaning issues:
 
-  1. *pickup_time* -  'null' values.
-  2. *distance* - 'null' values and values have unit of kilometer 'km' attached.
-  3. *duration* - 'null' values and values have unit of time 'minutes', 'mins' 'minute' attached.
-  4. *cancellation* - <pre>' '</pre> and 'null' values.
+  1. `pickup_time` -  'null' values.
+  2. `distance` - 'null' values and values have unit of kilometer 'km' attached.
+  3. `duration` - 'null' values and values have unit of time 'minutes', 'mins' 'minute' attached.
+  4. `cancellation` - `' '` and 'null' values.
 
 ```SQL
 clean_runner_orders AS (
