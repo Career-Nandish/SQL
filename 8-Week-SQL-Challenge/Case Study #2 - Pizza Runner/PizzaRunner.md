@@ -310,7 +310,7 @@ With `pizza_recipes` fixed, there is no more data cleaning required and we can m
 ### A.1 How many pizzas were ordered?
 
 ```SQL{A1}
-
+SELECT 1
 ```
 
 ### A.1 How many unique customer orders were made?
