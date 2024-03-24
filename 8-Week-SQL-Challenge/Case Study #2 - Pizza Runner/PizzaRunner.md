@@ -303,3 +303,20 @@ Result:
 
 With `pizza_recipes` fixed, there is no more data cleaning required and we can move on with answering Danny's questions. 
 
+## A. Pizza Metrics
+
+### A.1 How many pizzas were ordered?
+
+```SQL{A1}
+
+```
+
+### A.1 How many unique customer orders were made?
+### A.1 How many successful orders were delivered by each runner?
+### A.1 How many of each type of pizza was delivered?
+### A.1 How many Vegetarian and Meatlovers were ordered by each customer?
+### A.1 What was the maximum number of pizzas delivered in a single order?
+### A.1 For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
+### A.1 How many pizzas were delivered that had both exclusions and extras?
+### A.1 What was the total volume of pizzas ordered for each hour of the day?
+### A.1 What was the volume of orders for each day of the week?
