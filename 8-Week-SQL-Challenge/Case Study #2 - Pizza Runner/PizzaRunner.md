@@ -309,7 +309,7 @@ With `pizza_recipes` fixed, there is no more data cleaning required and we can m
 
 ```SQL
 SELECT COUNT(pizza_id) AS "Total Number Of Pizzas Ordered"
-FROM customer_orders
+FROM temp_cust_orders
 ```
 
 Result:
@@ -324,7 +324,7 @@ Result:
 
 ```SQL
 SELECT COUNT(DISTINCT order_id) AS "Unique Orders Placed"
-FROM customer_orders
+FROM temp_cust_orders
 ```
 
 Result:
@@ -336,12 +336,118 @@ Result:
 </pre>
 
 ### A.3 How many successful orders were delivered by each runner?
+
+```SQL
+SELECT runner_id, COUNT(*) AS "Successful Deliveries"
+FROM clean_runner_orders
+WHERE cancellation IS NULL
+GROUP BY runner_id
+```
+
+Result:
+
+<pre>
+ runner_id | Successful Deliveries 
+-----------+-----------------------
+         1 |                     4
+         2 |                     3
+         3 |                     1
+</pre>
+
 ### A.4 How many of each type of pizza was delivered?
+
+```SQL
+SELECT c.pizza_id, 
+       p.pizza_name, 
+       COUNT(*) AS "Number of Pizzas Delivered"
+FROM temp_cust_orders c
+JOIN clean_runner_orders r
+    ON c.order_id = r.order_id
+JOIN pizza_names p
+    ON c.pizza_id = p.pizza_id
+WHERE r.cancellation IS NULL
+GROUP BY c.pizza_id, p.pizza_name
+```
+
+Result:
+
+<pre>
+ pizza_id | pizza_name | Number of Pizzas Delivered 
+----------+------------+----------------------------
+        1 | Meatlovers |                          9
+        2 | Vegetarian |                          3
+</pre>
+
+
 ### A.5 How many Vegetarian and Meatlovers were ordered by each customer?
+
+```SQL
+```
+
+Result:
+
+<pre>
+  
+</pre>
+
+
 ### A.6 What was the maximum number of pizzas delivered in a single order?
+
+```SQL
+```
+
+Result:
+
+<pre>
+  
+</pre>
+
+
 ### A.7 For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
+
+```SQL
+```
+
+Result:
+
+<pre>
+  
+</pre>
+
+
 ### A.8 How many pizzas were delivered that had both exclusions and extras?
+
+```SQL
+```
+
+Result:
+
+<pre>
+  
+</pre>
+
+
 ### A.9 What was the total volume of pizzas ordered for each hour of the day?
+
+```SQL
+```
+
+Result:
+
+<pre>
+  
+</pre>
+
+
 ### A.10 What was the volume of orders for each day of the week?
 
+
+```SQL
+```
+
+Result:
+
+<pre>
+  
+</pre>
 
