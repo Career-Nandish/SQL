@@ -3,7 +3,9 @@ Before we move onto solving the case study questions, we must clean the data pro
 
 ## 1. Data Cleaning
 
-### `customer_order`
+Tables - `runners`, `pizza_names`, and `pizza_toppings` have no issues with data. 
+
+### 1.1 `customer_order`
 
 Let's observe the data first, since `customer_order` has a few rows we can explore the data by simply selecting the entire table. 
 
@@ -167,7 +169,7 @@ Result:
        10 |         104 |        1 | 2020-01-11 18:34:49 |      4 |          6
 </pre>
 
-### `runner_orders`
+### 1.2 `runner_orders`
 
 Let's first observe the data.
 
@@ -242,3 +244,6 @@ Result:
         9 |         2 |                     |          |          | Customer Cancellation
        10 |         1 | 2020-01-11 18:50:20 |       10 |       10 | 
 </pre>
+
+
+From the result, we can see that the data issues are fixed. 
