@@ -269,4 +269,37 @@ Result:
 
 We can observe from the result that column `toppings` has comma separated values which is hard to deal with in SQL. So, we will be unnesting the values.
 
- 
+```SQL
+WITH clean_pizza_recipes AS (
+    SELECT pizza_id,
+           UNNEST(STRING_TO_ARRAY(toppings, ', '))::INT AS toppings
+    FROM pizza_recipes
+)
+
+SELECT * FROM clean_pizza_recipes
+```
+
+Result:
+
+<pre>
+ pizza_id | toppings 
+----------+----------
+        1 |        1
+        1 |        2
+        1 |        3
+        1 |        4
+        1 |        5
+        1 |        6
+        1 |        8
+        1 |       10
+        2 |        4
+        2 |        6
+        2 |        7
+        2 |        9
+        2 |       11
+        2 |       12
+</pre>
+
+
+With `pizza_recipes` fixed, there is no more data cleaning required and we can move on with answering Danny's questions. 
+
