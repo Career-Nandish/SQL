@@ -12,7 +12,7 @@
    - [Key datasets for this case study](#key-datasets-for-this-case-study)
 3. [Entity Relationship Diagram](#entity-relationship-diagram)
 4. [Data](#data)
-   - [Table 1: Runners](#table-1-runners)
+   - [Table 1: runners](#table-1-runners)
    - [Table 2: customer_orders](#table-2-customer_orders)
    - [Table 3: runner_orders](#table-3-runner_orders)
    - [Table 4: pizza_names](#table-4-pizza_names)
@@ -50,12 +50,12 @@ All datasets exist within the pizza_runner database schema - be sure to include 
 
 ### Key datasets for this case study
 
-* **runners** : The table shows the registration_date for each new runner
-* **customer_orders** : Customer pizza orders are captured in the customer_orders table with 1 row for each individual pizza that is part of the order. The pizza_id relates to the type of pizza which was ordered whilst the exclusions are the ingredient_id values which should be removed from the pizza and the extras are the ingredient_id values which need to be added to the pizza.
-* **runner_orders** : After each orders are received through the system - they are assigned to a runner - however not all orders are fully completed and can be cancelled by the restaurant or the customer. The pickup_time is the timestamp at which the runner arrives at the Pizza Runner headquarters to pick up the freshly cooked pizzas. The distance and duration fields are related to how far and long the runner had to travel to deliver the order to the respective customer.
-* **pizza_names** : Pizza Runner only has 2 pizzas available the Meat Lovers or Vegetarian!
-* **pizza_recipes** : Each pizza_id has a standard set of toppings which are used as part of the pizza recipe.
-* **pizza_toppings** : The table contains all of the topping_name values with their corresponding topping_id value
+* `runners` : The table shows the registration_date for each new runner
+* `customer_orders` : Customer pizza orders are captured in the customer_orders table with 1 row for each individual pizza that is part of the order. The pizza_id relates to the type of pizza which was ordered whilst the exclusions are the ingredient_id values which should be removed from the pizza and the extras are the ingredient_id values which need to be added to the pizza.
+* `runner_orders` : After each orders are received through the system - they are assigned to a runner - however not all orders are fully completed and can be cancelled by the restaurant or the customer. The pickup_time is the timestamp at which the runner arrives at the Pizza Runner headquarters to pick up the freshly cooked pizzas. The distance and duration fields are related to how far and long the runner had to travel to deliver the order to the respective customer.
+* `pizza_names` : Pizza Runner only has 2 pizzas available the Meat Lovers or Vegetarian!
+* `pizza_recipes` : Each pizza_id has a standard set of toppings which are used as part of the pizza recipe.
+* `pizza_toppings` : The table contains all of the topping_name values with their corresponding topping_id value
 
 ## Entity Relationship Diagram
 
@@ -64,9 +64,9 @@ All datasets exist within the pizza_runner database schema - be sure to include 
 
 ## Data
 
-### Table 1: Runners
+### Table 1: `runners`
 
-The runners table shows the registration_date for each new runner
+The `runners` table shows the `registration_date` for each new runner(`runner_id`).
 
 <pre>
   runner_id | registration_date 
@@ -77,7 +77,7 @@ The runners table shows the registration_date for each new runner
          4 | 2021-01-15
 </pre>
 
-### Table 2: customer_orders
+### Table 2: `customer_orders`
 
 Customer pizza orders are captured in the customer_orders table with 1 row for each individual pizza that is part of the order.
 
@@ -107,13 +107,13 @@ The exclusions and extras columns will need to be cleaned up before using them i
 </pre>
 
 
-### Table 3: runner_orders
+### Table 3: `runner_orders`
 
 After each orders are received through the system - they are assigned to a runner - however not all orders are fully completed and can be cancelled by the restaurant or the customer.
 
-The pickup_time is the timestamp at which the runner arrives at the Pizza Runner headquarters to pick up the freshly cooked pizzas. The distance and duration fields are related to how far and long the runner had to travel to deliver the order to the respective customer.
+The `pickup_time` is the timestamp at which the runner arrives at the Pizza Runner headquarters to pick up the freshly cooked pizzas. The `distance` and `duration` fields are related to how far and long the runner had to travel to deliver the order to the respective customer.
 
-There are some known data issues with this table so be careful when using this in your queries - make sure to check the data types for each column in the schema SQL!
+***Note from Danny** : There are some known data issues with this table so be careful when using this in your queries - make sure to check the data types for each column in the schema SQL!*
 
 <pre>
   order_id | runner_id |     pickup_time     | distance |  duration  |      cancellation       
@@ -131,7 +131,7 @@ There are some known data issues with this table so be careful when using this i
 </pre>
 
 
-### Table 4: pizza_names
+### Table 4: `pizza_names`
 
 At the moment - Pizza Runner only has 2 pizzas available the Meat Lovers or Vegetarian!
 
@@ -143,9 +143,9 @@ At the moment - Pizza Runner only has 2 pizzas available the Meat Lovers or Vege
 </pre>
 
 
-### Table 5: pizza_recipes
+### Table 5: `pizza_recipes`
 
-Each pizza_id has a standard set of toppings which are used as part of the pizza recipe.
+Each `pizza_id` has a standard set of `toppings` which are used as part of the pizza recipe.
 
 <pre>
  pizza_id |        toppings         
@@ -155,9 +155,9 @@ Each pizza_id has a standard set of toppings which are used as part of the pizza
 </pre>
 
 
-### Table 6: pizza_toppings
+### Table 6: `pizza_toppings`
 
-This table contains all of the topping_name values with their corresponding topping_id value
+This table contains all of the `topping_name` values with their corresponding `topping_id` value
 
 <pre>
  topping_id | topping_name 
@@ -236,16 +236,16 @@ Before you start writing your SQL queries however - you might want to investigat
 2. What if there was an additional $1 charge for any pizza extras? Add cheese is $1 extra
 3. The Pizza Runner team now wants to add an additional ratings system that allows customers to rate their runner, how would you design an additional table for this new dataset - generate a schema for this new table and insert your own data for ratings for each successful customer order between 1 to 5.
 4. Using your newly generated table - can you join all of the information together to form a table which has the following information for successful deliveries?
-- customer_id
-- order_id
-- runner_id
-- rating
-- order_time
-- pickup_time
-- Time between order and pickup
-- Delivery duration
-- Average speed
-- Total number of pizzas
+  - customer_id
+  - order_id
+  - runner_id
+  - rating
+  - order_time
+  - pickup_time
+  - Time between order and pickup
+  - Delivery duration
+  - Average speed
+  - Total number of pizzas
 5. If a Meat Lovers pizza was $12 and Vegetarian $10 fixed prices with no cost for extras and each runner is paid $0.30 per kilometre traveled - how much money does Pizza Runner have left over after these deliveries?
 
 ### E. Bonus Questions

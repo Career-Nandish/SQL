@@ -33,9 +33,9 @@ Danny has provided you with a sample of his overall customer data due to privacy
 
 Danny has shared with you 3 key datasets for this case study:
 
-* sales - The sales table captures all customer_id level purchases with an corresponding order_date and product_id information for when and what menu items were ordered.
-* menu - The menu table maps the product_id to the actual product_name and price of each menu item.
-* members - The members table captures the join_date when a customer_id joined the beta version of the Danny’s Diner loyalty program.
+* `sales` - The sales table captures all customer_id level purchases with an corresponding order_date and product_id information for when and what menu items were ordered.
+* `menu` - The menu table maps the product_id to the actual product_name and price of each menu item.
+* `members` - The members table captures the join_date when a customer_id joined the beta version of the Danny’s Diner loyalty program.
 
 
 ## Entity Relationship Diagram
@@ -45,9 +45,9 @@ Danny has shared with you 3 key datasets for this case study:
 
 ## Data
 
-### Table 1: sales
+### Table 1: `sales`
 
-The sales table captures all customer_id level purchases with an corresponding order_date and product_id information for when and what menu items were ordered.
+The `sales` table captures all `customer_id` level purchases with an corresponding `order_date` and `product_id` information for when and what menu items were ordered.
 
 <pre>
  customer_id | order_date | product_id 
@@ -70,9 +70,9 @@ The sales table captures all customer_id level purchases with an corresponding o
 
 </pre>
 
-### Table 2: menu
+### Table 2: `menu`
 
-The menu table maps the product_id to the actual product_name and price of each menu item.
+The `menu` table maps the `product_id` to the actual `product_name` and `price` of each menu item.
 
 <pre>
  product_id | product_name | price 
@@ -83,9 +83,9 @@ The menu table maps the product_id to the actual product_name and price of each 
 </pre>
 
 
-### Table 3: members
+### Table 3: `members`
 
-The final members table captures the join_date when a customer_id joined the beta version of the Danny’s Diner loyalty program.
+The final members table captures the `join_date` when a `customer_id` joined the beta version of the Danny’s Diner loyalty program.
 
 <pre>
  customer_id | join_date  
