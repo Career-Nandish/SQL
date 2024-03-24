@@ -1,3 +1,5 @@
+Find the sol [here](#A1)
+
 Before we move onto solving the case study questions, we must clean the data provided by Danny. 
 
 
@@ -322,4 +324,3 @@ With `pizza_recipes` fixed, there is no more data cleaning required and we can m
 ### A.1 What was the volume of orders for each day of the week?
 
 
-Find the sol [here](#A1)
