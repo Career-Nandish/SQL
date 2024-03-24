@@ -41,7 +41,7 @@ We can see that there are two major issue with the data
 
 ```SQL
 -- Handling data Issue no 1
-WITH temp_cust_orders (
+WITH temp_cust_orders AS (
     SELECT order_id,
            customer_id,
            pizza_id,
@@ -198,4 +198,5 @@ The above data has following data cleaning issues:
   1. *pickup_time* -  'null' values.
   2. *distance* - 'null' values and values have unit of kilometer 'km' attached.
   3. *duration* - 'null' values and values have unit of time 'minutes', 'mins' 'minute' attached.
-  4. *cancellation* - ' ' and 'null' values.
+  4. *cancellation* - <pre>' '</pre> and 'null' values.
+
