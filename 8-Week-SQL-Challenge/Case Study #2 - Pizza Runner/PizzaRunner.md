@@ -320,3 +320,6 @@ With `pizza_recipes` fixed, there is no more data cleaning required and we can m
 ### A.1 How many pizzas were delivered that had both exclusions and extras?
 ### A.1 What was the total volume of pizzas ordered for each hour of the day?
 ### A.1 What was the volume of orders for each day of the week?
+
+
+Find the sol [here](#A1)
