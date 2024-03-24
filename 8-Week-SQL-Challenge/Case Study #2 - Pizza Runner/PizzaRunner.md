@@ -1,5 +1,3 @@
-Find the sol [here](#A1)
-
 Before we move onto solving the case study questions, we must clean the data provided by Danny. 
 
 
@@ -309,8 +307,7 @@ With `pizza_recipes` fixed, there is no more data cleaning required and we can m
 
 ### A.1 How many pizzas were ordered?
 
-```SQL{A1}
-SELECT 1
+```SQL
 ```
 
 ### A.1 How many unique customer orders were made?
