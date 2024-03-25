@@ -382,24 +382,56 @@ Result:
 ### A.5 How many Vegetarian and Meatlovers were ordered by each customer?
 
 ```SQL
+SELECT customer_id,
+       SUM(
+           CASE
+               WHEN pizza_id = 1 THEN 1
+               ELSE 0
+           END
+        ) AS "Meatlovers Pizza Count",
+       SUM(
+           CASE
+               WHEN pizza_id = 2 THEN 1
+               ELSE 0
+           END
+        ) AS "Vegetarian Pizza Count"
+FROM temp_cust_orders
+GROUP BY customer_id
+ORDER BY customer_id
 ```
 
 Result:
 
 <pre>
-  
+ customer_id | Meatlovers Pizza Count | Vegetarian Pizza Count 
+-------------+------------------------+------------------------
+         101 |                      2 |                      1
+         102 |                      2 |                      1
+         103 |                      3 |                      1
+         104 |                      3 |                      0
+         105 |                      0 |                      1
 </pre>
 
 
 ### A.6 What was the maximum number of pizzas delivered in a single order?
 
 ```SQL
+SELECT c.order_id, 
+       COUNT(*) AS pizza_count
+FROM temp_cust_orders c
+JOIN clean_runner_orders r
+  ON c.order_id = r.order_id AND r.cancellation IS NULL
+GROUP BY c.order_id
+ORDER BY pizza_count DESC
+LIMIT 1
 ```
 
 Result:
 
 <pre>
-  
+ order_id | pizza_count 
+----------+-------------
+        4 |           3
 </pre>
 
 
