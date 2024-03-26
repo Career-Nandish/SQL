@@ -438,24 +438,66 @@ Result:
 ### A.7 For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
 
 ```SQL
+SELECT c.customer_id,
+       SUM(
+           CASE
+               WHEN c.extras IS NOT NULL OR c.exclusions IS NOT NULL THEN 1
+               ELSE 0
+           END
+       ) AS "At Least One Change",
+       SUM(
+           CASE
+               WHEN c.extras IS NULL AND c.exclusions IS NULL THEN 1
+               ELSE 0
+           END
+       ) AS "No changes"
+FROM temp_cust_orders c
+JOIN clean_runner_orders r
+  ON c.order_id = r.order_id AND r.cancellation IS NULL
+GROUP BY c.customer_id
+ORDER BY c.customer_id
 ```
 
 Result:
 
 <pre>
-  
+ customer_id | At Least One Change | No changes 
+-------------+---------------------+------------
+         101 |                   0 |          2
+         102 |                   0 |          3
+         103 |                   3 |          0
+         104 |                   2 |          1
+         105 |                   1 |          0
 </pre>
 
 
 ### A.8 How many pizzas were delivered that had both exclusions and extras?
 
 ```SQL
+SELECT c.customer_id,
+       SUM(
+           CASE
+               WHEN c.extras IS NOT NULL AND c.exclusions IS NOT NULL THEN 1
+               ELSE 0
+           END
+       ) AS "No Of Pizzas With Exclusions & Extras"
+FROM temp_cust_orders c
+JOIN clean_runner_orders r
+  ON c.order_id = r.order_id AND r.cancellation IS NULL
+GROUP BY c.customer_id
+ORDER BY c.customer_id
 ```
 
 Result:
 
 <pre>
-  
+ customer_id | No Of Pizzas With Exclusions & Extras 
+-------------+---------------------------------------
+         101 |                                     0
+         102 |                                     0
+         103 |                                     0
+         104 |                                     1
+         105 |                                     0
 </pre>
 
 
