@@ -181,12 +181,12 @@ This table contains all of the `topping_name` values with their corresponding `t
 
 This case study has LOTS of questions - they are broken up by area of focus including:
 
-* [Data Cleaning](/0_DataCleaning.md)
-* Pizza Metrics
-* Runner and Customer Experience
-* Ingredient Optimisation
-* Pricing and Ratings
-* Bonus DML Challenges (DML = Data Manipulation Language)
+* [Data Cleaning](./0_DataCleaning.md)
+* [Pizza Metrics](./A_PizzaMetrics.md)
+* [Runner and Customer Experience](./B_RunnerAndCustomerExperience.md)
+* [Ingredient Optimisation](./C_IngredientOptimisation.md)
+* [Pricing and Ratings](./D_PricingAndRatings.md)
+* [Bonus DML Challenges (DML = Data Manipulation Language)](./E_BonusDMLChallenges.md)
 
 Each of the following case study questions can be answered using a single SQL statement.
 
