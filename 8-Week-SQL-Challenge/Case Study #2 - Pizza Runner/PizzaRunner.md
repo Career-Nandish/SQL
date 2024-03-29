@@ -504,12 +504,25 @@ Result:
 ### A.9 What was the total volume of pizzas ordered for each hour of the day?
 
 ```SQL
+SELECT DATE_PART('hour', order_time) AS "Hour", 
+       COUNT(order_id) AS "Number Of Pizzas Ordered", 
+       ROUND((COUNT(order_id) * 100)/SUM(COUNT(order_id)) OVER (), 2) "% Of Pizzas Ordered"
+FROM temp_cust_orders
+GROUP BY "Hour"
+ORDER BY "Number Of Pizzas Ordered" DESC
 ```
 
 Result:
 
 <pre>
-  
+ Hour | Number Of Pizzas Ordered | % Of Pizzas Ordered 
+------+--------------------------+---------------------
+   18 |                        3 |               21.43
+   23 |                        3 |               21.43
+   21 |                        3 |               21.43
+   13 |                        3 |               21.43
+   11 |                        1 |                7.14
+   19 |                        1 |                7.14
 </pre>
 
 
@@ -517,11 +530,21 @@ Result:
 
 
 ```SQL
+SELECT TO_CHAR(order_time, 'Day') AS "Day Of Week", 
+       COUNT(order_id) AS "Number Of Pizzas Ordered", 
+       ROUND((COUNT(order_id) * 100)/SUM(COUNT(order_id)) OVER (), 2) "% Of Pizzas Ordered"
+FROM temp_cust_orders
+GROUP BY "Day Of Week"
+ORDER BY "Number Of Pizzas Ordered" DESC
 ```
 
 Result:
 
 <pre>
-  
+ Day Of Week | Number Of Pizzas Ordered | % Of Pizzas Ordered 
+-------------+--------------------------+---------------------
+ Saturday    |                        5 |               35.71
+ Wednesday   |                        5 |               35.71
+ Thursday    |                        3 |               21.43
+ Friday      |                        1 |                7.14
 </pre>
-
