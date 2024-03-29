@@ -19,6 +19,7 @@
    - [Table 5: pizza_recipes](#table-5-pizza_recipes)
    - [Table 6: pizza_toppings](#table-6-pizza_toppings)
 5. [Case Study Questions](#case-study-questions)
+   - [0. Data Cleaning](#0-data-cleaning)
    - [A. Pizza Metrics](#a-pizza-metrics)
    - [B. Runner and Customer Experience](#b-runner-and-customer-experience)
    - [C. Ingredient Optimisation](#c-ingredient-optimisation)
@@ -181,6 +182,7 @@ This table contains all of the `topping_name` values with their corresponding `t
 
 This case study has LOTS of questions - they are broken up by area of focus including:
 
+* Data Cleaning
 * Pizza Metrics
 * Runner and Customer Experience
 * Ingredient Optimisation
