@@ -227,7 +227,7 @@ Result:
 ```SQL
 SELECT TO_CHAR(order_time, 'Day') AS "Day Of Week", 
        COUNT(order_id) AS "Number Of Pizzas Ordered", 
-       ROUND((COUNT(order_id) * 100)/SUM(COUNT(order_id)) OVER (), 2) "% Of Pizzas Ordered"
+       ROUND((COUNT(order_id) * 100)/SUM(COUNT(order_id)) OVER (), 2) AS "% Of Pizzas Ordered"
 FROM temp_cust_orders
 GROUP BY "Day Of Week"
 ORDER BY "Number Of Pizzas Ordered" DESC
