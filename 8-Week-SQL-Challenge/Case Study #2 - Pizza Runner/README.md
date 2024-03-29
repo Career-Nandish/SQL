@@ -181,7 +181,7 @@ This table contains all of the `topping_name` values with their corresponding `t
 
 This case study has LOTS of questions - they are broken up by area of focus including:
 
-* [Data Cleaning](\0_DataCleaning.md)
+* [Data Cleaning](/0_DataCleaning.md)
 * Pizza Metrics
 * Runner and Customer Experience
 * Ingredient Optimisation
