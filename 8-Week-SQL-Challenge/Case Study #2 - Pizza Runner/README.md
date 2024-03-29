@@ -194,7 +194,11 @@ Again, there are many questions in this case study - please feel free to pick an
 
 Before you start writing your SQL queries however - you might want to investigate the data, you may want to do something with some of those null values and data types in the *customer_orders* and *runner_orders* tables!
 
-### A. Pizza Metrics
+### [0. Data Cleaning](./0_DataCleaning.md)
+
+There are some issues with data so before we jump into the case study questions, we will need to handle them.
+
+### [A. Pizza Metrics](./A_PizzaMetrics.md)
 
 1. How many pizzas were ordered?
 2. How many unique customer orders were made?
@@ -207,7 +211,7 @@ Before you start writing your SQL queries however - you might want to investigat
 9. What was the total volume of pizzas ordered for each hour of the day?
 10. What was the volume of orders for each day of the week?
 
-### B. Runner and Customer Experience
+### [B. Runner and Customer Experience](./B_RunnerAndCustomerExperience.md)
 
 1. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
@@ -217,7 +221,7 @@ Before you start writing your SQL queries however - you might want to investigat
 6. What was the average speed for each runner for each delivery and do you notice any trend for these values?
 7. What is the successful delivery percentage for each runner?
 
-### C. Ingredient Optimisation
+### [C. Ingredient Optimisation](./C_IngredientOptimisation.md)
 
 1. What are the standard ingredients for each pizza?
 2. What was the most commonly added extra?
@@ -231,24 +235,24 @@ Before you start writing your SQL queries however - you might want to investigat
 - For example: "Meat Lovers: 2xBacon, Beef, ... , Salami"
 6. What is the total quantity of each ingredient used in all delivered pizzas sorted by most frequent first?
 
-### D. Pricing and Ratings
+### [D. Pricing and Ratings](./D_PricingAndRatings.md)
 
 1. If a Meat Lovers pizza costs $12 and Vegetarian costs $10 and there were no charges for changes - how much money has Pizza Runner made so far if there are no delivery fees?
 2. What if there was an additional $1 charge for any pizza extras? Add cheese is $1 extra
 3. The Pizza Runner team now wants to add an additional ratings system that allows customers to rate their runner, how would you design an additional table for this new dataset - generate a schema for this new table and insert your own data for ratings for each successful customer order between 1 to 5.
 4. Using your newly generated table - can you join all of the information together to form a table which has the following information for successful deliveries?
-  - customer_id
-  - order_id
-  - runner_id
-  - rating
-  - order_time
-  - pickup_time
-  - Time between order and pickup
-  - Delivery duration
-  - Average speed
-  - Total number of pizzas
+      - customer_id
+      - order_id
+      - runner_id
+      - rating
+      - order_time
+      - pickup_time
+      - Time between order and pickup
+      - Delivery duration
+      - Average speed
+      - Total number of pizzas
 5. If a Meat Lovers pizza was $12 and Vegetarian $10 fixed prices with no cost for extras and each runner is paid $0.30 per kilometre traveled - how much money does Pizza Runner have left over after these deliveries?
 
-### E. Bonus Questions
+### [E. Bonus DML Challenges (DML = Data Manipulation Language)](./E_BonusDMLChallenges.md)
 
 If Danny wants to expand his range of pizzas - how would this impact the existing data design? Write an INSERT statement to demonstrate what would happen if a new Supreme pizza with all the toppings was added to the Pizza Runner menu?
