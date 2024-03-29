@@ -208,7 +208,7 @@ clean_runner_orders AS (
            runner_id,
            CASE
                WHEN pickup_time = 'null' THEN NULL
-               ELSE pickup_time
+               ELSE pickup_time::TIMESTAMP
            END AS pickup_time,
            CASE
                WHEN distance = 'null' THEN NULL
