@@ -4,7 +4,6 @@
    - [customer_order](#11-customer_order)
    - [runner_orders](#12-runner_orders)
    - [pizza_recipes](#13-pizza_recipes)
-
 A. [Pizza Metrics](#A-pizza-metrics)
    - [Total Number Of Pizzas Ordered](#A1-how-many-pizzas-were-ordered)
    - [Unique Orders Placed](#A2-how-many-unique-customer-orders-were-made)
@@ -16,7 +15,6 @@ A. [Pizza Metrics](#A-pizza-metrics)
    - [Pizzas with Exclusions and Extras](#A8-how-many-pizzas-were-delivered-that-had-both-exclusions-and-extras)
    - [Volume of Pizzas Ordered](#A9-what-was-the-total-volume-of-pizzas-ordered-for-each-hour-of-the-day)
    - [Volume of Orders by Day of the Week](#A10-what-was-the-volume-of-orders-for-each-day-of-the-week)
-
 B. [Runner and Customer Experience](#B-runner-and-customer-experience)
    - [Runners Signed Up](#B1-how-many-runners-signed-up-for-each-1-week-period)
 
