@@ -548,3 +548,8 @@ Result:
  Thursday    |                        3 |               21.43
  Friday      |                        1 |                7.14
 </pre>
+
+
+## B. Runner and Customer Experience
+
+### B.1 How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
