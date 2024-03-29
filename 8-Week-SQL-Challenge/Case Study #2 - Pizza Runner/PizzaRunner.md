@@ -1,3 +1,28 @@
+## Table of Contents
+
+1. [Data Cleaning](#1-data-cleaning)
+   - [customer_order](#11-customer_order)
+   - [runner_orders](#12-runner_orders)
+   - [pizza_recipes](#13-pizza_recipes)
+
+A. [Pizza Metrics](#A-pizza-metrics)
+   - [Total Number Of Pizzas Ordered](#A1-how-many-pizzas-were-ordered)
+   - [Unique Orders Placed](#A2-how-many-unique-customer-orders-were-made)
+   - [Successful Deliveries](#A3-how-many-successful-orders-were-delivered-by-each-runner)
+   - [Number of Pizzas Delivered](#A4-how-many-of-each-type-of-pizza-was-delivered)
+   - [Vegetarian and Meatlovers Orders](#A5-how-many-vegetarian-and-meatlovers-were-ordered-by-each-customer)
+   - [Maximum Number of Pizzas Delivered](#A6-what-was-the-maximum-number-of-pizzas-delivered-in-a-single-order)
+   - [Changes in Delivered Pizzas](#A7-for-each-customer-how-many-delivered-pizzas-had-at-least-1-change-and-how-many-had-no-changes)
+   - [Pizzas with Exclusions and Extras](#A8-how-many-pizzas-were-delivered-that-had-both-exclusions-and-extras)
+   - [Volume of Pizzas Ordered](#A9-what-was-the-total-volume-of-pizzas-ordered-for-each-hour-of-the-day)
+   - [Volume of Orders by Day of the Week](#A10-what-was-the-volume-of-orders-for-each-day-of-the-week)
+
+B. [Runner and Customer Experience](#B-runner-and-customer-experience)
+   - [Runners Signed Up](#B1-how-many-runners-signed-up-for-each-1-week-period)
+
+
+
+
 Before we move onto solving the case study questions, we must clean the data provided by Danny. 
 
 
