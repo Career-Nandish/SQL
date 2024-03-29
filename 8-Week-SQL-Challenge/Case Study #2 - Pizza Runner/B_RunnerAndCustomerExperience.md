@@ -47,23 +47,50 @@ Result:
 ### B.3 Is there any relationship between the number of pizzas and how long the order takes to prepare?
 
 ```SQL
+SELECT subq.num_pizzas,
+       ROUND(AVG(subq.cooking_time), 2) AS avg_cooking_time_in_mins
+FROM (
+    SELECT COUNT(pizza_id) AS num_pizzas, 
+           AVG(EXTRACT(minutes FROM r.pickup_time - c.order_time)) AS cooking_time
+    FROM clean_runner_orders r
+    JOIN temp_cust_orders c
+        ON r.order_id = c.order_id AND r.cancellation IS NULL
+    GROUP BY c.order_id
+) AS subq
+GROUP BY subq.num_pizzas
 ```
 
 Result:
 
 <pre>
-
+ num_pizzas | avg_cooking_time_in_mins 
+------------+--------------------------
+          1 |                    12.00
+          2 |                    18.00
+          3 |                    29.00
 </pre>
 
 ### B.4 What was the average distance travelled for each customer?
 
 ```SQL
+SELECT c.customer_id,
+       ROUND(AVG(distance), 2) AS avg_distance_in_km 
+FROM clean_runner_orders r
+JOIN temp_cust_orders c
+    ON r.order_id = c.order_id AND r.cancellation IS NULL
+GROUP BY c.customer_id
 ```
 
 Result:
 
 <pre>
-
+ customer_id | avg_distance_in_km 
+-------------+--------------------
+         101 |              20.00
+         102 |              16.73
+         103 |              23.40
+         104 |              10.00
+         105 |              25.00
 </pre>
 
 ### B.5 What was the difference between the longest and shortest delivery times for all orders?
