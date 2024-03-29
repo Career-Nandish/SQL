@@ -25,7 +25,6 @@
    - [C. Ingredient Optimisation](#c-ingredient-optimisation)
    - [D. Pricing and Ratings](#d-pricing-and-ratings)
    - [E. Bonus Questions](#e-bonus-questions)
-6. [Solution](#solution)
 
 
 
@@ -182,7 +181,7 @@ This table contains all of the `topping_name` values with their corresponding `t
 
 This case study has LOTS of questions - they are broken up by area of focus including:
 
-* Data Cleaning
+* [Data Cleaning](\0_DataCleaning.md)
 * Pizza Metrics
 * Runner and Customer Experience
 * Ingredient Optimisation
@@ -253,8 +252,3 @@ Before you start writing your SQL queries however - you might want to investigat
 ### E. Bonus Questions
 
 If Danny wants to expand his range of pizzas - how would this impact the existing data design? Write an INSERT statement to demonstrate what would happen if a new Supreme pizza with all the toppings was added to the Pizza Runner menu?
-
-
-## Solution
-
-Find Solution [Here](./PizzaRunner.md)
