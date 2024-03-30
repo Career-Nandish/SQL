@@ -96,23 +96,53 @@ Result:
 ### B.5 What was the difference between the longest and shortest delivery times for all orders?
 
 ```SQL
+SELECT MAX(duration) - MIN(duration) AS "DifferenceBetweenLongestShortestDelivery(in Minutes)"
+FROM clean_runner_orders
 ```
 
 Result:
 
 <pre>
-
+ DifferenceBetweenLongestShortestDelivery(in Minutes) 
+------------------------------------------------------
+                                                   30
 </pre>
 
 ### B.6 What was the average speed for each runner for each delivery and do you notice any trend for these values?
 
 ```SQL
+SELECT subq2.order_id, subq2.runner_id, subq1.pizza_count, subq2.distance_km,
+       subq2.duration_hr, subq2.speed_kmph
+FROM (
+    SELECT order_id, COUNT(pizza_id) AS pizza_count
+    FROM temp_cust_orders
+    GROUP BY order_id
+) AS subq1
+JOIN (
+    SELECT order_id, runner_id, 
+           distance AS distance_km, 
+           ROUND(duration/60.0, 2) AS duration_hr,
+           ROUND(distance * 60.0/duration, 2) AS speed_kmph
+    FROM clean_runner_orders r
+    WHERE cancellation is NULL
+) AS subq2
+    ON subq1.order_id = subq2.order_id
+ ORDER BY subq2.order_id
 ```
 
 Result:
 
 <pre>
-
+ order_id | runner_id | pizza_count | distance_km | duration_hr | speed_kmph 
+----------+-----------+-------------+-------------+-------------+------------
+        1 |         1 |           1 |          20 |        0.53 |      37.50
+        2 |         1 |           1 |          20 |        0.45 |      44.44
+        3 |         1 |           2 |        13.4 |        0.33 |      40.20
+        4 |         2 |           3 |        23.4 |        0.67 |      35.10
+        5 |         3 |           1 |          10 |        0.25 |      40.00
+        7 |         2 |           1 |          25 |        0.42 |      60.00
+        8 |         2 |           1 |        23.4 |        0.25 |      93.60
+       10 |         1 |           2 |          10 |        0.17 |      60.00
 </pre>
 
 ### B.7 What is the successful delivery percentage for each runner?
