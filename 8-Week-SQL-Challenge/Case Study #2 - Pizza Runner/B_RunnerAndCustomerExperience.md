@@ -148,10 +148,20 @@ Result:
 ### B.7 What is the successful delivery percentage for each runner?
 
 ```SQL
+SELECT runner_id, 
+       COUNT(distance) AS successful_orders,
+       COUNT(*) AS total_orders,
+       ROUND(COUNT(distance) * 100.0/COUNT(*), 2) AS percent_successful_delivery
+FROM clean_runner_orders
+GROUP BY runner_id
 ```
 
 Result:
 
 <pre>
-
+ runner_id | successful_orders | total_orders | percent_successful_delivery 
+-----------+-------------------+--------------+-----------------------------
+         3 |                 1 |            2 |                       50.00
+         2 |                 3 |            4 |                       75.00
+         1 |                 4 |            4 |                      100.00
 </pre>
