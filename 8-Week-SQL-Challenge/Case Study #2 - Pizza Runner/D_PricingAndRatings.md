@@ -9,7 +9,7 @@
 Result:
 
 <pre>
-      
+
 </pre>
 
 ### D.2 What if there was an additional $1 charge for any pizza extras? Add cheese is $1 extra
@@ -35,16 +35,16 @@ Result:
 </pre>
 
 ### D.4 Using your newly generated table - can you join all of the information together to form a table which has the following information for successful deliveries?
-      - customer_id
-      - order_id
-      - runner_id
-      - rating
-      - order_time
-      - pickup_time
-      - Time between order and pickup
-      - Delivery duration
-      - Average speed
-      - Total number of pizzas
+### * customer_id
+### * order_id
+### * runner_id
+### * rating
+### * order_time
+### * pickup_time
+### * Time between order and pickup
+### * Delivery duration
+### * Average speed
+### * Total number of pizzas
 
 ```SQL
 ```
