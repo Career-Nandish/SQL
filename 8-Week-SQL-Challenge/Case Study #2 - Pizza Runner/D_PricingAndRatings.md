@@ -35,7 +35,7 @@ Result:
 </pre>
 
 ### D.4 Using your newly generated table - can you join all of the information together to form a table which has the following information for successful deliveries?
-### * customer_id
+* ### customer_id
 ### * order_id
 ### * runner_id
 ### * rating
