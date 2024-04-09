@@ -151,11 +151,11 @@ To do that, we first need to come up with two new tables
 
 ```SQL
 WITH t_exclusions AS (
-SELECT row_num, exclusions
+SELECT DISTINCT row_num, exclusions
 FROM clean_cust_orders
 ),
 t_extras AS (
-SELECT row_num, extras
+SELECT DISTINCT row_num, extras
 FROM clean_cust_orders
 )
 
@@ -192,7 +192,7 @@ Result:
         4 | Meatlovers: Bacon, BBQ Sauce, Beef, Chicken, Mushrooms, Pepperoni, Salami
         4 | Vegetarian: Mushrooms, Onions, Peppers, Tomatoes, Tomato Sauce
         5 | Meatlovers: 2xBacon, BBQ Sauce, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami
-        6 | Vegetarian: Cheese, Mushrooms, Onions, Peppers, Tomatoes, Tomato Sauce
+        6 | Vegetarian: 	Cheese, Mushrooms, Onions, Peppers, Tomatoes, Tomato Sauce
         7 | Vegetarian: Cheese, Mushrooms, Onions, Peppers, Tomatoes, Tomato Sauce
         8 | Meatlovers: Bacon, BBQ Sauce, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami
         9 | Meatlovers: 2xBacon, 2xChicken, BBQ Sauce, Beef, Mushrooms, Pepperoni, Salami
@@ -200,12 +200,49 @@ Result:
        10 | Meatlovers: 2xBacon, 2xCheese, Beef, Chicken, Pepperoni, Salami
 </pre>
 
+
 ### C.6 What is the total quantity of each ingredient used in all delivered pizzas sorted by most frequent first?
 
 ```SQL
+SELECT pt.topping_name,
+       SUM(
+           CASE 
+               WHEN pt.topping_id IN (SELECT te.extras FROM t_extras te WHERE te.row_num = co.row_num)
+                   THEN 2
+               WHEN pt.topping_id IN (SELECT t.exclusions FROM t_exclusions t WHERE t.row_num = co.row_num)
+                   THEN 0
+               ELSE 1
+           END
+        ) AS times_used
+FROM temp_cust_orders co
+JOIN clean_runner_orders ro
+     ON co.order_id = ro.order_id AND ro.cancellation IS NULL
+JOIN pizza_names pn
+    ON co.pizza_id = pn.pizza_id
+JOIN clean_pizza_recipes pr
+    ON co.pizza_id = pr.pizza_id
+JOIN pizza_toppings pt
+    ON pr.toppings = pt.topping_id
+GROUP BY pt.topping_name
+ORDER BY times_used DESC
+
 ```
 
 Result:
 
 <pre>
+ topping_name | times_used 
+--------------+------------
+ Bacon        |         11
+ Mushrooms    |         11
+ Cheese       |         10
+ Pepperoni    |          9
+ Salami       |          9
+ Chicken      |          9
+ Beef         |          9
+ BBQ Sauce    |          8
+ Tomato Sauce |          3
+ Onions       |          3
+ Peppers      |          3
+ Tomatoes     |          3
 </pre>
