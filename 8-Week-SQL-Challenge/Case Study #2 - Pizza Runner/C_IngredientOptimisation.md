@@ -139,13 +139,65 @@ Result:
 ### C.5 Generate an alphabetically ordered comma separated ingredient list for each pizza order from the customer_orders table and add a 2x in front of any relevant ingredients
 ###	- For example: "Meat Lovers: 2xBacon, Beef, ... , Salami"
 
+Danny is asking us to do the following
+
+* Ingredients from `extras` should have '2x' in front
+* Ingredients from `exclusions` should be removed from the list
+
+To do that, we first need to come up with two new tables
+
+* `t_extras` : which shows row number and topping_id of the extras
+* `t_exclusions` : which shows row number and topping_id of the exclusions
+
 ```SQL
+WITH t_exclusions AS (
+SELECT row_num, exclusions
+FROM clean_cust_orders
+),
+t_extras AS (
+SELECT row_num, extras
+FROM clean_cust_orders
+)
+
+SELECT co.order_id,
+       pn.pizza_name || ': ' || 
+           STRING_AGG(
+               DISTINCT CASE
+                            WHEN pr.toppings IN (SELECT te.extras FROM t_extras te WHERE te.row_num = co.row_num)
+                            THEN '2x' || pt.topping_name
+                            ELSE pt.topping_name
+                        END, ', '
+           ) as "Pizza Name : Ingredients + extras - exclusions"
+FROM clean_cust_orders co
+JOIN pizza_names pn
+    ON co.pizza_id = pn.pizza_id
+JOIN clean_pizza_recipes pr
+    ON co.pizza_id = pr.pizza_id
+JOIN pizza_toppings pt
+    ON pr.toppings = pt.topping_id
+WHERE pr.toppings NOT IN (SELECT t.exclusions FROM t_exclusions t WHERE co.row_num = t.row_num AND t.exclusions IS NOT NULL)
+GROUP BY co.row_num, co.order_id, pn.pizza_name
 ```
 
 Result:
 
 <pre>
-
+ order_id |                   Pizza Name : Ingredients + extras - exclusions                    
+----------+-------------------------------------------------------------------------------------
+        1 | Meatlovers: Bacon, BBQ Sauce, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami
+        2 | Meatlovers: Bacon, BBQ Sauce, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami
+        3 | Meatlovers: Bacon, BBQ Sauce, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami
+        3 | Vegetarian: Cheese, Mushrooms, Onions, Peppers, Tomatoes, Tomato Sauce
+        4 | Meatlovers: Bacon, BBQ Sauce, Beef, Chicken, Mushrooms, Pepperoni, Salami
+        4 | Meatlovers: Bacon, BBQ Sauce, Beef, Chicken, Mushrooms, Pepperoni, Salami
+        4 | Vegetarian: Mushrooms, Onions, Peppers, Tomatoes, Tomato Sauce
+        5 | Meatlovers: 2xBacon, BBQ Sauce, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami
+        6 | Vegetarian: Cheese, Mushrooms, Onions, Peppers, Tomatoes, Tomato Sauce
+        7 | Vegetarian: Cheese, Mushrooms, Onions, Peppers, Tomatoes, Tomato Sauce
+        8 | Meatlovers: Bacon, BBQ Sauce, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami
+        9 | Meatlovers: 2xBacon, 2xChicken, BBQ Sauce, Beef, Mushrooms, Pepperoni, Salami
+       10 | Meatlovers: Bacon, BBQ Sauce, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami
+       10 | Meatlovers: 2xBacon, 2xCheese, Beef, Chicken, Pepperoni, Salami
 </pre>
 
 ### C.6 What is the total quantity of each ingredient used in all delivered pizzas sorted by most frequent first?
