@@ -56,6 +56,7 @@ WITH temp_cust_orders AS (
                ELSE extras
            END AS extras,
            order_time,
+           -- Row number is going to be useful in later questions
            ROW_NUMBER() OVER () AS row_num
     FROM customer_orders
 )
