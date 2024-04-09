@@ -225,7 +225,6 @@ JOIN pizza_toppings pt
     ON pr.toppings = pt.topping_id
 GROUP BY pt.topping_name
 ORDER BY times_used DESC
-
 ```
 
 Result:
