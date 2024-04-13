@@ -142,7 +142,10 @@ runner_fees AS (
     SELECT SUM(distance)*0.30 AS fee FROM clean_runner_orders
 )
 
-SELECT (SELECT total FROM total_revenue) - (SELECT fee FROM runner_fees) AS total_money_made
+SELECT '$' || ROUND(
+                  (SELECT total FROM total_revenue) - 
+                  (SELECT fee FROM runner_fees), 
+              2) AS total_money_made
 ```
 
 Result:
