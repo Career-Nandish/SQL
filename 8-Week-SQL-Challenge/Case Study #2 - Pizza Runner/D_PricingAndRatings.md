@@ -153,5 +153,5 @@ Result:
 <pre>
  total_money_made 
 ------------------
-           94.440
+$94.44
 </pre>
