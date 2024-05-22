@@ -227,10 +227,10 @@ There are some issues with data so before we jump into the case study questions,
 2. What was the most commonly added extra?
 3. What was the most common exclusion?
 4. Generate an order item for each record in the customers_orders table in the format of one of the following:
-&nbsp;&nbsp;&nbsp;&nbsp;- Meat Lovers
-&nbsp;&nbsp;&nbsp;&nbsp;- Meat Lovers - Exclude Beef
-&nbsp;&nbsp;&nbsp;&nbsp;- Meat Lovers - Extra Bacon
-&nbsp;&nbsp;&nbsp;&nbsp;- Meat Lovers - Exclude Cheese, Bacon - Extra Mushroom, Peppers
+    * Meat Lovers
+    * Meat Lovers - Exclude Beef
+    * Meat Lovers - Extra Bacon
+    * Meat Lovers - Exclude Cheese, Bacon - Extra Mushroom, Peppers
 5. Generate an alphabetically ordered comma separated ingredient list for each pizza order from the customer_orders table and add a 2x in front of any relevant ingredients
 - For example: "Meat Lovers: 2xBacon, Beef, ... , Salami"
 6. What is the total quantity of each ingredient used in all delivered pizzas sorted by most frequent first?
@@ -241,16 +241,16 @@ There are some issues with data so before we jump into the case study questions,
 2. What if there was an additional $1 charge for any pizza extras? Add cheese is $1 extra
 3. The Pizza Runner team now wants to add an additional ratings system that allows customers to rate their runner, how would you design an additional table for this new dataset - generate a schema for this new table and insert your own data for ratings for each successful customer order between 1 to 5.
 4. Using your newly generated table - can you join all of the information together to form a table which has the following information for successful deliveries?
-      <pre>&nbsp;&nbsp;&nbsp;&nbsp;</pre>- customer_id
-      &nbsp;&nbsp;&nbsp;&nbsp;- order_id
-      &nbsp;&nbsp;&nbsp;&nbsp;- runner_id
-      &nbsp;&nbsp;&nbsp;&nbsp;- rating
-      &nbsp;&nbsp;&nbsp;&nbsp;- order_time
-      &nbsp;&nbsp;&nbsp;&nbsp;- pickup_time
-      &nbsp;&nbsp;&nbsp;&nbsp;- Time between order and pickup
-      &nbsp;&nbsp;&nbsp;&nbsp;- Delivery duration
-      &nbsp;&nbsp;&nbsp;&nbsp;- Average speed
-      &nbsp;&nbsp;&nbsp;&nbsp;- Total number of pizzas
+      - customer_id
+      - order_id
+      - runner_id
+      - rating
+      - order_time
+      - pickup_time
+      - Time between order and pickup
+      - Delivery duration
+      - Average speed
+      - Total number of pizzas
 5. If a Meat Lovers pizza was $12 and Vegetarian $10 fixed prices with no cost for extras and each runner is paid $0.30 per kilometre traveled - how much money does Pizza Runner have left over after these deliveries?
 
 ### [E. Bonus DML Challenges (DML = Data Manipulation Language)](./E_BonusDMLChallenges.md)
