@@ -28,7 +28,7 @@ All datasets exist within the foodie_fi database schema - be sure to include thi
 
 ## Entity Relationship Diagram
 
-![Course Completion](./images/ERD.jpg)
+![Course Completion](./images/ERD.png)
 
 
 ## Data
