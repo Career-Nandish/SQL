@@ -5,6 +5,22 @@
 </p>
 
 
+# Table of Contents
+
+1. [Introduction](#introduction)
+2. [Datasets](#datasets)
+   - [Key datasets for this case study](#key-datasets-for-this-case-study)
+3. [Entity Relationship Diagram](#entity-relationship-diagram)
+4. [Data](#data)
+   - [Table 1: plans](#table-1-plans)
+   - [Table 2: subscriptions](#table-2-subscriptions)
+5. [Case Study Questions](#case-study-questions)
+   - [A. Customer Journey](#a-customer-journey)
+   - [B. Data Analysis Questions](#b-data-analysis-questions)
+   - [C. Challenge Payment Question](#c-challenge-payment-question)
+   - [D. Outside The Box Questions](#d-outside-the-box-questions)
+
+
 ## Introduction
 
 Subscription based businesses are super popular and Danny realised that there was a large gap in the market - he wanted to create a new streaming service that only had food related content - something like Netflix but with only cooking shows!
