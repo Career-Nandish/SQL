@@ -59,7 +59,7 @@ All datasets exist within the pizza_runner database schema - be sure to include 
 
 ## Entity Relationship Diagram
 
-![Course Completion](./images/ERD.jpg)
+![Entity Relationship Diagram](./images/ERD.jpg)
 
 
 ## Data
