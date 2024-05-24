@@ -48,7 +48,7 @@ Result:
 
 * There's no discernible trend. A thing to note is that, Febuary has the lowest number of free trials given it has only 28 days. 
 
-### 3. What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name
+### 3. What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name.
 
 ```SQL
 SELECT p.plan_name, 
