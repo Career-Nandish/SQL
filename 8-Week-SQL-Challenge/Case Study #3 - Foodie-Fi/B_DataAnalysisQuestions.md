@@ -51,14 +51,28 @@ Result:
 ### 3. What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name
 
 ```SQL
+SELECT p.plan_name, 
+       COUNT(*) AS "Events Count"
+FROM subscriptions s
+JOIN plans p
+    ON p.plan_id = s.plan_id AND
+        DATE_PART('year', s.start_date) > 2020
+GROUP BY p.plan_name
+ORDER BY "Events Count" DESC
 ```
 
 Result:
 
 <pre>
-	
+   plan_name   | Events Count 
+---------------+--------------
+ churn         |           71
+ pro annual    |           63
+ pro monthly   |           60
+ basic monthly |            8
 </pre>
 
+* After 2020, Most of the events are customer leaving the platform. 
 
 ### 4. What is the customer count and percentage of customers who have churned rounded to 1 decimal place?
 
