@@ -169,12 +169,40 @@ Result:
 ### 7. What is the customer count and percentage breakdown of all 5 plan_name values at 2020-12-31?
 
 ```SQL
+WITH total_cust_count AS (
+  SELECT COUNT(DISTINCT customer_id)
+  FROM subscriptions
+),
+plan_count AS (
+  SELECT plan_id,
+         DENSE_RANK() OVER (PARTITION BY customer_id ORDER BY start_date DESC) AS d_rnk
+  FROM subscriptions
+  WHERE start_date <= '2020-12-31'
+)
+
+SELECT p.plan_name, 
+       pc.plan_cnt,
+       ROUND(pc.plan_cnt * 100.0/(SELECT * FROM total_cust_count), 2) || '%' AS plan_perc 
+FROM plans p
+JOIN (
+  SELECT plan_id, COUNT(*) AS plan_cnt
+  FROM plan_count
+  WHERE d_rnk = 1
+  GROUP BY plan_id
+) AS pc
+  ON p.plan_id = pc.plan_id
 ```
 
 Result:
 
 <pre>
-	
+   plan_name   | plan_cnt | plan_perc 
+---------------+----------+-----------
+ trial         |       19 | 1.90%
+ basic monthly |      224 | 22.40%
+ pro monthly   |      326 | 32.60%
+ pro annual    |      195 | 19.50%
+ churn         |      236 | 23.60%	
 </pre>
 
 
