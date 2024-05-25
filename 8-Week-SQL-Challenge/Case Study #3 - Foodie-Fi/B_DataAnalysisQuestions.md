@@ -131,12 +131,38 @@ Result:
 ### 6. What is the number and percentage of customer plans after their initial free trial?
 
 ```SQL
+WITH total_cust_count AS (
+  SELECT COUNT(DISTINCT customer_id)
+  FROM subscriptions
+),
+next_plans AS (
+  SELECT LEAD(plan_id) OVER (PARTITION BY customer_id ORDER BY start_date) AS plan_id, 
+         RANK() OVER (PARTITION BY customer_id ORDER BY start_date) AS rnk
+  FROM subscriptions
+)
+
+SELECT p.plan_name,
+       pc.plan_cnt,
+       ROUND(pc.plan_cnt * 100.0/(SELECT * FROM total_cust_count), 2) || '%' AS plan_cnt_perc
+FROM plans p
+JOIN (
+  SELECT plan_id, COUNT(*) AS plan_cnt
+  FROM next_plans
+  WHERE rnk = 1
+  GROUP BY plan_id
+) AS pc
+  ON p.plan_id = pc.plan_id
 ```
 
 Result:
 
 <pre>
-	
+   plan_name   | plan_cnt | plan_cnt_perc 
+---------------+----------+---------------
+ basic monthly |      546 | 54.60%
+ pro monthly   |      325 | 32.50%
+ pro annual    |       37 | 3.70%
+ churn         |       92 | 9.20%
 </pre>
 
 
