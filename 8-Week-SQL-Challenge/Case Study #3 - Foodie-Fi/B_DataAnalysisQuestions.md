@@ -100,12 +100,31 @@ Result:
 ### 5. How many customers have churned straight after their initial free trial - what percentage is this rounded to the nearest whole number?
 
 ```SQL
+WITH total_cust_count AS (
+  SELECT COUNT(DISTINCT customer_id)
+  FROM subscriptions
+),
+immediate_churn AS (
+  SELECT customer_id, plan_id, start_date,
+         LEAD(plan_id) OVER (PARTITION BY customer_id ORDER BY start_date) AS next_plan, 
+         LEAD(start_date) OVER (PARTITION BY customer_id ORDER BY start_date) AS next_start_date
+  FROM subscriptions
+)
+
+SELECT (SELECT * FROM total_cust_count) AS total_cust_count, 
+       COUNT(customer_id) AS immediate_churn_count, 
+       ROUND(COUNT(customer_id) * 100.0/(SELECT * FROM total_cust_count), 
+             0) || '%' AS immediate_churn_perc
+FROM immediate_churn
+WHERE next_plan = 4 AND plan_id = 0
 ```
 
 Result:
 
 <pre>
-	
+ total_cust_count | immediate_churn_count | immediate_churn_perc 
+------------------+-----------------------+----------------------
+             1000 |                    92 | 9%
 </pre>
 
 
