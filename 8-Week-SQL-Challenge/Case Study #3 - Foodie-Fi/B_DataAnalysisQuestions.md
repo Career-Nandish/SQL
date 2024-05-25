@@ -77,12 +77,23 @@ Result:
 ### 4. What is the customer count and percentage of customers who have churned rounded to 1 decimal place?
 
 ```SQL
+WITH total_cust_count AS (
+  SELECT COUNT(DISTINCT customer_id)
+  FROM subscriptions
+)
+
+SELECT COUNT(DISTINCT customer_id) AS churned_cust_count,
+       ROUND((COUNT(DISTINCT customer_id) * 100.0)/(SELECT * FROM total_cust_count), 1) AS churned_cust_perc
+FROM subscriptions
+WHERE plan_id = 4                 -- plan_id = 4 represents customers being churned
 ```
 
 Result:
 
 <pre>
-	
+ churned_cust_count | churned_cust_perc 
+--------------------+-------------------
+                307 |              30.7
 </pre>
 
 
