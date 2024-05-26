@@ -248,12 +248,51 @@ avg_days_to_annual_plan
 ### 10. Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)
 
 ```SQL
+WITH date_diff AS (
+    SELECT 
+        s2.start_date - s1.start_date AS dd,
+        CEIL((s2.start_date - s1.start_date)/30.0) AS bucket
+    FROM
+        (SELECT customer_id, start_date FROM subscriptions WHERE plan_id = 0) AS s1
+    JOIN 
+        (SELECT customer_id, start_date FROM subscriptions WHERE plan_id = 3) AS s2
+      ON
+        s1.customer_id = s2.customer_id
+)
+
+SELECT 
+    CASE
+        WHEN bucket = 1
+            THEN (bucket - 1) * 30 || ' - ' || bucket * 30 || ' days'
+        ELSE
+            (bucket - 1) * 30 + 1 || ' - ' || bucket * 30 || ' days'
+    END AS periods, 
+    COUNT(*) AS cust_count
+FROM 
+    date_diff
+GROUP BY
+    bucket, periods
+ORDER BY
+    bucket
 ```
 
 Result:
 
 <pre>
-	
+    periods     | cust_count 
+----------------+------------
+ 0 - 30 days    |         49
+ 31 - 60 days   |         24
+ 61 - 90 days   |         34
+ 91 - 120 days  |         35
+ 121 - 150 days |         42
+ 151 - 180 days |         36
+ 181 - 210 days |         26
+ 211 - 240 days |          4
+ 241 - 270 days |          5
+ 271 - 300 days |          1
+ 301 - 330 days |          1
+ 331 - 360 days |          1	
 </pre>
 
 
