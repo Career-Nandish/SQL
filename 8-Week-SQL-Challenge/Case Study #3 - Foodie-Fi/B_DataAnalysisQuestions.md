@@ -299,11 +299,26 @@ Result:
 ### 11. How many customers downgraded from a pro monthly to a basic monthly plan in 2020?
 
 ```SQL
+SELECT COUNT(customer_id) AS downgraded_cust_count
+FROM (
+    SELECT 
+        customer_id, 
+        plan_id,
+        LEAD(plan_id) OVER (PARTITION BY customer_id ORDER BY start_date) as next_plan_id
+    FROM
+        subscriptions 
+    WHERE 
+        plan_id IN (1, 2) AND
+        DATE_PART('year', start_date) = 2020
+) AS subq
+WHERE plan_id = 2 and next_plan_id = 1
 ```
 
 Result:
 
 <pre>
-	
+ downgraded_cust_count 
+-----------------------
+                     0	
 </pre>
 
