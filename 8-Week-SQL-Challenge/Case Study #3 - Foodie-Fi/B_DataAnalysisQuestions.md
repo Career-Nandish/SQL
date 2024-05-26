@@ -226,12 +226,22 @@ Result:
 ### 9. How many days on average does it take for a customer to an annual plan from the day they join Foodie-Fi?
 
 ```SQL
+SELECT 
+    ROUND(AVG(s2.start_date - s1.start_date)) AS avg_days_to_annual_plan
+FROM
+    (SELECT customer_id, start_date FROM subscriptions WHERE plan_id = 0) AS s1
+JOIN 
+    (SELECT customer_id, start_date FROM subscriptions WHERE plan_id = 3) AS s2
+ON 
+    s1.customer_id = s2.customer_id
 ```
 
 Result:
 
 <pre>
-	
+avg_days_to_annual_plan 
+-------------------------
+                     105
 </pre>
 
 
