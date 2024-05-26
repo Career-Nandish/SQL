@@ -209,12 +209,17 @@ Result:
 ### 8. How many customers have upgraded to an annual plan in 2020?
 
 ```SQL
+SELECT COUNT(*) AS cust_count
+FROM subscriptions 
+WHERE DATE_PART('year', start_date) = 2020 AND plan_id = 3
 ```
 
 Result:
 
 <pre>
-	
+ cust_count 
+------------
+        195
 </pre>
 
 
