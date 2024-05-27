@@ -9,7 +9,7 @@
 
 Example outputs for this table might look like the following:
 
-<pre>
+
 | customer_id | plan_id | plan_name     | payment_date | amount | payment_order  |
 |-------------|---------|---------------|--------------|--------|----------------|
 | 1           | 1       | basic monthly | 2020-08-08   | 9.90   | 1              |
@@ -31,4 +31,3 @@ Example outputs for this table might look like the following:
 | 18          | 2       | pro monthly   | 2020-08-13   | 19.90  | 2              |
 | 18          | 2       | pro monthly   | 2020-09-13   | 19.90  | 3              |
 | 18          | 2       | pro monthly   | 2020-10-13   | 19.90  | 4              |
-</pre>
