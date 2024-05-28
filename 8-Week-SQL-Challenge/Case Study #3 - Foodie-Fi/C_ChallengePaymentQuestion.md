@@ -34,8 +34,6 @@ Example outputs for this table might look like the following:
 	
 
 
-NOTE - I don't understand the third requirement or maybe I did, If you think what I did is wrong, feel free to ping me.
-
 At first, we will start with coming up with a recursive CTE to increment rows for all monthly paid plans in 2020 until customers changing their plans, except 'pro annual'
 
 ```SQL
