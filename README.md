@@ -97,7 +97,7 @@ Jump to directory [here](8-Week-SQL-Challenge/)
 
 This repository contains 8 different case studies created by [Danny Ma](https://www.datawithdanny.com/). The case studies were created with the purpose of learning SQL, keeping track of our SQL journey and something to showcase on our SQL portfolio. It includes following case studies:
 
-1. :ramen:[Case Study #1 - Danny's Diner](./Case%20Study%20%231%20-%20Danny's%20Diner/README.md)
-2. :pizza: [Case Study #2 - Pizza Runner](./Case%20Study%20%232%20-%20Pizza%20Runner/README.md)
-3. :avocado: [Case Study #2 - Foodie-Fi](./Case%20Study%20%233%20-%20Foodie-Fi/README.md)
-4. :moneybag: [Case Study #4 - Data Bank](./Case%20Study%20%234%20-%20Data%20Bank/README.md)
+1. :ramen:[Case Study #1 - Danny's Diner](./8-Week-SQL-Challenge/Case%20Study%20%231%20-%20Danny's%20Diner/README.md)
+2. :pizza: [Case Study #2 - Pizza Runner](./8-Week-SQL-Challenge/Case%20Study%20%232%20-%20Pizza%20Runner/README.md)
+3. :avocado: [Case Study #2 - Foodie-Fi](./8-Week-SQL-Challenge/Case%20Study%20%233%20-%20Foodie-Fi/README.md)
+4. :moneybag: [Case Study #4 - Data Bank](./8-Week-SQL-Challenge/Case%20Study%20%234%20-%20Data%20Bank/README.md)
