@@ -6,7 +6,7 @@
 
 ### Special notes:
 
-### &nbsp;&nbsp;&nbsp;&#9679;Data Bank wants an initial calculation which does not allow for compounding interest, however they may also be interested in a daily compounding interest calculation so you can try to perform this calculation if you have the stamina!
+### &nbsp;&nbsp;&nbsp;&#9679; Data Bank wants an initial calculation which does not allow for compounding interest, however they may also be interested in a daily compounding interest calculation so you can try to perform this calculation if you have the stamina!
 
 
 
