@@ -1,4 +1,4 @@
-# :money: :money: :money: [Case Study #4 - Data Bank](https://8weeksqlchallenge.com/case-study-4/) :money: :money: :money:
+# :moneybag: :moneybag: :moneybag: [Case Study #4 - Data Bank](https://8weeksqlchallenge.com/case-study-4/) :moneybag: :moneybag: :moneybag:
 
 <p align = "center">
     <img src="./images/title.png" alt="Image" width="450" height="450">
