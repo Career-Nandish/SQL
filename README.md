@@ -101,3 +101,24 @@ This repository contains 8 different case studies created by [Danny Ma](https://
 2. :pizza: [Case Study #2 - Pizza Runner](./8-Week-SQL-Challenge/Case%20Study%20%232%20-%20Pizza%20Runner/README.md)
 3. :avocado: [Case Study #2 - Foodie-Fi](./8-Week-SQL-Challenge/Case%20Study%20%233%20-%20Foodie-Fi/README.md)
 4. :moneybag: [Case Study #4 - Data Bank](./8-Week-SQL-Challenge/Case%20Study%20%234%20-%20Data%20Bank/README.md)
+
+
+## 6. [DataLemur SQL Challenges](https://datalemur.com/questions)
+
+# Introduction
+Welcome to my journey of tackling DataLemur SQL challenges! As a data enthusiast and aspiring data professional, I believe that mastering SQL is crucial for my career. These challenges not only sharpen my SQL skills but also provide practical experience in solving real-world data problems.
+
+## Goals
+1. **Improve SQL Skills**: SQL is the backbone of data manipulation and querying. By regularly solving these challenges, I aim to enhance my proficiency and understanding of complex SQL queries.
+2. **Prepare for Data Engineering Roles**: Many data engineering roles require strong SQL skills. Through these challenges, I am preparing myself for technical interviews and practical scenarios in the workplace.
+3. **Understand Data Better**: Working on diverse datasets helps me understand various data structures, relationships, and how to efficiently query and manipulate them.
+4. **Problem-Solving**: Each challenge presents a unique problem that requires analytical thinking and problem-solving skills, which are essential in the data industry.
+
+## Benefits
+- **Hands-On Practice**: Practical experience with real datasets.
+- **Efficiency and Optimization**: Learning to write efficient and optimized SQL queries.
+- **Diverse Scenarios**: Exposure to a variety of data problems and scenarios.
+- **Community Engagement**: Engaging with a community of like-minded individuals who are also passionate about data.
+
+## Challenges and Progress
+I will be documenting my progress, challenges faced, and solutions for each DataLemur SQL challenge. This will not only help me track my growth but also serve as a resource for others who are on a similar path.
