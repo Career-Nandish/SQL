@@ -105,6 +105,8 @@ This repository contains 8 different case studies created by [Danny Ma](https://
 
 ## 6. [DataLemur SQL Challenges](https://datalemur.com/questions)
 
+Jump to directory [here](DataLemur%20Challenges/)
+
 # Introduction
 Welcome to my journey of tackling DataLemur SQL challenges! As a data enthusiast and aspiring data professional, I believe that mastering SQL is crucial for my career. These challenges not only sharpen my SQL skills but also provide practical experience in solving real-world data problems.
 
