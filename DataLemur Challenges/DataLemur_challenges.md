@@ -65,3 +65,39 @@ Result:
 | 123          |
 | 147          |
 </pre>
+
+## [3. [Easy]Page With No Likes](https://datalemur.com/questions/sql-page-with-no-likes)
+
+Assume you're given two tables containing data about Facebook Pages and their respective likes (as in "Like a Facebook Page").
+
+Write a query to return the IDs of the Facebook pages that have zero likes. The output should be sorted in ascending order based on the page IDs.
+
+Table: `pages`
+
+| Column Name | Type    |
+|-------------|---------|
+| page_id     | integer |
+| page_name   | varchar |
+
+Table: `page_likes`
+
+| Column Name | Type     |
+|-------------|----------|
+| user_id     | integer  |
+| page_id     | integer  |
+| liked_date  | datetime |
+
+```SQL
+SELECT page_id
+FROM pages
+WHERE page_id NOT IN (SELECT page_id FROM page_likes)
+```
+
+Result:
+
+<pre>
+| page_id |
+|---------|
+| 20701   |
+| 32728   |
+</pre>
