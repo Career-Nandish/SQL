@@ -4,7 +4,7 @@ Assume you're given a table Twitter tweet data, write a query to obtain a histog
 
 In other words, group the users by the number of tweets they posted in 2022 and count the number of users in each group.
 
-Table: tweets
+Table: `tweets`
 
 | Column Name | Type      |
 |-------------|-----------|
@@ -32,3 +32,36 @@ Result:
 |:------------:|:---------:|
 | 1            | 2         |
 | 2            | 1         |
+
+
+## [2. [Easy]Data Science Skills](https://datalemur.com/questions/matching-skills)
+
+Given a table of candidates and their skills, you're tasked with finding the candidates best suited for an open Data Science job. You want to find candidates who are proficient in Python, Tableau, and PostgreSQL.
+
+Write a query to list the candidates who possess all of the required skills for the job. Sort the output by candidate ID in ascending order.
+
+Table: `Candidates`
+
+| Column Name  | Type    |
+|--------------|---------|
+| candidate_id | integer |
+| skill        | varchar |
+
+
+```SQL
+SELECT candidate_id
+FROM candidates
+WHERE skill IN ('Python', 'PostgreSQL', 'Tableau')
+GROUP BY candidate_id
+HAVING COUNT(skill) = 3
+ORDER BY candidate_id
+```
+
+Result:
+
+<pre>
+| candidate_id |
+|--------------|
+| 123          |
+| 147          |
+</pre>
