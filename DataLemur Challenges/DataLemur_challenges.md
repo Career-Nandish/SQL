@@ -195,6 +195,8 @@ HAVING COUNT(post_id) >= 2
 ORDER BY user_id
 ```
 
+Result:
+
 <pre>
 | user_id | days_between |
 |---------|--------------|
