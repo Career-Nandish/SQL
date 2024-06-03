@@ -241,3 +241,41 @@ Result:
 | 3601      | 4             |
 | 2520      | 3             |
 </pre>
+
+
+## [8. [Easy] Duplicate Job Listings](https://datalemur.com/questions/duplicate-job-listings)
+
+Assume you're given a table containing job postings from various companies on the LinkedIn platform. Write a query to retrieve the count of companies that have posted duplicate job listings.
+
+Definition:
+
+* Duplicate job listings are defined as two job listings within the same company that share identical titles and descriptions.
+
+Table: `job_listings`
+
+| Column Name | Type    |
+|-------------|---------|
+| job_id      | integer |
+| company_id  | integer |
+| title       | string  |
+| description | string  |
+
+
+```SQL
+SELECT COUNT(company_id) AS duplicate_companies
+FROM (
+  SELECT company_id, 
+         COUNT(*) AS job_count
+  FROM job_listings
+  GROUP BY company_id, title, description
+  HAVING COUNT(*) >= 2
+) AS subq
+```
+
+Result:
+
+<pre>
+| duplicate_companies |
+|---------------------|
+| 3                   |
+</pre>
