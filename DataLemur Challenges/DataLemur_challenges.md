@@ -66,6 +66,7 @@ Result:
 | 147          |
 </pre>
 
+
 ## [3. [Easy]Page With No Likes](https://datalemur.com/questions/sql-page-with-no-likes)
 
 Assume you're given two tables containing data about Facebook Pages and their respective likes (as in "Like a Facebook Page").
@@ -102,6 +103,7 @@ Result:
 | 32728   |
 </pre>
 
+
 ## [4. [Easy] Unfinished Parts](https://datalemur.com/questions/tesla-unfinished-parts)
 
 Tesla is investigating production bottlenecks and they need your help to extract the relevant data. Write a query to determine which parts have begun the assembly process but are not yet finished.
@@ -135,6 +137,7 @@ Result:
 | engine | 5             |
 </pre>
 
+
 ## [5. [Easy] Laptop vs. Mobile Viewership](https://datalemur.com/questions/laptop-mobile-viewership)
 
 Assume you're given the table on user viewership categorised by device type where the three types are laptop, tablet, and phone.
@@ -157,7 +160,7 @@ SELECT SUM(CASE
        SUM(CASE
            WHEN device_type IN ('tablet', 'phone') THEN 1 
        END) AS mobile_views
-FROM viewership;
+FROM viewership
 ```
 
 Result:
@@ -166,4 +169,35 @@ Result:
 | laptop_views | mobile_views |
 |--------------|--------------|
 | 2            | 3            |
+</pre>
+
+
+## [6. [Easy] Average Post Hiatus (Part 1)](https://datalemur.com/questions/sql-average-post-hiatus-1)
+
+Given a table of Facebook posts, for each user who posted at least twice in 2021, write a query to find the number of days between each user’s first post of the year and last post of the year in the year 2021. Output the user and number of the days between each user's first and last post.
+
+Table : `posts`
+
+| Column Name  | Type      |
+|--------------|-----------|
+| user_id      | integer   |
+| post_id      | integer   |
+| post_content | text      |
+| post_date    | timestamp |
+
+```SQL
+SELECT user_id,
+       EXTRACT(Days FROM (MAX(post_date) - MIN(post_date))) AS days_between
+FROM posts
+WHERE DATE_PART('year', post_date) = 2021
+GROUP BY user_id
+HAVING COUNT(post_id) >= 2
+ORDER BY user_id
+```
+
+<pre>
+| user_id | days_between |
+|---------|--------------|
+| 151652  | 307          |
+| 661093  | 206          |
 </pre>
