@@ -302,7 +302,7 @@ SELECT DATE_PART('month', submit_date) AS month,
        ROUND(AVG(stars), 2) AS avg_rating
 FROM reviews
 GROUP BY DATE_PART('month', submit_date), product_id
-ORDER BY DATE_PART('month', submit_date), product_id;
+ORDER BY DATE_PART('month', submit_date), product_id
 ```
 
 Result:
@@ -317,4 +317,43 @@ Result:
 | 6     | 69852      | 4.00       |
 | 7     | 11223      | 5.00       |
 | 7     | 69852      | 2.50       |
+</pre>
+
+
+## [10. [Easy] App Click-through Rate](https://datalemur.com/questions/click-through-rate)
+
+Assume you have an events table on Facebook app analytics. Write a query to calculate the click-through rate (CTR) for the app in 2022 and round the results to 2 decimal places.
+
+Definition and note:
+
+* Percentage of click-through rate (CTR) = 100.0 * Number of clicks / Number of impressions
+
+Table: `events`
+
+| Column Name | Type     |
+|-------------|----------|
+| app_id      | integer  |
+| event_type  | string   |
+| timestamp   | datetime |
+
+```SQL
+SELECT app_id, 
+       ROUND(clicks * 100.0 / impressions, 2) AS ctr
+FROM (
+    SELECT app_id,
+           COUNT(1) FILTER (WHERE event_type = 'click') AS clicks,
+           COUNT(1) FILTER (WHERE event_type = 'impression') AS impressions
+    FROM events
+    WHERE DATE_PART('year', timestamp) = 2022
+    GROUP BY app_id
+) AS event_types
+```
+
+Result:
+
+<pre>
+| app_id | ctr   |
+|--------|-------|
+| 123    | 66.67 |
+| 234    | 33.33 |
 </pre>
