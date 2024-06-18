@@ -686,3 +686,42 @@ Result:
 |---------------------|
 | 38                  |
 </pre>
+
+
+## [19. [Easy]User's Third Transaction](https://datalemur.com/questions/sql-third-transaction)
+
+Assume you are given the table below on Uber transactions made by users. Write a query to obtain the third transaction of every user. Output the user id, spend and transaction date.
+
+Table: `transactions`
+
+| Column Name      | Type      |
+|------------------|-----------|
+| user_id          | integer   |
+| spend            | decimal   |
+| transaction_date | timestamp |
+
+```SQL
+WITH ranking_users AS (
+  SELECT user_id,
+         spend,
+         transaction_date,
+         RANK() OVER (PARTITION BY user_id ORDER BY transaction_date) AS rnk
+  FROM transactions
+)
+
+SELECT user_id,
+       spend,
+       transaction_date
+FROM ranking_users
+WHERE rnk = 3
+```
+
+Result:
+
+<pre>
+| user_id | spend  | transaction_date    |
+|---------|--------|---------------------|
+| 111     | 89.60  | 02/05/2022 12:00:00 |
+| 121     | 67.90  | 04/03/2022 12:00:00 |
+| 263     | 100.00 | 07/12/2022 12:00:00 |
+</pre>
