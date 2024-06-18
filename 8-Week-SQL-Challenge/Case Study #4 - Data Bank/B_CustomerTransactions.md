@@ -161,10 +161,38 @@ Result:
 ### 5. What is the percentage of customers who increase their closing balance by more than 5%?
 
 ```SQL
+-- Please Consider CTEs from B.4
+
+WITH percentage_diff AS (
+    SELECT e.customer_id,
+           e.last_date,
+           DATE_PART('month', e.last_date) AS month,
+           e.EOM_bal,
+           e.running_EOM_bal,
+           ROUND(CASE
+              WHEN LAG(e.running_EOM_bal) OVER win = 0 THEN 0
+              ELSE e.EOM_bal* 100/LAG(e.running_EOM_bal) OVER win
+           END, 2) AS prcn_diff
+    FROM EOM_balances e
+    JOIN customer_last_month c
+        ON e.customer_id = c.customer_id AND
+            e.last_date <= c.last_date
+    WINDOW win AS (PARTITION BY e.customer_id ORDER BY e.last_date)
+),
+cust_five_percentage AS (
+    SELECT COUNT(DISTINCT customer_id) AS cust_cnt
+    FROM percentage_diff
+    WHERE prcn_diff > 5
+)
+
+SELECT ROUND((SELECT cust_cnt FROM cust_five_percentage) * 100.0/COUNT(DISTINCT customer_id), 2) AS cust_percentage
+FROM customer_transactions
 ```
 
 Result:
 
 <pre>
-
+ cust_percentage 
+-----------------
+           75.80
 </pre>
