@@ -688,7 +688,7 @@ Result:
 </pre>
 
 
-## [19. [Easy]User's Third Transaction](https://datalemur.com/questions/sql-third-transaction)
+## [19. [Medium]User's Third Transaction](https://datalemur.com/questions/sql-third-transaction)
 
 Assume you are given the table below on Uber transactions made by users. Write a query to obtain the third transaction of every user. Output the user id, spend and transaction date.
 
@@ -724,4 +724,40 @@ Result:
 | 111     | 89.60  | 02/05/2022 12:00:00 |
 | 121     | 67.90  | 04/03/2022 12:00:00 |
 | 263     | 100.00 | 07/12/2022 12:00:00 |
+</pre>
+
+
+## [20. [Medium] Second Highest Salary](https://datalemur.com/questions/sql-second-highest-salary)
+
+Imagine you're an HR analyst at a tech company tasked with analyzing employee salaries. Your manager is keen on understanding the pay distribution and asks you to determine the second highest salary among all employees.
+
+It's possible that multiple employees may share the same second highest salary. In case of duplicate, display the salary only once.
+
+Table: `employee`
+
+| column_name   | type    | description                        |
+|---------------|---------|------------------------------------|
+| employee_id   | integer | The unique ID of the employee.     |
+| name          | string  | The name of the employee.          |
+| salary        | integer | The salary of the employee.        |
+| department_id | integer | The department ID of the employee. |
+| manager_id    | integer | The manager ID of the employee.    |
+
+```SQL
+SELECT salary
+FROM (
+  SELECT employee_id,
+         salary,
+         RANK() OVER (ORDER BY salary DESC) AS rnk
+  FROM employee
+) AS ranking_salary
+WHERE rnk = 2
+```
+
+Result:
+
+<pre>
+| salary |
+|--------|
+| 12500  |
 </pre>
