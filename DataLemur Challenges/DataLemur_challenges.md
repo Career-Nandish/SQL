@@ -761,3 +761,57 @@ Result:
 |--------|
 | 12500  |
 </pre>
+
+
+## [21. [Medium] Sending vs. Opening Snaps](https://datalemur.com/questions/time-spent-snaps)
+
+Assume you're given tables with information on Snapchat users, including their ages and time spent sending and opening snaps.
+
+Write a query to obtain a breakdown of the time spent sending vs. opening snaps as a percentage of total time spent on these activities grouped by age group. Round the percentage to 2 decimal places in the output.
+
+Calculate the following percentages:
+    * Time spent sending / (Time spent sending + Time spent opening)
+    * Time spent opening / (Time spent sending + Time spent opening)
+
+Table: `activities`
+
+| Column Name   | Type                            |
+|---------------|---------------------------------|
+| activity_id   | integer                         |
+| user_id       | integer                         |
+| activity_type | string ('send', 'open', 'chat') |
+| time_spent    | float                           |
+| activity_date | datetime                        |
+
+Table: `age_breakdown`
+
+| Column Name | Type                               |
+|-------------|------------------------------------|
+| user_id     | integer                            |
+| age_bucket  | string ('21-25', '26-30', '31-25') |
+
+```SQL
+SELECT age_bucket,
+       ROUND(send_time * 100.0/(send_time + open_time), 2) AS send_perc,
+       ROUND(open_time * 100.0/(send_time + open_time), 2) AS open_perc
+FROM (
+  SELECT ag.age_bucket,
+         SUM(ac.time_spent) FILTER (WHERE ac.activity_type = 'open') AS open_time,
+         SUM(ac.time_spent) FILTER (WHERE ac.activity_type = 'send') AS send_time
+  FROM activities ac
+  JOIN age_breakdown ag
+      ON ac.user_id = ag.user_id
+  GROUP BY ag.age_bucket
+) AS time_calc
+
+```
+
+Result:
+
+<pre>
+| age_bucket | send_perc | open_perc |
+|------------|-----------|-----------|
+| 21-25      | 54.31     | 45.69     |
+| 26-30      | 82.26     | 17.74     |
+| 31-35      | 37.84     | 62.16     |
+</pre>
