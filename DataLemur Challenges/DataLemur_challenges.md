@@ -874,7 +874,69 @@ Result:
 </pre>
 
 
-## [23. [Medium] ]()
+## [23. [Medium] Highest-Grossing Items](https://datalemur.com/questions/sql-highest-grossing)
+
+Assume you're given a table containing data on Amazon customers and their spending on products in different category, write a query to identify the top two highest-grossing products within each category in the year 2022. The output should include the category, product, and total spend.
+
+Table: `product_spend`
+
+| Column Name      | Type      |
+|------------------|-----------|
+| category         | string    |
+| product          | string    |
+| user_id          | integer   |
+| spend            | decimal   |
+| transaction_date | timestamp |
+
+
+```SQL
+WITH tot_prod_spend_2022 AS (
+    SELECT category,
+           product,
+           SUM(spend) AS total_spend,
+           RANK() OVER (PARTITION BY category ORDER BY SUM(spend) DESC) AS rnk
+    FROM product_spend
+    WHERE DATE_PART('year', transaction_date) = 2022
+    GROUP BY category, product
+)
+
+SELECT category,
+       product,
+       total_spend
+FROM tot_prod_spend_2022
+WHERE rnk <= 2
+```
+
+Result:
+
+<pre>
+| category    | product          | total_spend |
+|-------------|------------------|-------------|
+| appliance   | washing machine  | 439.80      |
+| appliance   | refrigerator     | 299.99      |
+| electronics | vacuum           | 486.66      |
+| electronics | wireless headset | 467.89      |
+</pre>
+
+
+## [24. [Medium] ]()
+
+
+Table: ``
+
+
+```SQL
+
+```
+
+Result:
+
+<pre>
+
+</pre>
+
+
+## [25. [Medium] ]()
 
 
 Table: ``
