@@ -919,20 +919,63 @@ Result:
 </pre>
 
 
-## [24. [Medium] ]()
+## [24. [Medium] Top Three Salaries](https://datalemur.com/questions/sql-top-three-salaries)
 
+As part of an ongoing analysis of salary distribution within the company, your manager has requested a report identifying high earners in each department. A 'high earner' within a department is defined as an employee with a salary ranking among the top three salaries within that department.
 
-Table: ``
+You're tasked with identifying these high earners across all departments. Write a query to display the employee's name along with their department name and salary. In case of duplicates, sort the results of department name in ascending order, then by salary in descending order. If multiple employees have the same salary, then order them alphabetically.
 
+Table: `employee`
+
+| column_name   | type    | description                        |
+|---------------|---------|------------------------------------|
+| employee_id   | integer | The unique ID of the employee.     |
+| name          | string  | The name of the employee.          |
+| salary        | integer | The salary of the employee.        |
+| department_id | integer | The department ID of the employee. |
+| manager_id    | integer | The manager ID of the employee.    |
+
+Table: `department`
+
+| column_name     | type    | description                        |
+|-----------------|---------|------------------------------------|
+| department_id   | integer | The department ID of the employee. |
+| department_name | string  | The name of the department.        |
 
 ```SQL
-
+SELECT department_name,
+       name,
+       salary
+FROM department d
+JOIN (
+    SELECT department_id,
+           name,
+           salary,
+           DENSE_RANK() OVER w AS d_rnk
+    FROM employee
+    WINDOW w AS (PARTITION BY department_id ORDER BY salary DESC)
+) AS rs
+    ON d.department_id = rs.department_id AND
+        rs.d_rnk <= 3
+ORDER BY department_name, salary DESC, name
 ```
 
 Result:
 
 <pre>
-
+| department_name  | name             | salary |
+|------------------|------------------|--------|
+| Data Analytics   | Olivia Smith     | 7000   |
+| Data Analytics   | Amelia Lee       | 4000   |
+| Data Analytics   | James Anderson   | 4000   |
+| Data Analytics   | Emma Thompson    | 3800   |
+| Data Engineering | Liam Brown       | 13000  |
+| Data Engineering | Ava Garcia       | 12500  |
+| Data Engineering | Isabella Wilson  | 11000  |
+| Data Science     | Logan Moore      | 8000   |
+| Data Science     | Charlotte Miller | 7000   |
+| Data Science     | Noah Johnson     | 6800   |
+| Data Science     | William Davis    | 6800   |
 </pre>
 
 
