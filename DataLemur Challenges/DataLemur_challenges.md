@@ -979,7 +979,86 @@ Result:
 </pre>
 
 
-## [25. [Medium] ]()
+## [25. [Medium] Top 5 Artists](https://datalemur.com/questions/top-fans-rank)
+
+Assume there are three Spotify tables: `artists`, `songs`, and `global_song_rank`, which contain information about the artists, songs, and music charts, respectively.
+
+Write a query to find the top 5 artists whose songs appear most frequently in the Top 10 of the global_song_rank table. Display the top 5 artist names in ascending order, along with their song appearance ranking.
+
+
+Table: `artists`
+
+| Column Name | Type    |
+|-------------|---------|
+| artist_id   | integer |
+| artist_name | varchar |
+| label_owner | varchar |
+
+Table: `songs`
+
+| Column Name | Type    |
+|-------------|---------|
+| song_id     | integer |
+| artist_id   | integer |
+| name        | varchar |
+
+Table: `global_song_rank`
+
+| Column Name | Type                  |
+|-------------|-----------------------|
+| day         | integer (1-52)        |
+| song_id     | integer               |
+| rank        | integer (1-1,000,000) |
+
+```SQL
+SELECT *
+FROM (
+    SELECT a.artist_name,
+           DENSE_RANK() OVER (ORDER BY COUNT(s.song_id) DESC) AS artist_rank
+    FROM global_song_rank gs
+    JOIN songs s
+        ON gs.song_id = s.song_id
+    JOIN artists a
+        ON s.artist_id = a.artist_id
+    WHERE gs.rank <= 10
+    GROUP BY a.artist_name
+) AS top_10
+WHERE artist_rank <= 5
+```
+
+Result:
+
+<pre>
+| artist_name  | artist_rank |
+|--------------|-------------|
+| Taylor Swift | 1           |
+| Bad Bunny    | 2           |
+| Drake        | 2           |
+| Ed Sheeran   | 3           |
+| Adele        | 3           |
+| Lady Gaga    | 4           |
+| Katy Perry   | 5           |
+</pre>
+
+
+## [26. [Medium] ]()
+
+
+Table: ``
+
+
+```SQL
+
+```
+
+Result:
+
+<pre>
+
+</pre>
+
+
+## [27. [Medium] ]()
 
 
 Table: ``
