@@ -1092,7 +1092,50 @@ Result:
 </pre>
 
 
-## [27. [Medium] ]()
+## [27. [Medium] Supercloud Customer](https://datalemur.com/questions/supercloud-customer)
+
+A Microsoft Azure Supercloud customer is defined as a customer who has purchased at least one product from every product category listed in the products table.
+
+Write a query that identifies the customer IDs of these Supercloud customers.
+
+Table: `customer_contracts`
+
+| Column Name | Type    |
+|-------------|---------|
+| customer_id | integer |
+| product_id  | integer |
+| amount      | integer |
+
+Table: `products`
+
+| Column Name      | Type    |
+|------------------|---------|
+| product_id       | integer |
+| product_category | string  |
+| product_name     | string  |
+
+```SQL
+SELECT cc.customer_id
+FROM customer_contracts cc
+RIGHT JOIN products p
+    ON cc.product_id = p.product_id
+GROUP BY customer_id
+HAVING COUNT(DISTINCT p.product_category) =  
+           (SELECT COUNT(DISTINCT product_category) FROM products)
+```
+
+Result:
+
+<pre>
+| customer_id |
+|-------------|
+| 7           |
+</pre>
+
+
+
+
+## [29. [Medium] ]()
 
 
 Table: ``
