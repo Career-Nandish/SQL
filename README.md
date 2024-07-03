@@ -101,6 +101,7 @@ This repository contains 8 different case studies created by [Danny Ma](https://
 2. :pizza: [Case Study #2 - Pizza Runner](./8-Week-SQL-Challenge/Case%20Study%20%232%20-%20Pizza%20Runner/README.md)
 3. :avocado: [Case Study #2 - Foodie-Fi](./8-Week-SQL-Challenge/Case%20Study%20%233%20-%20Foodie-Fi/README.md)
 4. :moneybag: [Case Study #4 - Data Bank](./8-Week-SQL-Challenge/Case%20Study%20%234%20-%20Data%20Bank/README.md)
+5. :shopping_cart: [Case Study #5 - Data Mart](./8-Week-SQL-Challenge/Case%20Study%20%235%20-%20Data%20Mart/README.md)
 
 
 ## 6. [DataLemur SQL Challenges](https://datalemur.com/questions)

@@ -17,6 +17,7 @@ In each case-study folder, you'll find the following files:
 2. :pizza: [Case Study #2 - Pizza Runner](./Case%20Study%20%232%20-%20Pizza%20Runner/README.md)
 3. :avocado: [Case Study #2 - Foodie-Fi](./Case%20Study%20%233%20-%20Foodie-Fi/README.md)
 4. :moneybag: [Case Study #4 - Data Bank](./Case%20Study%20%234%20-%20Data%20Bank/README.md)
+5. :shopping_cart: [Case Study #5 - Data Mart](./Case%20Study%20%235%20-%20Data%20Mart/README.md)
 
 ## Support
 
