@@ -1177,7 +1177,65 @@ Result:
 </pre>
 
 
-## [29. [Medium] ]()
+## [29. [Medium] Histogram of Users and Purchases](https://datalemur.com/questions/histogram-users-purchases)
+
+Assume you're given a table on Walmart user transactions. Based on their most recent transaction date, write a query that retrieve the users along with the number of products they bought.
+
+Output the user's most recent transaction date, user ID, and the number of products, sorted in chronological order by the transaction date.
+
+Table: `user_transactions`
+
+| Column Name      | Type      |
+|------------------|-----------|
+| product_id       | integer   |
+| user_id          | integer   |
+| spend            | decimal   |
+| transaction_date | timestamp |
+
+```SQL
+SELECT transaction_date,
+       user_id,
+       cnt AS product_count
+FROM (
+  SELECT transaction_date,
+         user_id,
+         COUNT(product_id) OVER (PARTITION BY user_id, transaction_date) AS cnt,
+         ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY transaction_date DESC) AS rnk
+  FROM user_transactions
+) AS subq
+WHERE rnk = 1
+ORDER BY transaction_date
+```
+
+Result:
+
+<pre>
+| transaction_date    | user_id | product_count |
+|---------------------|---------|---------------|
+| 07/11/2022 10:00:00 | 123     | 1             |
+| 07/12/2022 10:00:00 | 115     | 1             |
+| 07/12/2022 10:00:00 | 159     | 2             |
+</pre>
+
+
+## [30. [Medium] ]()
+
+
+Table: ``
+
+
+```SQL
+
+```
+
+Result:
+
+<pre>
+
+</pre>
+
+
+## [31. [Medium] ]()
 
 
 Table: ``
