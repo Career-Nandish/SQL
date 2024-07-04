@@ -1384,20 +1384,42 @@ Result:
 </pre>
 
 
-## [34. [Medium] ]()
+## [34. [Hard] Active User Retention](https://datalemur.com/questions/user-retention)
 
+Assume you're given a table containing information on Facebook user actions. Write a query to obtain number of monthly active users (MAUs) in July 2022, including the month in numerical format "1, 2, 3".
 
-Table: ``
+An active user is defined as a user who has performed actions such as 'sign-in', 'like', or 'comment' in both the current month and the previous month.
 
+Table: `user_actions`
+
+| Column Name | Type                                 |
+|-------------|--------------------------------------|
+| user_id     | integer                              |
+| event_id    | integer                              |
+| event_type  | string ("sign-in, "like", "comment") |
+| event_date  | datetime                             |
 
 ```SQL
-
+SELECT mon AS month,
+       COUNT(DISTINCT user_id) FILTER (WHERE lg_month = mon - 1) AS monthly_active_users
+FROM (
+    SELECT user_id,
+           DATE_PART('month', event_date) AS mon,
+           LAG(DATE_PART('month', event_date)) OVER win AS lg_month
+    FROM user_actions
+    WHERE DATE_PART('year', event_date) = 2022
+    WINDOW win AS (PARTITION BY user_id ORDER BY event_date)
+) AS activity2022
+WHERE mon = 7
+GROUP BY mon
 ```
 
 Result:
 
 <pre>
-
+| month | monthly_active_users |
+|-------|----------------------|
+| 7     | 2                    |
 </pre>
 
 
