@@ -1296,20 +1296,56 @@ Result:
 </pre>
 
 
-## [32. [Medium] ]()
+## [32. [Medium] International Call Percentage](https://datalemur.com/questions/international-call-percentage)
+
+A phone call is considered an international call when the person calling is in a different country than the person receiving the call.
+
+What percentage of phone calls are international? Round the result to 1 decimal.
+
+Assumption: The caller_id in phone_info table refers to both the caller and receiver.
+
+Table: `phone_calls`
+
+| Column Name | Type      |
+|-------------|-----------|
+| caller_id   | integer   |
+| receiver_id | integer   |
+| call_time   | timestamp |
 
 
-Table: ``
+Table: `phone_info`
 
+| Column Name  | Type    |
+|--------------|---------|
+| caller_id    | integer |
+| country_id   | integer |
+| network      | integer |
+| phone_number | string  |
 
 ```SQL
+WITH country_info AS (
+    SELECT pic.country_id AS cc,
+           pir.country_id AS rc
+    FROM phone_calls pc
+    JOIN phone_info pic
+        ON pc.caller_id = pic.caller_id 
+    JOIN phone_info pir
+        ON pc.receiver_id = pir.caller_id
+)
 
+SELECT ROUND(
+            COUNT(*) FILTER (WHERE cc != rc)*100.0/
+            (SELECT COUNT(*) FROM phone_calls), 
+        1) AS internations_calls_pct
+FROM country_info
 ```
 
 Result:
 
 <pre>
-
+| internations_calls_pct |
+|------------------------|
+| 54.5                   |
 </pre>
 
 
