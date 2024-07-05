@@ -1477,7 +1477,99 @@ Result:
 </pre>
 
 
-## [36. [Medium] ]()
+## [36. [Medium] FAANG Stock Min-Max (Part 1)](https://datalemur.com/questions/sql-bloomberg-stock-min-max-1)
+
+The Bloomberg terminal is the go-to resource for financial professionals, offering convenient access to a wide array of financial datasets. As a Data Analyst at Bloomberg, you have access to historical data on stock performance.
+
+Currently, you're analyzing the highest and lowest open prices for each FAANG stock by month over the years.
+
+For each FAANG stock, display the ticker symbol, the month and year ('Mon-YYYY') with the corresponding highest and lowest open prices (refer to the Example Output format). Ensure that the results are sorted by ticker symbol.
+
+Table: `stock_prices`
+
+| Column Name | Type     | Description                                                         |
+|-------------|----------|---------------------------------------------------------------------|
+| date        | datetime | The specified date (mm/dd/yyyy) of the stock data.                  |
+| ticker      | varchar  | The stock ticker symbol (e.g., AAPL) for the corresponding company. |
+| open        | decimal  | The opening price of the stock at the start of the trading day.     |
+| high        | decimal  | The highest price reached by the stock during the trading day.      |
+| low         | decimal  | The lowest price reached by the stock during the trading day.       |
+| close       | decimal  | The closing price of the stock at the end of the trading day.       |
+
+```SQL
+SELECT ticker,
+       MIN(CASE
+           WHEN rnb = 1 THEN TO_CHAR(date, 'Mon-YYYY')
+       END) AS highest_mth,
+       MIN(CASE
+           WHEN rnb = 1 THEN open
+       END) AS highest_open,
+       MIN(CASE
+           WHEN rnb = tcnt THEN TO_CHAR(date, 'Mon-YYYY')
+       END) AS lowest_mth,
+       MIN(CASE
+           WHEN rnb = tcnt THEN open
+       END) AS lowest_open
+FROM (
+    SELECT ticker,
+           date,
+           open,
+           ROW_NUMBER() OVER (PARTITION BY ticker ORDER BY open DESC) AS rnb,
+           COUNT(*) OVER (PARTITION BY ticker) AS tcnt
+    FROM stock_prices
+) AS ranking
+GROUP BY ticker
+```
+
+Result:
+
+<pre>
+| ticker | highest_mth | highest_open | lowest_mth | lowest_open |
+|--------|-------------|--------------|------------|-------------|
+| AAPL   | Jul-2023    | 195.26       | Apr-2020   | 61.63       |
+| AMZN   | Dec-2021    | 177.25       | Jan-2023   | 85.46       |
+| GOOG   | Nov-2021    | 148.16       | Apr-2020   | 56.10       |
+| META   | Sep-2021    | 379.59       | Nov-2022   | 94.33       |
+| MSFT   | Jul-2023    | 339.19       | Apr-2020   | 153.00      |
+| NFLX   | Nov-2021    | 689.06       | Jul-2022   | 176.49      |
+</pre>
+
+
+## [37. [Medium] ]()
+
+
+Table: ``
+
+
+```SQL
+
+```
+
+Result:
+
+<pre>
+
+</pre>
+
+
+## [38. [Medium] ]()
+
+
+Table: ``
+
+
+```SQL
+
+```
+
+Result:
+
+<pre>
+
+</pre>
+
+
+## [39. [Medium] ]()
 
 
 Table: ``
