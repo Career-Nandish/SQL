@@ -1657,7 +1657,74 @@ Result:
 </pre>
 
 
-## [39. [Medium] ]()
+## [39. [Hard] Median Google Search Frequency](https://datalemur.com/questions/median-search-freq)
+
+Google's marketing team is making a Superbowl commercial and needs a simple statistic to put on their TV ad: the median number of searches a person made last year.
+
+However, at Google scale, querying the 2 trillion searches is too costly. Luckily, you have access to the summary table which tells you the number of searches made last year and how many Google users fall into that bucket.
+
+Write a query to report the median of searches made by a user. Round the median to one decimal point.
+
+Table: `search_frequency`
+
+| Column Name | Type    |
+|-------------|---------|
+| searches    | integer |
+| num_users   | integer |
+
+```SQL
+SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY searches) AS median
+FROM (
+    SELECT searches,
+           GENERATE_SERIES(1, num_users) AS datas
+    FROM search_frequency
+) AS expanded
+```
+
+Result:
+
+<pre>
+| median  |
+|---------|
+|  3.5    |
+</pre>
+
+
+## [40. [Medium] ]()
+
+
+Table: ``
+
+
+```SQL
+
+```
+
+Result:
+
+<pre>
+
+</pre>
+
+
+## [41. [Medium] ]()
+
+
+Table: ``
+
+
+```SQL
+
+```
+
+Result:
+
+<pre>
+
+</pre>
+
+
+## [42. [Medium] ]()
 
 
 Table: ``
